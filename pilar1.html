@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilar 1 · Polo Industrial y PYME · Pereyra 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1A6B4A;
+  --lightgreen: #2ECC8A;
+  --darkgreen: #0B3D2E;
+  --water: #5DADE2;
+  --dark: #080F0A;
+  --card: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --text: rgba(255,255,255,0.6);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; background:var(--dark); color:#fff; overflow-x:hidden; }
+
+body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:999; opacity:0.35; }
+
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1rem 3rem; background:rgba(8,15,10,0.9); backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-back { display:flex; align-items:center; gap:0.5rem; text-decoration:none; color:rgba(255,255,255,0.5); font-size:0.82rem; letter-spacing:0.06em; transition:color 0.2s; }
+.nav-back:hover { color:var(--lightgreen); }
+.nav-title { font-family:'Syne',sans-serif; font-size:0.85rem; font-weight:700; color:var(--lightgreen); }
+.nav-pillar { font-family:'Syne',sans-serif; font-size:0.75rem; color:rgba(255,255,255,0.3); }
+
+/* HERO */
+.hero {
+  min-height:100vh; position:relative;
+  display:flex; align-items:center;
+  padding:8rem 3rem 5rem;
+  background:linear-gradient(160deg, #040A06 0%, #0B3D2E 50%, #040A06 100%);
+  overflow:hidden;
+}
+.hero::before {
+  content:'🏭';
+  position:absolute; font-size:28rem; opacity:0.03;
+  top:-4rem; right:-4rem; pointer-events:none;
+}
+.hero-inner { max-width:1200px; margin:0 auto; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+
+.hero-tag { font-family:'Syne',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--lightgreen); margin-bottom:1.2rem; display:flex; align-items:center; gap:0.6rem; }
+.hero-tag::before { content:''; width:2rem; height:2px; background:var(--lightgreen); display:block; }
+
+h1 { font-family:'Syne',sans-serif; font-size:clamp(2.5rem,4.5vw,4.5rem); font-weight:800; line-height:0.95; letter-spacing:-0.02em; margin-bottom:1.5rem; }
+h1 em { color:var(--lightgreen); font-style:normal; display:block; }
+
+.hero-desc { font-size:1.05rem; line-height:1.75; color:var(--text); margin-bottom:2.5rem; }
+
+.hero-cta { display:flex; gap:1rem; }
+.btn { padding:0.9rem 2rem; border-radius:6px; font-weight:500; font-size:0.88rem; letter-spacing:0.04em; text-decoration:none; transition:all 0.25s; display:inline-block; cursor:pointer; border:none; }
+.btn-primary { background:var(--green); color:#fff; }
+.btn-primary:hover { background:var(--lightgreen); transform:translateY(-2px); box-shadow:0 8px 24px rgba(46,204,138,0.3); }
+.btn-outline { border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.6); background:transparent; }
+.btn-outline:hover { border-color:var(--lightgreen); color:var(--lightgreen); }
+
+.hero-stats { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.hstat { background:rgba(26,107,74,0.12); border:1px solid rgba(26,107,74,0.25); border-radius:12px; padding:1.5rem; position:relative; overflow:hidden; }
+.hstat::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:linear-gradient(90deg,var(--lightgreen),transparent); }
+.hstat-num { font-family:'Syne',sans-serif; font-size:2.2rem; font-weight:800; color:var(--lightgreen); line-height:1; margin-bottom:0.3rem; }
+.hstat-label { font-size:0.8rem; color:rgba(255,255,255,0.45); line-height:1.4; }
+
+/* SECTIONS */
+.section { padding:6rem 3rem; max-width:1200px; margin:0 auto; }
+.section-tag { font-family:'Syne',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--lightgreen); margin-bottom:0.8rem; display:flex; align-items:center; gap:0.5rem; }
+.section-tag::before { content:''; width:1.5rem; height:1px; background:var(--lightgreen); display:block; }
+h2 { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:800; line-height:1.1; margin-bottom:1rem; }
+.section-intro { font-size:1rem; color:var(--text); line-height:1.7; max-width:680px; margin-bottom:3rem; }
+
+/* CONTEXTO */
+.context-bg { background:linear-gradient(180deg, var(--dark) 0%, #0A1A0D 100%); }
+.context-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+.context-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.8rem; }
+.context-card.highlight { background:rgba(26,107,74,0.1); border-color:rgba(26,107,74,0.3); }
+.context-card h3 { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:#fff; margin-bottom:0.8rem; }
+.context-card p { font-size:0.88rem; color:var(--text); line-height:1.65; }
+.context-card ul { list-style:none; display:flex; flex-direction:column; gap:0.5rem; margin-top:0.8rem; }
+.context-card ul li { font-size:0.85rem; color:var(--text); padding-left:1.1rem; position:relative; line-height:1.5; }
+.context-card ul li::before { content:'▸'; position:absolute; left:0; color:var(--lightgreen); font-size:0.7rem; top:0.15rem; }
+
+/* ESTRATEGIA */
+.strategy-bg { background:#060E08; }
+.strategy-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
+.strategy-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:2rem; position:relative; overflow:hidden; transition:all 0.3s; }
+.strategy-card:hover { border-color:rgba(46,204,138,0.3); transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,0.3); }
+.strategy-card::before { content:''; position:absolute; top:0;left:0;bottom:0; width:3px; background:var(--lightgreen); opacity:0; transition:opacity 0.3s; }
+.strategy-card:hover::before { opacity:1; }
+.strategy-num { font-family:'Syne',sans-serif; font-size:3.5rem; font-weight:800; color:rgba(46,204,138,0.07); position:absolute; top:0.5rem; right:1rem; line-height:1; pointer-events:none; }
+.strategy-icon { font-size:1.8rem; margin-bottom:0.8rem; display:block; }
+.strategy-title { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; color:#fff; margin-bottom:0.4rem; }
+.strategy-sub { font-size:0.75rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--lightgreen); margin-bottom:1rem; }
+.strategy-desc { font-size:0.87rem; color:var(--text); line-height:1.65; margin-bottom:1.2rem; }
+.strategy-steps { list-style:none; display:flex; flex-direction:column; gap:0.4rem; }
+.strategy-steps li { font-size:0.82rem; color:rgba(255,255,255,0.55); padding-left:1.1rem; position:relative; }
+.strategy-steps li::before { content:'→'; position:absolute; left:0; color:var(--lightgreen); font-size:0.72rem; }
+
+/* EJECUCIÓN */
+.exec-bg { background:linear-gradient(180deg, #060E08 0%, #0A1A0D 100%); }
+.timeline-exec { display:flex; flex-direction:column; gap:0; position:relative; }
+.timeline-exec::before { content:''; position:absolute; left:5.5rem; top:0; bottom:0; width:1px; background:linear-gradient(180deg, var(--lightgreen), rgba(46,204,138,0.1)); }
+.exec-item { display:grid; grid-template-columns:5rem 1fr; gap:2rem; padding-bottom:2.5rem; position:relative; }
+.exec-period { font-family:'Syne',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--lightgreen); padding-top:0.3rem; text-align:right; line-height:1.3; }
+.exec-dot { position:absolute; left:4.75rem; top:0.35rem; width:1.5rem; height:1.5rem; border-radius:50%; background:var(--darkgreen); border:2px solid var(--lightgreen); z-index:2; display:flex; align-items:center; justify-content:center; font-size:0.6rem; color:var(--lightgreen); }
+.exec-content { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.5rem; margin-left:1.5rem; }
+.exec-title { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:#fff; margin-bottom:0.6rem; }
+.exec-actions { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+.exec-actions li { font-size:0.85rem; color:var(--text); padding-left:1.1rem; position:relative; line-height:1.5; }
+.exec-actions li::before { content:'✓'; position:absolute; left:0; color:var(--lightgreen); font-size:0.7rem; }
+.exec-kpi { display:inline-block; margin-top:0.8rem; background:rgba(46,204,138,0.1); border:1px solid rgba(46,204,138,0.2); border-radius:100px; padding:0.3rem 0.8rem; font-size:0.75rem; color:var(--lightgreen); font-weight:500; }
+
+/* IMPACTO */
+.impact-bg { background:#040A06; }
+.impact-hero { background:linear-gradient(135deg, rgba(26,107,74,0.15), rgba(11,61,46,0.3)); border:1px solid rgba(46,204,138,0.15); border-radius:20px; padding:3rem; margin-bottom:3rem; text-align:center; }
+.impact-hero h3 { font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:800; color:#fff; margin-bottom:0.5rem; }
+.impact-hero p { color:var(--text); font-size:0.95rem; line-height:1.65; max-width:600px; margin:0 auto; }
+.impact-numbers { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-bottom:3rem; }
+.impact-num-card { text-align:center; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:2rem 1rem; transition:all 0.3s; }
+.impact-num-card:hover { background:rgba(26,107,74,0.1); border-color:rgba(46,204,138,0.25); transform:translateY(-4px); }
+.impact-big { font-family:'Syne',sans-serif; font-size:3rem; font-weight:800; color:var(--lightgreen); line-height:1; margin-bottom:0.4rem; }
+.impact-lbl { font-size:0.8rem; color:var(--text); line-height:1.4; }
+.impact-table { width:100%; border-collapse:collapse; border-radius:12px; overflow:hidden; }
+.impact-table th { background:rgba(26,107,74,0.3); padding:1rem 1.2rem; text-align:left; font-family:'Syne',sans-serif; font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--lightgreen); }
+.impact-table td { padding:1rem 1.2rem; font-size:0.87rem; color:var(--text); border-bottom:1px solid rgba(255,255,255,0.04); }
+.impact-table tr:nth-child(even) td { background:rgba(255,255,255,0.015); }
+.impact-table tr:hover td { background:rgba(26,107,74,0.07); }
+.impact-table td:first-child { color:#fff; font-weight:500; }
+.impact-table td.good { color:var(--lightgreen); font-weight:600; }
+
+/* RIESGOS */
+.risk-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+.risk-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1.5rem; }
+.risk-header { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.8rem; }
+.risk-badge { font-size:0.7rem; font-weight:600; padding:0.2rem 0.6rem; border-radius:100px; letter-spacing:0.06em; }
+.rb-high { background:rgba(231,76,60,0.15); color:#F1948A; border:1px solid rgba(231,76,60,0.2); }
+.rb-med { background:rgba(212,160,23,0.15); color:#F0D080; border:1px solid rgba(212,160,23,0.2); }
+.rb-low { background:rgba(46,204,138,0.15); color:#6EEBB0; border:1px solid rgba(46,204,138,0.2); }
+.risk-title { font-family:'Syne',sans-serif; font-size:0.9rem; font-weight:700; color:#fff; }
+.risk-desc { font-size:0.82rem; color:var(--text); line-height:1.55; margin-bottom:0.8rem; }
+.risk-mit { font-size:0.8rem; color:rgba(255,255,255,0.45); line-height:1.5; }
+.risk-mit strong { color:var(--lightgreen); }
+
+/* FOOTER NAV */
+.page-footer { background:#030806; border-top:1px solid rgba(255,255,255,0.05); padding:3rem; }
+.pf-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+.pf-brand { font-family:'Syne',sans-serif; font-size:0.85rem; font-weight:700; color:rgba(255,255,255,0.25); }
+.pf-nav { display:flex; gap:1rem; }
+.pf-btn { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:0.7rem 1.2rem; font-size:0.82rem; color:rgba(255,255,255,0.55); text-decoration:none; transition:all 0.2s; font-family:'Syne',sans-serif; font-weight:600; }
+.pf-btn:hover { border-color:var(--lightgreen); color:var(--lightgreen); }
+.pf-btn.active { background:rgba(26,107,74,0.2); border-color:var(--lightgreen); color:var(--lightgreen); }
+
+.aos { opacity:0; transform:translateY(20px); transition:opacity 0.55s ease, transform 0.55s ease; }
+.aos.show { opacity:1; transform:translateY(0); }
+
+@media(max-width:900px){
+  nav { padding:1rem 1.5rem; }
+  .hero { padding:7rem 1.5rem 4rem; }
+  .hero-inner { grid-template-columns:1fr; gap:2.5rem; }
+  .section { padding:4rem 1.5rem; }
+  .context-grid, .strategy-grid, .impact-numbers, .risk-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="plataforma_pereyra_2027.html" class="nav-back">← Volver a la plataforma</a>
+  <div>
+    <div class="nav-title">Pilar 1 · Polo Industrial y PYME</div>
+  </div>
+  <div class="nav-pillar">Pereyra 2027</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Desarrollo económico · Pilar 1 de 4</div>
+      <h1>Polo Industrial<em>y PYME</em></h1>
+      <p class="hero-desc">La Calera fue durante décadas la capital industrial de la provincia. Cal, granito, cemento — una identidad productiva real. Hoy esa base existe pero no tiene política municipal que la potencie. Esto es lo que hay que hacer.</p>
+      <div class="hero-cta">
+        <a href="#estrategia" class="btn btn-primary">Ver estrategia</a>
+        <a href="#impacto" class="btn btn-outline">Impacto proyectado</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-num">1°</div>
+        <div class="hstat-label">Productora de cal y granito de la provincia de Córdoba</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">9km</div>
+        <div class="hstat-label">De Córdoba Capital — ventaja logística única de la región</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">0</div>
+        <div class="hstat-label">Programas municipales activos de apoyo a PYMEs hoy</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">+40%</div>
+        <div class="hstat-label">Crecimiento poblacional en 10 años sin desarrollo económico paralelo</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXTO -->
+<div class="context-bg">
+  <div class="section">
+    <div class="section-tag aos">Por qué existe este pilar</div>
+    <h2 class="aos">La base está.<br>Falta la política.</h2>
+    <p class="section-intro aos">La Calera tiene activos industriales únicos en la región. El problema no es la falta de potencial — es la ausencia total de una estrategia municipal para aprovecharlo.</p>
+    <div class="context-grid">
+      <div class="context-card highlight aos">
+        <h3>✅ Lo que La Calera ya tiene</h3>
+        <ul>
+          <li>Mayor yacimiento de caliza activo de Córdoba (canteras en plena operación)</li>
+          <li>Empresa Calcáreos Córdoba S.A. y múltiples canteras activas</li>
+          <li>Parque industrial provincial con lotes parcialmente ocupados</li>
+          <li>Acceso a rutas nacionales y provinciales principales (E-55, RN-20)</li>
+          <li>Mano de obra local con tradición industrial</li>
+          <li>Proximidad a la segunda ciudad más grande del país</li>
+          <li>Adhesión al régimen de Economía del Conocimiento (anunciado, sin ejecutar)</li>
+        </ul>
+      </div>
+      <div class="context-card aos">
+        <h3>❌ Lo que falta completamente</h3>
+        <ul>
+          <li>Sin política municipal de desarrollo productivo activa</li>
+          <li>Sin ventanilla única de inversiones — trámites toman meses</li>
+          <li>Sin fondo de microcrédito para PYMEs locales</li>
+          <li>Sin beneficios impositivos diferenciados para industria local</li>
+          <li>Sin programa de capacitación técnica articulado con industria</li>
+          <li>Sin registro ni difusión de proveedores locales</li>
+          <li>Sin mapa de lotes disponibles para nuevas radicaciones</li>
+        </ul>
+      </div>
+      <div class="context-card aos">
+        <h3>📊 El contexto regional</h3>
+        <p>Municipios como Río Cuarto, Villa María y San Francisco tienen agencias de desarrollo local con presupuesto, staff y resultados medibles. La Calera, a 9km de Capital y con base industrial real, no tiene nada equivalente. Eso es una oportunidad directa.</p>
+      </div>
+      <div class="context-card aos">
+        <h3>🎯 La oportunidad concreta</h3>
+        <p>El crecimiento demográfico de Sierras Chicas generó una masa crítica de consumidores locales y trabajadores disponibles. Combinar eso con la base industrial existente y una política municipal activa puede generar un salto cualitativo en la economía de La Calera en 4 años.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ESTRATEGIA -->
+<div class="strategy-bg" id="estrategia">
+  <div class="section">
+    <div class="section-tag aos">La estrategia</div>
+    <h2 class="aos">4 líneas de acción.<br>Todas ejecutables desde el municipio.</h2>
+    <p class="section-intro aos">Cada línea tiene un responsable municipal, un presupuesto estimado y una métrica de éxito. Nada de anuncios sin seguimiento.</p>
+    <div class="strategy-grid">
+      <div class="strategy-card aos">
+        <div class="strategy-num">01</div>
+        <span class="strategy-icon">🏗️</span>
+        <div class="strategy-title">Parque Industrial Municipal Activo</div>
+        <div class="strategy-sub">Infraestructura productiva</div>
+        <div class="strategy-desc">El parque industrial provincial tiene lotes subutilizados. El municipio negocia la cesión de gestión de una fracción y la convierte en polo activo con servicios garantizados, beneficios reales y gestión eficiente.</div>
+        <ul class="strategy-steps">
+          <li>Relevamiento de lotes disponibles en el parque provincial en los primeros 30 días</li>
+          <li>Convenio con Ministerio de Industria provincial para co-gestión</li>
+          <li>Licitación de infraestructura básica: agua, gas, electricidad trifásica, internet</li>
+          <li>Régimen de beneficios impositivos municipales por 5 años para nuevas radicaciones</li>
+          <li>Prioridad para industrias con más del 60% de empleo local</li>
+          <li>Meta: 15 nuevas empresas radicadas en 4 años</li>
+        </ul>
+      </div>
+      <div class="strategy-card aos">
+        <div class="strategy-num">02</div>
+        <span class="strategy-icon">🚪</span>
+        <div class="strategy-title">Ventanilla Única de Inversiones</div>
+        <div class="strategy-sub">Desburocratización</div>
+        <div class="strategy-desc">Hoy una empresa que quiere instalarse en La Calera enfrenta entre 6 y 12 meses de trámites dispersos. La ventanilla única centraliza todo en un solo punto de contacto con plazos garantizados por ordenanza.</div>
+        <ul class="strategy-steps">
+          <li>Mapeo completo de todos los trámites actuales de habilitación (primeros 60 días)</li>
+          <li>Ordenanza de ventanilla única con plazo máximo de 30 días hábiles</li>
+          <li>Asesor de inversiones municipal dedicado — con agenda pública</li>
+          <li>Portal online con estado de cada trámite en tiempo real</li>
+          <li>Penalidad automática si el municipio supera el plazo comprometido</li>
+          <li>Meta: tiempo promedio de habilitación menor a 45 días en año 2</li>
+        </ul>
+      </div>
+      <div class="strategy-card aos">
+        <div class="strategy-num">03</div>
+        <span class="strategy-icon">💰</span>
+        <div class="strategy-title">Fondo Municipal de Apoyo PYME</div>
+        <div class="strategy-sub">Financiamiento accesible</div>
+        <div class="strategy-desc">El acceso al crédito es el principal obstáculo para las PYMEs locales. El municipio actúa como facilitador y garante, conectando con fondos provinciales y nacionales existentes que hoy nadie gestiona localmente.</div>
+        <ul class="strategy-steps">
+          <li>Convenio con el Fondo para el Desarrollo Productivo de Córdoba (FONDEP)</li>
+          <li>Articulación con Banco Nación y Banco de Córdoba para líneas PYME preferentes</li>
+          <li>Fondo municipal de garantías: $10M iniciales para avalar créditos de PYMEs locales</li>
+          <li>Foco en manufactura, alimentos artesanales, construcción y servicios industriales</li>
+          <li>Comité de evaluación mensual con criterios públicos y transparentes</li>
+          <li>Meta: 50 PYMEs financiadas en los primeros 2 años</li>
+        </ul>
+      </div>
+      <div class="strategy-card aos">
+        <div class="strategy-num">04</div>
+        <span class="strategy-icon">🛒</span>
+        <div class="strategy-title">Compre Local Obligatorio</div>
+        <div class="strategy-sub">Mercado interno activado</div>
+        <div class="strategy-desc">El municipio gasta presupuesto todos los años en bienes y servicios. Hasta el 30% de esas compras pueden ser de proveedores locales. Es un mercado cautivo que hoy no se usa estratégicamente.</div>
+        <ul class="strategy-steps">
+          <li>Ordenanza de preferencia de proveedor local en compras municipales</li>
+          <li>Registro Municipal de Proveedores Locales (REMPL) — gratuito y online</li>
+          <li>Descuento del 10% en tasas municipales para empresas en el REMPL</li>
+          <li>Difusión activa del REMPL entre vecinos, empresas y organismos públicos</li>
+          <li>Informe trimestral de compras locales vs. externas — publicado abiertamente</li>
+          <li>Meta: 30% de compras municipales a proveedores registrados en año 3</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EJECUCIÓN -->
+<div class="exec-bg">
+  <div class="section">
+    <div class="section-tag aos">Cronograma de ejecución</div>
+    <h2 class="aos">Paso a paso.<br>Con fechas reales.</h2>
+    <p class="section-intro aos">Este plan no depende de una sola decisión grande. Se construye paso a paso, y cada paso es verificable.</p>
+    <div class="timeline-exec">
+      <div class="exec-item aos">
+        <div class="exec-period">Mes 1–2</div>
+        <div class="exec-dot">1</div>
+        <div class="exec-content">
+          <div class="exec-title">Diagnóstico y estructura</div>
+          <ul class="exec-actions">
+            <li>Crear la Agencia de Desarrollo Económico Local (ADEL) por decreto municipal</li>
+            <li>Relevar todos los lotes disponibles en el parque industrial provincial</li>
+            <li>Mapear todos los trámites de habilitación actuales y tiempos reales</li>
+            <li>Identificar las 20 PYMEs locales con mayor potencial de crecimiento</li>
+            <li>Publicar el Registro Municipal de Proveedores (versión beta)</li>
+          </ul>
+          <span class="exec-kpi">📌 Entregable: Informe de diagnóstico público en el mes 2</span>
+        </div>
+      </div>
+      <div class="exec-item aos">
+        <div class="exec-period">Mes 3–6</div>
+        <div class="exec-dot">2</div>
+        <div class="exec-content">
+          <div class="exec-title">Marco legal y primeros convenios</div>
+          <ul class="exec-actions">
+            <li>Aprobar ordenanza de Ventanilla Única con plazo máximo de 45 días</li>
+            <li>Aprobar ordenanza de preferencia de proveedor local (30% de compras)</li>
+            <li>Firmar convenio con Ministerio de Industria provincial para co-gestión de lotes</li>
+            <li>Firmar convenio con FONDEP para líneas de crédito PYME</li>
+            <li>Primer relevamiento de demanda real de emprendedores locales</li>
+          </ul>
+          <span class="exec-kpi">📌 Entregable: 2 ordenanzas aprobadas + 2 convenios firmados</span>
+        </div>
+      </div>
+      <div class="exec-item aos">
+        <div class="exec-period">Mes 6–12</div>
+        <div class="exec-dot">3</div>
+        <div class="exec-content">
+          <div class="exec-title">Primeras operaciones</div>
+          <ul class="exec-actions">
+            <li>Ventanilla Única operativa — primeras habilitaciones en menos de 45 días</li>
+            <li>Licitación de obras de infraestructura en el parque industrial (agua, electricidad, conectividad)</li>
+            <li>Primera ronda de créditos PYME otorgados: mínimo 15 empresas</li>
+            <li>30% de compras municipales a proveedores del REMPL</li>
+            <li>Primera Ronda de Inversiones local: jornada pública con empresarios interesados</li>
+          </ul>
+          <span class="exec-kpi">📌 Entregable: 15 PYMEs financiadas + parque con infraestructura</span>
+        </div>
+      </div>
+      <div class="exec-item aos">
+        <div class="exec-period">Año 2–4</div>
+        <div class="exec-dot">4</div>
+        <div class="exec-content">
+          <div class="exec-title">Consolidación y escala</div>
+          <ul class="exec-actions">
+            <li>15+ nuevas empresas radicadas en el parque industrial municipal</li>
+            <li>50+ PYMEs beneficiadas con créditos y asistencia técnica acumuladas</li>
+            <li>Tiempo promedio de habilitación: menos de 30 días</li>
+            <li>Feria de Proveedores Locales anual con + de 100 expositores</li>
+            <li>Informe anual de impacto económico con métricas verificables</li>
+          </ul>
+          <span class="exec-kpi">📌 Meta final: +300 empleos directos en 4 años</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IMPACTO -->
+<div class="impact-bg" id="impacto">
+  <div class="section">
+    <div class="section-tag aos">Impacto proyectado</div>
+    <h2 class="aos">¿Qué cambia<br>en 4 años?</h2>
+    <div class="impact-hero aos">
+      <h3>La Calera como polo industrial inteligente del corredor serrano</h3>
+      <p>No se trata de construir desde cero — se trata de activar lo que ya existe con una política municipal que hoy no existe. La base industrial, la ubicación y la mano de obra ya están. Falta el Estado municipal como facilitador activo.</p>
+    </div>
+    <div class="impact-numbers">
+      <div class="impact-num-card aos"><div class="impact-big">+300</div><div class="impact-lbl">Empleos directos generados en La Calera</div></div>
+      <div class="impact-num-card aos"><div class="impact-big">+15</div><div class="impact-lbl">Nuevas empresas radicadas en el parque industrial</div></div>
+      <div class="impact-num-card aos"><div class="impact-big">50+</div><div class="impact-lbl">PYMEs locales financiadas y asistidas técnicamente</div></div>
+      <div class="impact-num-card aos"><div class="impact-big">30%</div><div class="impact-lbl">Del gasto municipal circulando en la economía local</div></div>
+    </div>
+    <table class="impact-table aos">
+      <thead><tr><th>Indicador</th><th>Hoy (línea de base)</th><th>Año 2</th><th>Año 4 (meta)</th></tr></thead>
+      <tbody>
+        <tr><td>Tiempo promedio de habilitación</td><td>6+ meses</td><td>45 días</td><td class="good">30 días</td></tr>
+        <tr><td>PYMEs con crédito municipal</td><td>0</td><td>25</td><td class="good">50+</td></tr>
+        <tr><td>Empresas en parque industrial</td><td>parcialmente ocupado</td><td>+8 nuevas</td><td class="good">+15 nuevas</td></tr>
+        <tr><td>Compras municipales locales</td><td>sin datos / sin política</td><td>15%</td><td class="good">30%</td></tr>
+        <tr><td>Empleos directos nuevos</td><td>0 por política municipal</td><td>+100</td><td class="good">+300</td></tr>
+        <tr><td>Proveedores en REMPL</td><td>0</td><td>150</td><td class="good">300+</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- RIESGOS -->
+<div class="context-bg">
+  <div class="section">
+    <div class="section-tag aos">Gestión de riesgos</div>
+    <h2 class="aos">¿Qué puede fallar<br>y cómo lo mitigamos?</h2>
+    <p class="section-intro aos">La honestidad sobre los riesgos es parte de la seriedad del plan. Acá están los principales y cómo los abordamos.</p>
+    <div class="risk-grid">
+      <div class="risk-card aos">
+        <div class="risk-header"><span class="risk-badge rb-high">Alto</span><div class="risk-title">Burocracia provincial</div></div>
+        <div class="risk-desc">La co-gestión del parque industrial requiere acuerdo con la Provincia, que puede demorar o negarse.</div>
+        <div class="risk-mit"><strong>Mitigación:</strong> El municipio identifica lotes propios o privados como alternativa. La ventanilla única y el REMPL no dependen de la Provincia y pueden ejecutarse de forma autónoma.</div>
+      </div>
+      <div class="risk-card aos">
+        <div class="risk-header"><span class="risk-badge rb-med">Medio</span><div class="risk-title">Bajo interés empresarial</div></div>
+        <div class="risk-desc">Las empresas no responden a los beneficios ofrecidos por escala insuficiente del mercado local.</div>
+        <div class="risk-mit"><strong>Mitigación:</strong> La Ronda de Inversiones identifica demanda real antes de construir oferta. Además, el compre local crea un mercado mínimo garantizado para proveedores nuevos.</div>
+      </div>
+      <div class="risk-card aos">
+        <div class="risk-header"><span class="risk-badge rb-med">Medio</span><div class="risk-title">Presupuesto insuficiente</div></div>
+        <div class="risk-desc">El fondo de garantías y la infraestructura del parque requieren inversión inicial que puede competir con otras prioridades.</div>
+        <div class="risk-mit"><strong>Mitigación:</strong> Articulación con fondos provinciales (FONDEP) y nacionales (SEPYME, INTI) reduce el desembolso municipal. El REMPL y la ventanilla única son de bajo costo.</div>
+      </div>
+      <div class="risk-card aos">
+        <div class="risk-header"><span class="risk-badge rb-low">Bajo</span><div class="risk-title">Resistencia política interna</div></div>
+        <div class="risk-desc">El Concejo Deliberante puede demorar la aprobación de ordenanzas clave.</div>
+        <div class="risk-mit"><strong>Mitigación:</strong> La ventanilla única y el REMPL pueden iniciarse por decreto ejecutivo. Las ordenanzas son el paso siguiente, no el requisito para empezar.</div>
+      </div>
+      <div class="risk-card aos">
+        <div class="risk-header"><span class="risk-badge rb-low">Bajo</span><div class="risk-title">Impacto ambiental</div></div>
+        <div class="risk-desc">La expansión industrial puede entrar en conflicto con la agenda ambiental y las cuencas hídricas.</div>
+        <div class="risk-mit"><strong>Mitigación:</strong> Criterio de admisión al parque incluye evaluación ambiental obligatoria. Prioridad explícita para industrias de bajo impacto. Enlace directo con el Pilar Ambiental.</div>
+      </div>
+      <div class="risk-card aos">
+        <div class="risk-header"><span class="risk-badge rb-low">Bajo</span><div class="risk-title">Capacidad técnica municipal</div></div>
+        <div class="risk-desc">La ADEL requiere personal calificado que el municipio puede no tener disponible.</div>
+        <div class="risk-mit"><strong>Mitigación:</strong> Convenio con la UNC (FCE y FCA) para proveer asistencia técnica y pasantes en la agencia. Modelo probado en otros municipios cordobeses.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  <div class="pf-inner">
+    <div class="pf-brand">Pereyra 2027 · La Calera</div>
+    <div class="pf-nav">
+      <span class="pf-btn active">1 · Industrial</span>
+      <a href="pilar2.html" class="pf-btn">2 · Conocimiento</a>
+      <a href="pilar3.html" class="pf-btn">3 · Turismo</a>
+      <a href="pilar4.html" class="pf-btn">4 · Empleo Joven</a>
+      <a href="pilar5.html" class="pf-btn">5 · PYME</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('show'),i*60); obs.unobserve(e.target); } });
+},{ threshold:0.1, rootMargin:'0px 0px -40px 0px' });
+document.querySelectorAll('.aos').forEach(el=>obs.observe(el));
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.background = window.scrollY>60?'rgba(4,8,5,0.98)':'rgba(8,15,10,0.9)';
+});
+</script>
+</body>
+</html>

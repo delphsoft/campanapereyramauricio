@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilar 2 · Economía del Conocimiento · Pereyra 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2E5A9A;--lightblue:#5DADE2;--darkblue:#1B2E5A;--dark:#07090F;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--text:rgba(255,255,255,0.6);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:0.35;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(7,9,15,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);}
+.nav-back{display:flex;align-items:center;gap:0.5rem;text-decoration:none;color:rgba(255,255,255,0.5);font-size:0.82rem;letter-spacing:0.06em;transition:color 0.2s;}
+.nav-back:hover{color:var(--lightblue);}
+.nav-title{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--lightblue);}
+.nav-pillar{font-family:'Syne',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;padding:8rem 3rem 5rem;background:linear-gradient(160deg,#040609 0%,#1B2E5A 50%,#040609 100%);overflow:hidden;}
+.hero::before{content:'💻';position:absolute;font-size:28rem;opacity:0.03;top:-4rem;right:-4rem;pointer-events:none;}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.hero-tag{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--lightblue);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem;}
+.hero-tag::before{content:'';width:2rem;height:2px;background:var(--lightblue);display:block;}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,4.5vw,4.5rem);font-weight:800;line-height:0.95;letter-spacing:-0.02em;margin-bottom:1.5rem;}
+h1 em{color:var(--lightblue);font-style:normal;display:block;}
+.hero-desc{font-size:1.05rem;line-height:1.75;color:var(--text);margin-bottom:2.5rem;}
+.hero-cta{display:flex;gap:1rem;}
+.btn{padding:0.9rem 2rem;border-radius:6px;font-weight:500;font-size:0.88rem;letter-spacing:0.04em;text-decoration:none;transition:all 0.25s;display:inline-block;cursor:pointer;border:none;}
+.btn-primary{background:var(--blue);color:#fff;}
+.btn-primary:hover{background:var(--lightblue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(93,173,226,0.3);}
+.btn-outline{border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);background:transparent;}
+.btn-outline:hover{border-color:var(--lightblue);color:var(--lightblue);}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.hstat{background:rgba(46,90,154,0.12);border:1px solid rgba(46,90,154,0.25);border-radius:12px;padding:1.5rem;position:relative;overflow:hidden;}
+.hstat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--lightblue),transparent);}
+.hstat-num{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--lightblue);line-height:1;margin-bottom:0.3rem;}
+.hstat-label{font-size:0.8rem;color:rgba(255,255,255,0.45);line-height:1.4;}
+.section{padding:6rem 3rem;max-width:1200px;margin:0 auto;}
+.section-tag{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--lightblue);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;}
+.section-tag::before{content:'';width:1.5rem;height:1px;background:var(--lightblue);display:block;}
+h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;line-height:1.1;margin-bottom:1rem;}
+.section-intro{font-size:1rem;color:var(--text);line-height:1.7;max-width:680px;margin-bottom:3rem;}
+.alt-bg{background:linear-gradient(180deg,var(--dark) 0%,#0A0D18 100%);}
+.dark-bg{background:#050710;}
+
+/* CONTEXTO */
+.context-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.context-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem;}
+.context-card.hl{background:rgba(46,90,154,0.1);border-color:rgba(93,173,226,0.3);}
+.context-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.8rem;}
+.context-card p{font-size:0.88rem;color:var(--text);line-height:1.65;}
+.context-card ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.8rem;}
+.context-card ul li{font-size:0.85rem;color:var(--text);padding-left:1.1rem;position:relative;line-height:1.5;}
+.context-card ul li::before{content:'▸';position:absolute;left:0;color:var(--lightblue);font-size:0.7rem;top:0.15rem;}
+
+/* LÍNEAS */
+.lines-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.line-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem;position:relative;overflow:hidden;transition:all 0.3s;}
+.line-card:hover{border-color:rgba(93,173,226,0.3);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.3);}
+.line-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--lightblue),transparent);opacity:0;transition:opacity 0.3s;}
+.line-card:hover::after{opacity:1;}
+.line-num{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;color:rgba(93,173,226,0.06);position:absolute;top:0.5rem;right:1rem;line-height:1;}
+.line-icon{font-size:1.8rem;margin-bottom:0.8rem;display:block;}
+.line-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:0.4rem;}
+.line-sub{font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--lightblue);margin-bottom:1rem;}
+.line-desc{font-size:0.87rem;color:var(--text);line-height:1.65;margin-bottom:1.2rem;}
+.line-steps{list-style:none;display:flex;flex-direction:column;gap:0.4rem;}
+.line-steps li{font-size:0.82rem;color:rgba(255,255,255,0.55);padding-left:1.1rem;position:relative;}
+.line-steps li::before{content:'→';position:absolute;left:0;color:var(--lightblue);font-size:0.72rem;}
+
+/* ACADEMIA EXPANDIDA */
+.academia-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;}
+.track-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all 0.3s;}
+.track-card:hover{transform:translateY(-4px);border-color:rgba(93,173,226,0.25);}
+.track-header{padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem;}
+.track-icon{font-size:1.6rem;}
+.track-name{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:#fff;}
+.track-duration{font-size:0.75rem;color:rgba(255,255,255,0.4);}
+.track-body{padding:1rem 1.5rem 1.5rem;}
+.track-modules{list-style:none;display:flex;flex-direction:column;gap:0.4rem;}
+.track-modules li{font-size:0.82rem;color:var(--text);padding-left:1rem;position:relative;}
+.track-modules li::before{content:'·';position:absolute;left:0;color:var(--lightblue);}
+.track-salida{margin-top:0.8rem;background:rgba(93,173,226,0.08);border-radius:6px;padding:0.6rem 0.9rem;font-size:0.78rem;color:rgba(255,255,255,0.6);}
+.track-salida strong{color:var(--lightblue);}
+
+/* HUB COWORK */
+.hub-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.hub-features{display:flex;flex-direction:column;gap:1rem;}
+.hub-feat{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--lightblue);border-radius:0 8px 8px 0;padding:1rem 1.2rem;transition:all 0.2s;}
+.hub-feat:hover{background:rgba(93,173,226,0.07);transform:translateX(4px);}
+.hub-feat-title{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.3rem;}
+.hub-feat-desc{font-size:0.82rem;color:var(--text);line-height:1.5;}
+.hub-why{background:rgba(46,90,154,0.12);border:1px solid rgba(93,173,226,0.2);border-radius:12px;padding:2rem;}
+.hub-why h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:1rem;}
+.hub-data{display:flex;flex-direction:column;gap:0.8rem;margin-top:1rem;}
+.hub-datum{display:flex;gap:1rem;align-items:flex-start;}
+.hub-datum-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--lightblue);line-height:1;flex-shrink:0;min-width:4rem;}
+.hub-datum-desc{font-size:0.82rem;color:var(--text);line-height:1.5;padding-top:0.3rem;}
+
+/* EJECUCIÓN */
+.exec-timeline{display:flex;flex-direction:column;gap:0;position:relative;}
+.exec-timeline::before{content:'';position:absolute;left:5.5rem;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--lightblue),rgba(93,173,226,0.05));}
+.exec-item{display:grid;grid-template-columns:5rem 1fr;gap:2rem;padding-bottom:2.5rem;position:relative;}
+.exec-period{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--lightblue);padding-top:0.3rem;text-align:right;line-height:1.3;}
+.exec-dot{position:absolute;left:4.75rem;top:0.35rem;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--darkblue);border:2px solid var(--lightblue);z-index:2;}
+.exec-content{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-left:1.5rem;}
+.exec-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.6rem;}
+.exec-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.exec-list li{font-size:0.85rem;color:var(--text);padding-left:1.1rem;position:relative;line-height:1.5;}
+.exec-list li::before{content:'✓';position:absolute;left:0;color:var(--lightblue);font-size:0.7rem;}
+.exec-kpi{display:inline-block;margin-top:0.8rem;background:rgba(93,173,226,0.1);border:1px solid rgba(93,173,226,0.2);border-radius:100px;padding:0.3rem 0.8rem;font-size:0.75rem;color:var(--lightblue);font-weight:500;}
+
+/* IMPACTO */
+.impact-numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:3rem;}
+.impact-card{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem 1rem;transition:all 0.3s;}
+.impact-card:hover{background:rgba(46,90,154,0.1);border-color:rgba(93,173,226,0.25);transform:translateY(-4px);}
+.impact-big{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--lightblue);line-height:1;margin-bottom:0.4rem;}
+.impact-lbl{font-size:0.8rem;color:var(--text);line-height:1.4;}
+.impact-table{width:100%;border-collapse:collapse;border-radius:12px;overflow:hidden;}
+.impact-table th{background:rgba(46,90,154,0.3);padding:1rem 1.2rem;text-align:left;font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--lightblue);}
+.impact-table td{padding:1rem 1.2rem;font-size:0.87rem;color:var(--text);border-bottom:1px solid rgba(255,255,255,0.04);}
+.impact-table tr:nth-child(even) td{background:rgba(255,255,255,0.015);}
+.impact-table tr:hover td{background:rgba(46,90,154,0.07);}
+.impact-table td:first-child{color:#fff;font-weight:500;}
+.impact-table td.good{color:var(--lightblue);font-weight:600;}
+
+.page-footer{background:#030509;border-top:1px solid rgba(255,255,255,0.05);padding:3rem;}
+.pf-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.pf-brand{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:rgba(255,255,255,0.25);}
+.pf-nav{display:flex;gap:1rem;}
+.pf-btn{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:0.7rem 1.2rem;font-size:0.82rem;color:rgba(255,255,255,0.55);text-decoration:none;transition:all 0.2s;font-family:'Syne',sans-serif;font-weight:600;}
+.pf-btn:hover{border-color:var(--lightblue);color:var(--lightblue);}
+.pf-btn.active{background:rgba(46,90,154,0.2);border-color:var(--lightblue);color:var(--lightblue);}
+
+.aos{opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.aos.show{opacity:1;transform:translateY(0);}
+@media(max-width:900px){nav{padding:1rem 1.5rem;}.hero{padding:7rem 1.5rem 4rem;}.hero-inner,.context-grid,.lines-grid,.academia-grid,.hub-layout,.impact-numbers{grid-template-columns:1fr;}.section{padding:4rem 1.5rem;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="plataforma_pereyra_2027.html" class="nav-back">← Volver a la plataforma</a>
+  <div><div class="nav-title">Pilar 2 · Economía del Conocimiento</div></div>
+  <div class="nav-pillar">Pereyra 2027</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Desarrollo económico · Pilar 2 de 4</div>
+      <h1>Economía del<em>Conocimiento</em></h1>
+      <p class="hero-desc">La gestión actual adhirió al régimen de Economía del Conocimiento — y lo anunció como logro. Pero sin academia real, sin hub operativo y sin empresas radicadas, fue un anuncio vacío. Este pilar lo convierte en resultados concretos.</p>
+      <div class="hero-cta">
+        <a href="#lineas" class="btn btn-primary">Ver estrategia completa</a>
+        <a href="#academia" class="btn btn-outline">Academia tecnológica</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">9km</div><div class="hstat-label">De Córdoba Capital — la ciudad tech más grande del interior del país</div></div>
+      <div class="hstat"><div class="hstat-num">0</div><div class="hstat-label">Empresas tech radicadas mediante política municipal activa en La Calera</div></div>
+      <div class="hstat"><div class="hstat-num">40%</div><div class="hstat-label">Del empleo en Argentina con potencial de trabajo remoto — sin espacio en La Calera</div></div>
+      <div class="hstat"><div class="hstat-num">2°</div><div class="hstat-label">Córdoba es la 2° ciudad de software del país. La Calera puede capturar ese derrame</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXTO -->
+<div class="alt-bg">
+  <div class="section">
+    <div class="section-tag aos">La oportunidad</div>
+    <h2 class="aos">Córdoba es el hub tech<br>del interior. La Calera está al lado.</h2>
+    <p class="section-intro aos">El ecosistema ya existe en Córdoba Capital. La Calera tiene la ubicación, la calidad de vida y el régimen legal para capturar parte de ese derrame. Falta la política municipal que lo active.</p>
+    <div class="context-grid">
+      <div class="context-card hl aos">
+        <h3>✅ La oportunidad real</h3>
+        <ul>
+          <li>Régimen de Economía del Conocimiento ya adherido — beneficios impositivos disponibles</li>
+          <li>9km de Córdoba Capital — 15 minutos del mayor polo tech del interior</li>
+          <li>Calidad de vida serrana única — atractiva para talentos que huyen de la ciudad</li>
+          <li>Costo de vida y alquileres más bajos que Córdoba Capital</li>
+          <li>Jóvenes capacitados que hoy deben irse a estudiar y trabajar fuera</li>
+          <li>Conectividad de fibra óptica disponible en el centro urbano</li>
+        </ul>
+      </div>
+      <div class="context-card aos">
+        <h3>❌ Lo que falta</h3>
+        <ul>
+          <li>Sin espacio de cowork municipal operativo</li>
+          <li>Sin formación técnica gratuita y certificada</li>
+          <li>Sin atracción activa de empresas tech</li>
+          <li>Sin articulación con el ecosistema de Córdoba Capital</li>
+          <li>Sin beneficios concretos gestionados para empresas del régimen</li>
+          <li>Sin datos de cuántos vecinos trabajan remotamente hoy</li>
+        </ul>
+      </div>
+      <div class="context-card aos">
+        <h3>📍 El modelo que funciona</h3>
+        <p>Ciudades como Mendoza (Parque Tecnológico), Santa Fe (Polo IT) y Villa Carlos Paz (primer hub tech en Sierras) demostraron que municipios pequeños pueden construir ecosistemas digitales reales con política activa. La Calera tiene más ventajas que cualquiera de ellos.</p>
+      </div>
+      <div class="context-card aos">
+        <h3>🎯 La hipótesis central</h3>
+        <p>Si La Calera ofrece formación gratuita + espacio de trabajo de calidad + beneficios reales para empresas, puede capturar entre 5 y 10 empresas tech en 4 años y generar 150-200 empleos de alta calificación y buen salario en el municipio.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LÍNEAS -->
+<div class="dark-bg" id="lineas">
+  <div class="section">
+    <div class="section-tag aos">Líneas estratégicas</div>
+    <h2 class="aos">4 líneas de acción<br>articuladas entre sí.</h2>
+    <p class="section-intro aos">No son acciones aisladas — cada una refuerza a las demás. La academia crea talento. El hub retiene talento. La atracción de empresas emplea el talento. Los beneficios sostienen el ecosistema.</p>
+    <div class="lines-grid">
+      <div class="line-card aos">
+        <div class="line-num">01</div>
+        <span class="line-icon">🎓</span>
+        <div class="line-title">Academia Tecnológica Municipal</div>
+        <div class="line-sub">Formación con salida laboral real</div>
+        <div class="line-desc">No un curso suelto — una academia estructurada con tracks de 6 meses, convenios con universidades y empresas, y certificación reconocida en el mercado laboral.</div>
+        <ul class="line-steps">
+          <li>4 tracks iniciales: programación, diseño UX, marketing digital, data analytics</li>
+          <li>Convenios con UTN Córdoba, UNC FCA y empresas tech locales</li>
+          <li>100% gratuita para residentes de La Calera mayores de 17 años</li>
+          <li>Clases presenciales en el hub + online para barrios periféricos</li>
+          <li>Cada cohorte: 30 alumnos. 2 cohortes por año por track</li>
+          <li>Meta: 200 egresados certificados en 4 años con 70% de colocación</li>
+        </ul>
+      </div>
+      <div class="line-card aos">
+        <div class="line-num">02</div>
+        <span class="line-icon">🏢</span>
+        <div class="line-title">Hub de Trabajo Remoto</div>
+        <div class="line-sub">Infraestructura para la economía digital</div>
+        <div class="line-desc">Un espacio de cowork municipal de calidad real — no una sala con mesas — con fibra óptica, salas de reuniones, cafetería y comunidad activa.</div>
+        <ul class="line-steps">
+          <li>Espacio en edificio municipal o convenio con privado: mínimo 400m²</li>
+          <li>50 puestos fijos + 20 salas de reuniones + sala de eventos</li>
+          <li>Membresía gratuita para startups locales en primer año</li>
+          <li>Membresía subsidiada para trabajadores remotos residentes</li>
+          <li>Actividades de comunidad: charlas, demos, networking mensual</li>
+          <li>Meta: 80 usuarios activos mensuales en el año 2</li>
+        </ul>
+      </div>
+      <div class="line-card aos">
+        <div class="line-num">03</div>
+        <span class="line-icon">🏗️</span>
+        <div class="line-title">Atracción de Empresas Tech</div>
+        <div class="line-sub">El ecosistema a 9km</div>
+        <div class="line-desc">Un paquete de beneficios concretos y un proceso de atracción activo — no esperar que las empresas lleguen solas.</div>
+        <ul class="line-steps">
+          <li>Exención 5 años de tasas municipales para empresas tech con +5 empleados locales</li>
+          <li>Gestión activa del régimen de Economía del Conocimiento para empresas radicadas</li>
+          <li>Misiones comerciales a Córdoba Capital: presentar La Calera como destino</li>
+          <li>Articulación con cámaras IT de Córdoba (CIIECCA, ACTI)</li>
+          <li>Programa "Soft Landing": acompañamiento en los primeros 6 meses</li>
+          <li>Meta: 8 empresas tech radicadas con mínimo 5 empleados locales cada una</li>
+        </ul>
+      </div>
+      <div class="line-card aos">
+        <div class="line-num">04</div>
+        <span class="line-icon">💼</span>
+        <div class="line-title">Bolsa de Empleo Digital</div>
+        <div class="line-sub">Conectar oferta y demanda local</div>
+        <div class="line-desc">Una plataforma que conecta a egresados de la academia y vecinos con habilidades digitales con empresas locales y regionales que buscan talento.</div>
+        <ul class="line-steps">
+          <li>Plataforma municipal gratuita: perfiles verificados + alertas de empleo</li>
+          <li>Integración con bolsas de empleo de UTN, UNC y cámaras IT</li>
+          <li>Datos abiertos: publicar mensualmente cuántos vecinos consiguieron empleo</li>
+          <li>Programa de pasantías para egresados de la academia en empresas del hub</li>
+          <li>Reporte trimestral de salarios promedio para medir mejora de ingresos</li>
+          <li>Meta: 150 colocaciones laborales en 4 años</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACADEMIA EN DETALLE -->
+<div class="alt-bg" id="academia">
+  <div class="section">
+    <div class="section-tag aos">Academia tecnológica — detalle</div>
+    <h2 class="aos">Los tracks de formación.<br>Diseñados para el mercado real.</h2>
+    <p class="section-intro aos">Cada track está diseñado con las empresas que van a contratar a los egresados. No es formación teórica — es formación orientada a resultados laborales.</p>
+    <div class="academia-grid">
+      <div class="track-card aos">
+        <div class="track-header" style="background:linear-gradient(135deg,#1B2E5A,#2E5A9A);">
+          <div class="track-icon">⌨️</div>
+          <div><div class="track-name">Desarrollo Web Full Stack</div><div class="track-duration">6 meses · 20hs/semana</div></div>
+        </div>
+        <div class="track-body">
+          <ul class="track-modules">
+            <li>HTML, CSS, JavaScript — fundamentos</li>
+            <li>React / Vue — frontend moderno</li>
+            <li>Node.js / Python — backend básico</li>
+            <li>Bases de datos SQL y NoSQL</li>
+            <li>Git, deploy y metodologías ágiles</li>
+            <li>Proyecto final real para empresa local</li>
+          </ul>
+          <div class="track-salida"><strong>Salida laboral:</strong> Desarrollador junior en empresas tech, agencias o remoto. Rango salarial: $800k–$1.5M/mes.</div>
+        </div>
+      </div>
+      <div class="track-card aos">
+        <div class="track-header" style="background:linear-gradient(135deg,#2E1A5A,#5A3A9A);">
+          <div class="track-icon">🎨</div>
+          <div><div class="track-name">Diseño UX/UI</div><div class="track-duration">5 meses · 15hs/semana</div></div>
+        </div>
+        <div class="track-body">
+          <ul class="track-modules">
+            <li>Fundamentos de diseño y tipografía</li>
+            <li>Figma — diseño de interfaces</li>
+            <li>Investigación de usuario y entrevistas</li>
+            <li>Prototipado y testeo</li>
+            <li>Design systems y accesibilidad</li>
+            <li>Portfolio con 3 proyectos reales</li>
+          </ul>
+          <div class="track-salida"><strong>Salida laboral:</strong> Diseñador UX en startups, agencias o freelance. Rango salarial: $700k–$1.2M/mes.</div>
+        </div>
+      </div>
+      <div class="track-card aos">
+        <div class="track-header" style="background:linear-gradient(135deg,#1A3A2E,#2E6A5A);">
+          <div class="track-icon">📊</div>
+          <div><div class="track-name">Data Analytics</div><div class="track-duration">5 meses · 15hs/semana</div></div>
+        </div>
+        <div class="track-body">
+          <ul class="track-modules">
+            <li>Excel avanzado y Google Sheets</li>
+            <li>SQL — consultas y análisis</li>
+            <li>Python básico para datos</li>
+            <li>Visualización: Power BI / Tableau</li>
+            <li>Estadística aplicada a negocios</li>
+            <li>Proyecto con datos reales de empresa</li>
+          </ul>
+          <div class="track-salida"><strong>Salida laboral:</strong> Analista de datos en empresas medianas, gobierno o consultoras. Rango salarial: $750k–$1.3M/mes.</div>
+        </div>
+      </div>
+      <div class="track-card aos">
+        <div class="track-header" style="background:linear-gradient(135deg,#3A1A0A,#8B5E00);">
+          <div class="track-icon">📱</div>
+          <div><div class="track-name">Marketing Digital</div><div class="track-duration">4 meses · 12hs/semana</div></div>
+        </div>
+        <div class="track-body">
+          <ul class="track-modules">
+            <li>Estrategia de contenidos y redes</li>
+            <li>Google Ads y Meta Ads</li>
+            <li>SEO y analítica web</li>
+            <li>Email marketing y automatización</li>
+            <li>E-commerce básico</li>
+            <li>Campaña real para comercio local</li>
+          </ul>
+          <div class="track-salida"><strong>Salida laboral:</strong> Community manager, especialista en ads o freelance. Rango salarial: $500k–$900k/mes.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HUB COWORK -->
+<div class="dark-bg">
+  <div class="section">
+    <div class="section-tag aos">Hub de trabajo remoto — detalle</div>
+    <h2 class="aos">¿Por qué La Calera<br>necesita un hub?</h2>
+    <div class="hub-layout">
+      <div class="hub-features">
+        <div class="hub-feat aos"><div class="hub-feat-title">📶 Fibra óptica simétrica 1Gbps</div><div class="hub-feat-desc">Conexión garantizada, redundante, con VPN corporativa disponible. La infraestructura que los trabajadores remotos necesitan para trabajar con clientes globales.</div></div>
+        <div class="hub-feat aos"><div class="hub-feat-title">🎙️ Salas de reuniones insonorizadas</div><div class="hub-feat-desc">5 salas para videollamadas y reuniones de equipo. Reserva online, webcam y micrófono incluidos. Lo que más necesitan los trabajadores remotos que viven en casas pequeñas.</div></div>
+        <div class="hub-feat aos"><div class="hub-feat-title">☕ Cafetería y áreas de descanso</div><div class="hub-feat-desc">Espacio para el almuerzo, café de especialidad, biblioteca técnica y zona de descanso. El ambiente que hace que la gente vuelva todos los días.</div></div>
+        <div class="hub-feat aos"><div class="hub-feat-title">🎤 Sala de eventos (80 personas)</div><div class="hub-feat-desc">Para charlas, demos, hackathons y meetups. Disponible también para startups locales y organizaciones de la comunidad sin costo.</div></div>
+        <div class="hub-feat aos"><div class="hub-feat-title">🔐 Casilleros y dirección postal</div><div class="hub-feat-desc">Para freelancers y autónomos que necesitan una dirección comercial oficial en La Calera para facturas y correspondencia.</div></div>
+      </div>
+      <div class="hub-why aos">
+        <h3>La hipótesis del hub</h3>
+        <p style="font-size:0.88rem;color:var(--text);line-height:1.65;margin-bottom:1.2rem;">Hay personas que hoy viven en La Calera y trabajan remotamente para empresas de Córdoba, Buenos Aires o el exterior. No tienen dónde trabajar bien. Salen a cafés o trabajan desde casa.</p>
+        <p style="font-size:0.88rem;color:var(--text);line-height:1.65;">Un hub de calidad retiene ese talento en la ciudad, les da comunidad y los convierte en embajadores que atraen a otros.</p>
+        <div class="hub-data">
+          <div class="hub-datum"><div class="hub-datum-num">~300</div><div class="hub-datum-desc">Trabajadores remotos estimados residentes en La Calera y Sierras Chicas cercanas</div></div>
+          <div class="hub-datum"><div class="hub-datum-num">$0</div><div class="hub-datum-desc">Opciones de cowork municipales actuales en la ciudad</div></div>
+          <div class="hub-datum"><div class="hub-datum-num">80%</div><div class="hub-datum-desc">Tasa de retención esperada en usuarios del hub que contemplaron mudarse</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EJECUCIÓN -->
+<div class="alt-bg">
+  <div class="section">
+    <div class="section-tag aos">Cronograma</div>
+    <h2 class="aos">De anuncio a realidad<br>en 12 meses.</h2>
+    <div class="exec-timeline">
+      <div class="exec-item aos">
+        <div class="exec-period">Mes 1–3</div>
+        <div class="exec-dot"></div>
+        <div class="exec-content">
+          <div class="exec-title">Diseño y convenios</div>
+          <ul class="exec-list">
+            <li>Relevar edificios municipales disponibles para el hub (mínimo 400m²)</li>
+            <li>Firmar convenio con UTN Córdoba para contenidos y certificación de la academia</li>
+            <li>Contratar director de academia y director del hub (perfiles técnicos)</li>
+            <li>Publicar convocatoria de primera cohorte de la academia</li>
+            <li>Registrar la academia como unidad ejecutora municipal</li>
+          </ul>
+          <span class="exec-kpi">📌 Entregable: Convenio UTN firmado + local del hub identificado</span>
+        </div>
+      </div>
+      <div class="exec-item aos">
+        <div class="exec-period">Mes 4–6</div>
+        <div class="exec-dot"></div>
+        <div class="exec-content">
+          <div class="exec-title">Inauguración del hub y primera cohorte</div>
+          <ul class="exec-list">
+            <li>Hub de cowork operativo con 50 puestos (fase 1)</li>
+            <li>Primera cohorte de academia iniciada: 2 tracks, 60 alumnos totales</li>
+            <li>Primera misión comercial a empresas tech de Córdoba Capital</li>
+            <li>Lanzamiento de la Bolsa de Empleo Digital con 50 empresas registradas</li>
+            <li>Primer meetup tech de La Calera — construir comunidad visible</li>
+          </ul>
+          <span class="exec-kpi">📌 Entregable: Hub abierto + 60 alumnos en clases + 1 empresa tech interesada</span>
+        </div>
+      </div>
+      <div class="exec-item aos">
+        <div class="exec-period">Mes 7–18</div>
+        <div class="exec-dot"></div>
+        <div class="exec-content">
+          <div class="exec-title">Primeros resultados y consolidación</div>
+          <ul class="exec-list">
+            <li>Primera cohorte egresada: 60 certificados con tasa de colocación medida</li>
+            <li>2 empresas tech radicadas con beneficios municipales</li>
+            <li>Hub a plena capacidad: 80 usuarios activos mensuales</li>
+            <li>2 tracks adicionales de la academia abiertos</li>
+            <li>Primer informe público de impacto: empleos, salarios, empresas</li>
+          </ul>
+          <span class="exec-kpi">📌 Entregable: 60 egresados + 2 empresas + hub al 80% de capacidad</span>
+        </div>
+      </div>
+      <div class="exec-item aos">
+        <div class="exec-period">Año 2–4</div>
+        <div class="exec-dot"></div>
+        <div class="exec-content">
+          <div class="exec-title">Escala del ecosistema</div>
+          <ul class="exec-list">
+            <li>200+ egresados certificados acumulados</li>
+            <li>8 empresas tech radicadas en La Calera</li>
+            <li>Hub ampliado a 100 puestos si la demanda lo justifica</li>
+            <li>150+ colocaciones laborales a través de la bolsa de empleo</li>
+            <li>La Calera posicionada como el primer hub tech de Sierras Chicas</li>
+          </ul>
+          <span class="exec-kpi">📌 Meta: 200 empleos nuevos de calificación alta + 8 empresas radicadas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IMPACTO -->
+<div class="dark-bg" id="impacto">
+  <div class="section">
+    <div class="section-tag aos">Impacto proyectado</div>
+    <h2 class="aos">¿Qué cambia<br>en 4 años?</h2>
+    <div class="impact-numbers">
+      <div class="impact-card aos"><div class="impact-big">200+</div><div class="impact-lbl">Empleos digitales nuevos en La Calera</div></div>
+      <div class="impact-card aos"><div class="impact-big">8</div><div class="impact-lbl">Empresas tech radicadas con empleados locales</div></div>
+      <div class="impact-card aos"><div class="impact-big">200</div><div class="impact-lbl">Egresados certificados de la academia</div></div>
+      <div class="impact-card aos"><div class="impact-big">3x</div><div class="impact-lbl">Ingreso promedio vs. empleos no calificados</div></div>
+    </div>
+    <table class="impact-table aos">
+      <thead><tr><th>Indicador</th><th>Hoy</th><th>Año 2</th><th>Año 4</th></tr></thead>
+      <tbody>
+        <tr><td>Alumnos en academia</td><td>0</td><td>120 activos</td><td class="good">200 egresados</td></tr>
+        <tr><td>Empresas tech radicadas</td><td>0 por política municipal</td><td>2–3</td><td class="good">8</td></tr>
+        <tr><td>Usuarios del hub mensual</td><td>0</td><td>80</td><td class="good">120+</td></tr>
+        <tr><td>Colocaciones laborales</td><td>0</td><td>60</td><td class="good">150+</td></tr>
+        <tr><td>Empleo digital en La Calera</td><td>no medido / mínimo</td><td>+80</td><td class="good">+200</td></tr>
+        <tr><td>Ingresos promedio nuevos empleos</td><td>—</td><td>$900k/mes</td><td class="good">$1.2M/mes</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="page-footer">
+  <div class="pf-inner">
+    <div class="pf-brand">Pereyra 2027 · La Calera</div>
+    <div class="pf-nav">
+      <a href="pilar1.html" class="pf-btn">1 · Industrial</a>
+      <span class="pf-btn active">2 · Conocimiento</span>
+      <a href="pilar3.html" class="pf-btn">3 · Turismo</a>
+      <a href="pilar4.html" class="pf-btn">4 · Empleo Joven</a>
+      <a href="pilar5.html" class="pf-btn">5 · PYME</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('show'),i*60);obs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.aos').forEach(el=>obs.observe(el));
+window.addEventListener('scroll',()=>{document.querySelector('nav').style.background=window.scrollY>60?'rgba(3,5,9,0.98)':'rgba(7,9,15,0.9)';});
+</script>
+</body>
+</html>

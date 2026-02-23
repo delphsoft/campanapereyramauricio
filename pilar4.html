@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilar 4 · Empleo Joven · Pereyra 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#6B3FA0;--lightpurple:#A855F7;--darkpurple:#2E1A4A;--dark:#09060F;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--text:rgba(255,255,255,0.6);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:0.35;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(9,6,15,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);}
+.nav-back{display:flex;align-items:center;gap:0.5rem;text-decoration:none;color:rgba(255,255,255,0.5);font-size:0.82rem;letter-spacing:0.06em;transition:color 0.2s;}
+.nav-back:hover{color:var(--lightpurple);}
+.nav-title{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--lightpurple);}
+.nav-pillar{font-family:'Syne',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;padding:8rem 3rem 5rem;background:linear-gradient(160deg,#06040C 0%,#2E1A4A 50%,#06040C 100%);overflow:hidden;}
+.hero::before{content:'🌱';position:absolute;font-size:28rem;opacity:0.03;top:-4rem;right:-4rem;pointer-events:none;}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:2;}
+.hero-tag{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--lightpurple);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem;}
+.hero-tag::before{content:'';width:2rem;height:2px;background:var(--lightpurple);display:block;}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,4.5vw,4.5rem);font-weight:800;line-height:0.95;letter-spacing:-0.02em;margin-bottom:1.5rem;}
+h1 em{color:var(--lightpurple);font-style:normal;display:block;}
+.hero-desc{font-size:1.05rem;line-height:1.75;color:var(--text);margin-bottom:2.5rem;}
+.hero-cta{display:flex;gap:1rem;}
+.btn{padding:0.9rem 2rem;border-radius:6px;font-weight:500;font-size:0.88rem;letter-spacing:0.04em;text-decoration:none;transition:all 0.25s;display:inline-block;border:none;cursor:pointer;}
+.btn-primary{background:var(--purple);color:#fff;}
+.btn-primary:hover{background:var(--lightpurple);transform:translateY(-2px);box-shadow:0 8px 24px rgba(168,85,247,0.3);}
+.btn-outline{border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);background:transparent;}
+.btn-outline:hover{border-color:var(--lightpurple);color:var(--lightpurple);}
+.hero-facts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.hfact{background:rgba(107,63,160,0.12);border:1px solid rgba(168,85,247,0.2);border-radius:12px;padding:1.5rem;position:relative;overflow:hidden;}
+.hfact::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--lightpurple),transparent);}
+.hfact-num{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--lightpurple);line-height:1;margin-bottom:0.3rem;}
+.hfact-label{font-size:0.8rem;color:rgba(255,255,255,0.45);line-height:1.4;}
+.section{padding:6rem 3rem;max-width:1200px;margin:0 auto;}
+.section-tag{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--lightpurple);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;}
+.section-tag::before{content:'';width:1.5rem;height:1px;background:var(--lightpurple);display:block;}
+h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;line-height:1.1;margin-bottom:1rem;}
+.section-intro{font-size:1rem;color:var(--text);line-height:1.7;max-width:680px;margin-bottom:3rem;}
+.alt-bg{background:linear-gradient(180deg,var(--dark) 0%,#100818 100%);}
+.dark-bg{background:#060410;}
+
+/* CONTEXTO */
+.context-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.ctx-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem;}
+.ctx-card.hl{background:rgba(107,63,160,0.1);border-color:rgba(168,85,247,0.25);}
+.ctx-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.8rem;}
+.ctx-card p{font-size:0.88rem;color:var(--text);line-height:1.65;}
+.ctx-card ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.8rem;}
+.ctx-card ul li{font-size:0.85rem;color:var(--text);padding-left:1.1rem;position:relative;line-height:1.5;}
+.ctx-card ul li::before{content:'▸';position:absolute;left:0;color:var(--lightpurple);font-size:0.7rem;top:0.15rem;}
+
+/* PROGRAMAS */
+.programs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.prog-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem;position:relative;overflow:hidden;transition:all 0.3s;}
+.prog-card:hover{border-color:rgba(168,85,247,0.3);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.3);}
+.prog-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--lightpurple);opacity:0;transition:opacity 0.3s;}
+.prog-card:hover::after{opacity:1;}
+.prog-num{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;color:rgba(168,85,247,0.06);position:absolute;top:0.5rem;right:1rem;line-height:1;}
+.prog-icon{font-size:1.8rem;margin-bottom:0.8rem;display:block;}
+.prog-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:0.4rem;}
+.prog-sub{font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--lightpurple);margin-bottom:1rem;}
+.prog-desc{font-size:0.87rem;color:var(--text);line-height:1.65;margin-bottom:1.2rem;}
+.prog-steps{list-style:none;display:flex;flex-direction:column;gap:0.4rem;}
+.prog-steps li{font-size:0.82rem;color:rgba(255,255,255,0.55);padding-left:1.1rem;position:relative;}
+.prog-steps li::before{content:'→';position:absolute;left:0;color:var(--lightpurple);font-size:0.72rem;}
+
+/* INCUBADORA */
+.incub-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.incub-stages{display:flex;flex-direction:column;gap:1rem;}
+.stage{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.5rem;transition:all 0.25s;}
+.stage:hover{background:rgba(107,63,160,0.1);border-color:rgba(168,85,247,0.25);}
+.stage-header{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.5rem;}
+.stage-phase{font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--lightpurple);}
+.stage-name{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:#fff;}
+.stage-duration{font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.stage-desc{font-size:0.82rem;color:var(--text);line-height:1.55;}
+.incub-criteria{background:rgba(107,63,160,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:12px;padding:2rem;}
+.incub-criteria h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:1.2rem;}
+.crit-item{display:flex;gap:0.8rem;align-items:flex-start;padding:0.8rem 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.crit-item:last-child{border-bottom:none;}
+.crit-icon{font-size:1.2rem;flex-shrink:0;}
+.crit-text{font-size:0.83rem;color:var(--text);line-height:1.5;}
+.crit-text strong{color:#fff;}
+
+/* BECAS */
+.becas-table-wrap{overflow:hidden;border-radius:12px;border:1px solid var(--border);margin-top:1.5rem;}
+.becas-table{width:100%;border-collapse:collapse;}
+.becas-table th{background:rgba(107,63,160,0.25);padding:1rem 1.2rem;text-align:left;font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--lightpurple);}
+.becas-table td{padding:1rem 1.2rem;font-size:0.87rem;color:var(--text);border-bottom:1px solid rgba(255,255,255,0.04);}
+.becas-table tr:nth-child(even) td{background:rgba(255,255,255,0.015);}
+.becas-table tr:hover td{background:rgba(107,63,160,0.07);}
+.becas-table td:first-child{color:#fff;font-weight:500;}
+.tag-beca{display:inline-block;font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:100px;background:rgba(168,85,247,0.12);color:var(--lightpurple);border:1px solid rgba(168,85,247,0.2);}
+
+/* FERIA */
+.feria-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:start;}
+.feria-model{display:flex;flex-direction:column;gap:1rem;}
+.feria-feat{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--lightpurple);border-radius:0 8px 8px 0;padding:1rem 1.2rem;transition:all 0.2s;}
+.feria-feat:hover{background:rgba(107,63,160,0.08);transform:translateX(4px);}
+.feria-feat-title{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.3rem;}
+.feria-feat-desc{font-size:0.82rem;color:var(--text);line-height:1.5;}
+.feria-why{background:rgba(107,63,160,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:12px;padding:2rem;}
+.feria-why h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:1rem;}
+.fw-stat{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem;}
+.fw-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--lightpurple);min-width:4rem;line-height:1;}
+.fw-desc{font-size:0.82rem;color:var(--text);line-height:1.5;}
+
+/* EXEC */
+.exec-timeline{display:flex;flex-direction:column;gap:0;position:relative;}
+.exec-timeline::before{content:'';position:absolute;left:5.5rem;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--lightpurple),rgba(168,85,247,0.05));}
+.exec-item{display:grid;grid-template-columns:5rem 1fr;gap:2rem;padding-bottom:2.5rem;position:relative;}
+.exec-period{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--lightpurple);padding-top:0.3rem;text-align:right;line-height:1.3;}
+.exec-dot{position:absolute;left:4.75rem;top:0.35rem;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--darkpurple);border:2px solid var(--lightpurple);z-index:2;}
+.exec-content{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-left:1.5rem;}
+.exec-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.6rem;}
+.exec-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.exec-list li{font-size:0.85rem;color:var(--text);padding-left:1.1rem;position:relative;line-height:1.5;}
+.exec-list li::before{content:'✓';position:absolute;left:0;color:var(--lightpurple);font-size:0.7rem;}
+.exec-kpi{display:inline-block;margin-top:0.8rem;background:rgba(107,63,160,0.12);border:1px solid rgba(168,85,247,0.2);border-radius:100px;padding:0.3rem 0.8rem;font-size:0.75rem;color:var(--lightpurple);font-weight:500;}
+
+.impact-numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:3rem;}
+.impact-card{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem 1rem;transition:all 0.3s;}
+.impact-card:hover{background:rgba(107,63,160,0.1);border-color:rgba(168,85,247,0.25);transform:translateY(-4px);}
+.impact-big{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--lightpurple);line-height:1;margin-bottom:0.4rem;}
+.impact-lbl{font-size:0.8rem;color:var(--text);line-height:1.4;}
+.impact-table{width:100%;border-collapse:collapse;border-radius:12px;overflow:hidden;}
+.impact-table th{background:rgba(107,63,160,0.3);padding:1rem 1.2rem;text-align:left;font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--lightpurple);}
+.impact-table td{padding:1rem 1.2rem;font-size:0.87rem;color:var(--text);border-bottom:1px solid rgba(255,255,255,0.04);}
+.impact-table tr:nth-child(even) td{background:rgba(255,255,255,0.015);}
+.impact-table td:first-child{color:#fff;font-weight:500;}
+.impact-table td.good{color:var(--lightpurple);font-weight:600;}
+
+.page-footer{background:#050309;border-top:1px solid rgba(255,255,255,0.05);padding:3rem;}
+.pf-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.pf-brand{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:rgba(255,255,255,0.25);}
+.pf-nav{display:flex;gap:1rem;}
+.pf-btn{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:0.7rem 1.2rem;font-size:0.82rem;color:rgba(255,255,255,0.55);text-decoration:none;transition:all 0.2s;font-family:'Syne',sans-serif;font-weight:600;}
+.pf-btn:hover{border-color:var(--lightpurple);color:var(--lightpurple);}
+.pf-btn.active{background:rgba(107,63,160,0.2);border-color:var(--lightpurple);color:var(--lightpurple);}
+.aos{opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.aos.show{opacity:1;transform:translateY(0);}
+@media(max-width:900px){nav{padding:1rem 1.5rem;}.hero{padding:7rem 1.5rem 4rem;}.hero-inner,.context-grid,.programs-grid,.incub-layout,.feria-layout,.impact-numbers{grid-template-columns:1fr;}.section{padding:4rem 1.5rem;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="plataforma_pereyra_2027.html" class="nav-back">← Volver a la plataforma</a>
+  <div><div class="nav-title">Pilar 4 · Empleo Joven y Emprendimiento</div></div>
+  <div class="nav-pillar">Pereyra 2027</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Desarrollo económico · Pilar 4 de 4</div>
+      <h1>Empleo Joven<em>y Emprendimiento</em></h1>
+      <p class="hero-desc">La Calera no tiene hoy ningún programa municipal activo para jóvenes menores de 30 años. Ni becas, ni incubadora, ni feria de emprendedores, ni bolsa de trabajo. Este pilar construye todo eso desde cero.</p>
+      <div class="hero-cta">
+        <a href="#programas" class="btn btn-primary">Ver los programas</a>
+        <a href="#incubadora" class="btn btn-outline">Calera Emprende</a>
+      </div>
+    </div>
+    <div class="hero-facts">
+      <div class="hfact"><div class="hfact-num">0</div><div class="hfact-label">Programas municipales activos de empleo joven en La Calera hoy</div></div>
+      <div class="hfact"><div class="hfact-num">30%</div><div class="hfact-label">De la población de La Calera tiene menos de 30 años — sin política específica</div></div>
+      <div class="hfact"><div class="hfact-num">+40%</div><div class="hfact-label">De los jóvenes locales deben salir de La Calera para estudiar o trabajar</div></div>
+      <div class="hfact"><div class="hfact-num">1ro</div><div class="hfact-label">De los pedidos en reuniones vecinales: oportunidades para los jóvenes</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXTO -->
+<div class="alt-bg">
+  <div class="section">
+    <div class="section-tag aos">El problema real</div>
+    <h2 class="aos">Los jóvenes de La Calera<br>no tienen por qué irse.</h2>
+    <p class="section-intro aos">Hoy un joven de La Calera que quiere estudiar o encontrar su primer empleo no tiene casi nada en su ciudad. El municipio no tiene política activa para ellos. Este pilar cambia eso estructuralmente.</p>
+    <div class="context-grid">
+      <div class="ctx-card hl aos">
+        <h3>📍 La realidad de los jóvenes en La Calera</h3>
+        <ul>
+          <li>No hay formación técnica gratuita municipal — deben ir a Córdoba Capital</li>
+          <li>No hay bolsa de empleo local — buscan trabajo en grupos de Facebook</li>
+          <li>No hay incubadora ni apoyo a emprendedores — piden crédito sin orientación</li>
+          <li>No hay feria de productores organizados municipalmente</li>
+          <li>No hay becas de estudio — la Provincia tiene programas, pero nadie los gestiona localmente</li>
+          <li>Los jóvenes con más potencial se van y no vuelven</li>
+        </ul>
+      </div>
+      <div class="ctx-card aos">
+        <h3>🎯 La oportunidad</h3>
+        <p>El crecimiento demográfico de La Calera trajo miles de jóvenes que viven en la ciudad pero desarrollan su vida económica fuera. Retenerlos y activarlos localmente tiene un efecto multiplicador enorme: más ingreso circulando en la ciudad, más emprendimientos locales, más empleo para otros jóvenes.</p>
+        <p style="margin-top:0.8rem;">La Provincia tiene programas de becas, créditos y formación que no llegan a La Calera porque nadie los gestiona. El municipio puede ser ese articulador.</p>
+      </div>
+      <div class="ctx-card aos">
+        <h3>📊 El costo de no actuar</h3>
+        <p>Cada joven calificado que se va de La Calera representa entre $500k y $2M mensuales que dejan de circular en la economía local. Con +30% de la población menor de 30 años, la inacción tiene un costo enorme y creciente.</p>
+      </div>
+      <div class="ctx-card aos">
+        <h3>🤝 Con quién articular</h3>
+        <ul>
+          <li>Ministerio de Educación provincial (becas)</li>
+          <li>SEPYME y FONDEP (créditos emprendedores)</li>
+          <li>UTN, UNC, IES (formación técnica)</li>
+          <li>Cámaras empresariales locales (prácticas laborales)</li>
+          <li>Programa PREBA y FINES (terminalidad educativa)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAMAS -->
+<div class="dark-bg" id="programas">
+  <div class="section">
+    <div class="section-tag aos">Los programas</div>
+    <h2 class="aos">4 programas que se<br>refuerzan entre sí.</h2>
+    <p class="section-intro aos">No son iniciativas aisladas. Están diseñados para que un joven pueda pasar de la formación al emprendimiento, o del emprendimiento al empleo formal, con apoyo en cada paso.</p>
+    <div class="programs-grid">
+      <div class="prog-card aos">
+        <div class="prog-num">01</div>
+        <span class="prog-icon">🎓</span>
+        <div class="prog-title">Becas Calera Forma</div>
+        <div class="prog-sub">Formación técnica con salida laboral</div>
+        <div class="prog-desc">100 becas anuales para jóvenes de 17 a 30 años residentes en La Calera para estudiar oficios técnicos y carreras cortas. Con compromiso de permanencia.</div>
+        <ul class="prog-steps">
+          <li>100 becas por año — selección por mérito y necesidad económica</li>
+          <li>Cobertura: matrícula + materiales + transporte básico</li>
+          <li>Oficios técnicos: electricidad, plomería, construcción, gastronomía, IT, enfermería</li>
+          <li>Convenios con institutos terciarios de Córdoba y La Calera</li>
+          <li>Compromiso de residencia por 12 meses post-egreso</li>
+          <li>Seguimiento semestral con tutor asignado</li>
+        </ul>
+      </div>
+      <div class="prog-card aos">
+        <div class="prog-num">02</div>
+        <span class="prog-icon">🚀</span>
+        <div class="prog-title">Calera Emprende — Incubadora</div>
+        <div class="prog-sub">Del sueño al negocio real</div>
+        <div class="prog-desc">Incubadora municipal para emprendedores locales: mentoría, espacio físico, acceso a créditos y red de contactos. Con selección transparente y seguimiento real.</div>
+        <ul class="prog-steps">
+          <li>2 cohortes de 15 emprendedores por año</li>
+          <li>Proceso de 6 meses: validación, plan de negocios, lanzamiento</li>
+          <li>Mentores voluntarios: empresarios y profesionales de la ciudad</li>
+          <li>Espacio físico en el Hub (articulado con Pilar 2)</li>
+          <li>Acceso preferencial a créditos FONDEP y SEPYME</li>
+          <li>Demo Day público semestral para presentar ante inversores</li>
+        </ul>
+      </div>
+      <div class="prog-card aos">
+        <div class="prog-num">03</div>
+        <span class="prog-icon">🛍️</span>
+        <div class="prog-title">Feria del Productor Local</div>
+        <div class="prog-sub">Mercado sin intermediarios</div>
+        <div class="prog-desc">Mercado semanal municipal donde productores, artesanos y emprendedores venden directamente al vecino. Gratuito para vendedores, con rotación para dar oportunidad a nuevos.</div>
+        <ul class="prog-steps">
+          <li>Cada sábado en espacio público municipal céntrico</li>
+          <li>50 stands disponibles — rotación mensual para nuevos emprendedores</li>
+          <li>Gratuito para productores locales (no intermediarios)</li>
+          <li>Difusión semanal por redes municipales y cartelería</li>
+          <li>Categorías: alimentos, artesanías, textil, plantas, servicios</li>
+          <li>Versión navideña: Feria de las Sierras (escala ampliada)</li>
+        </ul>
+      </div>
+      <div class="prog-card aos">
+        <div class="prog-num">04</div>
+        <span class="prog-icon">🔗</span>
+        <div class="prog-title">Registro de Proveedores Locales</div>
+        <div class="prog-sub">La economía local conectada</div>
+        <div class="prog-desc">Base de datos pública de comercios, artesanos, productores y profesionales de La Calera. El municipio la difunde activamente para que vecinos y empresas "compren local".</div>
+        <ul class="prog-steps">
+          <li>Plataforma web gratuita y app móvil — registro en menos de 10 minutos</li>
+          <li>Categorías: alimentos, servicios, comercios, profesionales, emprendedores</li>
+          <li>Beneficio: 10% de descuento en tasas municipales para inscritos activos</li>
+          <li>Difusión activa: redes, cartelería, medios locales y municipio</li>
+          <li>Integración con la bolsa de empleo digital (Pilar 2)</li>
+          <li>Meta: 300 proveedores registrados en año 1</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INCUBADORA EN DETALLE -->
+<div class="alt-bg" id="incubadora">
+  <div class="section">
+    <div class="section-tag aos">Calera Emprende — en detalle</div>
+    <h2 class="aos">El camino del emprendedor<br>en La Calera.</h2>
+    <div class="incub-layout">
+      <div class="incub-stages">
+        <div class="stage aos">
+          <div class="stage-header"><div><div class="stage-phase">Etapa 1</div><div class="stage-name">Exploración y validación</div><div class="stage-duration">Semanas 1–4</div></div></div>
+          <div class="stage-desc">El emprendedor define su idea, valida que hay demanda real en el mercado local y aprende las herramientas básicas de negocio. Entrevistas con potenciales clientes, análisis de competencia y definición de propuesta de valor.</div>
+        </div>
+        <div class="stage aos">
+          <div class="stage-header"><div><div class="stage-phase">Etapa 2</div><div class="stage-name">Plan de negocios y modelo</div><div class="stage-duration">Semanas 5–10</div></div></div>
+          <div class="stage-desc">Con la validación hecha, el emprendedor construye su plan de negocios con ayuda de mentores. Proyección financiera, estrategia de marketing, análisis legal y fiscal. Presentación ante el comité de la incubadora.</div>
+        </div>
+        <div class="stage aos">
+          <div class="stage-header"><div><div class="stage-phase">Etapa 3</div><div class="stage-name">Lanzamiento y primeras ventas</div><div class="stage-duration">Semanas 11–20</div></div></div>
+          <div class="stage-desc">El negocio se lanza con acompañamiento activo. Primeras ventas reales, primeros clientes, primeros problemas operativos. El mentor acompaña semanalmente. El municipio facilita acceso a créditos si es necesario.</div>
+        </div>
+        <div class="stage aos">
+          <div class="stage-header"><div><div class="stage-phase">Etapa 4</div><div class="stage-name">Demo Day y graduación</div><div class="stage-duration">Semana 24</div></div></div>
+          <div class="stage-desc">Presentación pública ante inversores, empresarios y la comunidad. Los mejores proyectos acceden a un crédito de lanzamiento de hasta $500.000 del fondo municipal. Post-graduación: seguimiento por 12 meses adicionales.</div>
+        </div>
+      </div>
+      <div class="incub-criteria aos">
+        <h3>¿Quién puede postularse?</h3>
+        <div class="crit-item"><div class="crit-icon">📍</div><div class="crit-text"><strong>Residente en La Calera</strong> — al menos 12 meses antes de la postulación</div></div>
+        <div class="crit-item"><div class="crit-icon">👤</div><div class="crit-text"><strong>Edad:</strong> entre 18 y 40 años. Prioridad para menores de 30.</div></div>
+        <div class="crit-item"><div class="crit-icon">💡</div><div class="crit-text"><strong>Idea o negocio incipiente</strong> — no requiere estar en marcha. Se puede postular una idea.</div></div>
+        <div class="crit-item"><div class="crit-icon">⏰</div><div class="crit-text"><strong>Disponibilidad:</strong> mínimo 15 horas semanales para el programa</div></div>
+        <div class="crit-item"><div class="crit-icon">🤝</div><div class="crit-text"><strong>Compromiso de permanencia</strong> en La Calera por 12 meses post-graduación</div></div>
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,0.06);">
+          <div style="font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;color:var(--lightpurple);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.8rem;">Rubros priorizados</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+            <span style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:100px;padding:0.25rem 0.7rem;font-size:0.75rem;color:var(--lightpurple);">🍳 Gastronomía</span>
+            <span style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:100px;padding:0.25rem 0.7rem;font-size:0.75rem;color:var(--lightpurple);">💻 Tecnología</span>
+            <span style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:100px;padding:0.25rem 0.7rem;font-size:0.75rem;color:var(--lightpurple);">🎨 Diseño y arte</span>
+            <span style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:100px;padding:0.25rem 0.7rem;font-size:0.75rem;color:var(--lightpurple);">🏗️ Construcción</span>
+            <span style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:100px;padding:0.25rem 0.7rem;font-size:0.75rem;color:var(--lightpurple);">🌿 Turismo</span>
+            <span style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:100px;padding:0.25rem 0.7rem;font-size:0.75rem;color:var(--lightpurple);">♻️ Economía circular</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BECAS EN DETALLE -->
+<div class="dark-bg">
+  <div class="section">
+    <div class="section-tag aos">Becas Calera Forma — detalle</div>
+    <h2 class="aos">100 becas por año.<br>Formación real para el mercado real.</h2>
+    <p class="section-intro aos">Las becas no son solo dinero — son acompañamiento, conexión con empleadores y un compromiso de la ciudad con sus jóvenes.</p>
+    <div class="becas-table-wrap aos">
+      <table class="becas-table">
+        <thead><tr><th>Área de formación</th><th>Instituto</th><th>Duración</th><th>Becas/año</th><th>Salida laboral</th></tr></thead>
+        <tbody>
+          <tr><td>Electricidad y automatización</td><td>IPS / IPET local</td><td>18 meses</td><td><span class="tag-beca">20 becas</span></td><td>Electricista matriculado, instalaciones industriales</td></tr>
+          <tr><td>Gastronomía profesional</td><td>IES / escuela de gastronomía</td><td>12 meses</td><td><span class="tag-beca">15 becas</span></td><td>Cocinero, pastelero, emprendimiento gastronómico</td></tr>
+          <tr><td>Construcción y obra civil</td><td>IPET / sindicato UOCRA</td><td>12 meses</td><td><span class="tag-beca">15 becas</span></td><td>Oficial de construcción, capataz, emprendedor</td></tr>
+          <tr><td>Programación y tecnología</td><td>Academia Municipal (Pilar 2)</td><td>6 meses</td><td><span class="tag-beca">20 becas</span></td><td>Desarrollador junior, diseñador, data analyst</td></tr>
+          <tr><td>Enfermería y salud comunitaria</td><td>IES Córdoba / IPEM</td><td>24 meses</td><td><span class="tag-beca">15 becas</span></td><td>Auxiliar de enfermería, promotor de salud</td></tr>
+          <tr><td>Mecánica y automotriz</td><td>IPET / talleres homologados</td><td>18 meses</td><td><span class="tag-beca">15 becas</span></td><td>Mecánico, electricista automotriz, emprendedor</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- FERIA -->
+<div class="alt-bg">
+  <div class="section">
+    <div class="section-tag aos">Feria del Productor Local</div>
+    <h2 class="aos">Cada sábado.<br>El mercado que La Calera se merece.</h2>
+    <div class="feria-layout">
+      <div class="feria-model">
+        <div class="feria-feat aos"><div class="feria-feat-title">📅 Sábados en el centro</div><div class="feria-feat-desc">La feria se instala en la plaza o espacio público principal todos los sábados de 9 a 14hs. Visible, accesible y en el corazón de la ciudad.</div></div>
+        <div class="feria-feat aos"><div class="feria-feat-title">🆓 Gratuita para productores locales</div><div class="feria-feat-desc">Stand gratuito para emprendedores y productores de La Calera. Sin costo fijo ni intermediarios. El 100% de la venta queda en el productor.</div></div>
+        <div class="feria-feat aos"><div class="feria-feat-title">🔄 Sistema de rotación justo</div><div class="feria-feat-desc">50 stands disponibles. Un cupo de 20 se rota mensualmente para dar oportunidad a nuevos emprendedores. Los 30 restantes son estables para productores consolidados.</div></div>
+        <div class="feria-feat aos"><div class="feria-feat-title">📣 Difusión municipal activa</div><div class="feria-feat-desc">El municipio promueve cada feria en redes, carteles y medios locales. Los productores no pagan publicidad — el Estado hace esa parte.</div></div>
+        <div class="feria-feat aos"><div class="feria-feat-title">🎄 Feria de las Sierras (navidad)</div><div class="feria-feat-desc">Versión ampliada en diciembre: 3 fines de semana, 100 stands, artistas locales y espectáculos. El evento navideño de La Calera.</div></div>
+      </div>
+      <div class="feria-why aos">
+        <h3>¿Por qué importa?</h3>
+        <div class="fw-stat"><div class="fw-num">50</div><div class="fw-desc">Emprendedores con stand estable generan ingresos semanales sostenidos</div></div>
+        <div class="fw-stat"><div class="fw-num">$0</div><div class="fw-desc">Costo para el emprendedor — toda la inversión la hace el municipio</div></div>
+        <div class="fw-stat"><div class="fw-num">3K</div><div class="fw-desc">Vecinos que pasan por la feria cada sábado (estimado año 1)</div></div>
+        <div class="fw-stat"><div class="fw-num">100%</div><div class="fw-desc">Del ingreso generado queda circulando en La Calera</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EJECUCIÓN -->
+<div class="dark-bg">
+  <div class="section">
+    <div class="section-tag aos">Cronograma</div>
+    <h2 class="aos">De cero a 4 programas<br>en funcionamiento.</h2>
+    <div class="exec-timeline">
+      <div class="exec-item aos">
+        <div class="exec-period">Mes 1–2</div>
+        <div class="exec-dot"></div>
+        <div class="exec-content">
+          <div class="exec-title">Estructura y relevamiento</div>
+          <ul class="exec-list">
+            <li>Crear la Dirección de Juventud, Empleo y Emprendimiento municipal</li>
+            <li>Relevar todos los programas provinciales y nacionales disponibles para jóvenes</li>
+            <li>Encuesta municipal a jóvenes: ¿qué formación quieren y qué trabajo buscan?</li>
+            <li>Publicar convocatoria de mentores voluntarios para la incubadora</li>
+            <li>Identificar espacio para la Feria del Productor</li>
+          </ul>
+          <span class="exec-kpi">📌 Entregable: Diagnóstico de necesidades + directora designada + 20 mentores</span>
+        </div>
+      </div>
+      <div class="exec-item aos">
+        <div class="exec-period">Mes 3–5</div>
+        <div class="exec-dot"></div>
+        <div class="exec-content">
+          <div class="exec-title">Primeros lanzamientos</div>
+          <ul class="exec-list">
+            <li>Primera edición de la Feria del Productor Local</li>
+            <li>Convocatoria a la primera cohorte de Calera Emprende (15 cupos)</li>
+            <li>Firma de convenios con institutos para becas (mínimo 3)</li>
+            <li>Publicación del Registro de Proveedores Locales (versión 1.0)</li>
+            <li>Primera entrega de becas Calera Forma (40 becas primer año)</li>
+          </ul>
+          <span class="exec-kpi">📌 Entregable: Feria activa + primera cohorte de incubadora + 40 becas</span>
+        </div>
+      </div>
+      <div class="exec-item aos">
+        <div class="exec-period">Mes 6–12</div>
+        <div class="exec-dot"></div>
+        <div class="exec-content">
+          <div class="exec-title">Consolidación y primeros resultados</div>
+          <ul class="exec-list">
+            <li>Primera cohorte de Calera Emprende: Demo Day y graduación</li>
+            <li>150+ proveedores en el Registro Local</li>
+            <li>Primera Feria de las Sierras navideña</li>
+            <li>Primera cohorte de becados finalizando formación</li>
+            <li>Informe público de impacto: empleos, emprendimientos, ingresos</li>
+          </ul>
+          <span class="exec-kpi">📌 Entregable: 15 emprendedores graduados + 40 becados + 150 proveedores</span>
+        </div>
+      </div>
+      <div class="exec-item aos">
+        <div class="exec-period">Año 2–4</div>
+        <div class="exec-dot"></div>
+        <div class="exec-content">
+          <div class="exec-title">Escala y sostenibilidad</div>
+          <ul class="exec-list">
+            <li>100 becas anuales sostenidas (400 becados en 4 años)</li>
+            <li>4 cohortes de incubadora completadas: 60 emprendedores graduados</li>
+            <li>Feria del Productor: 50 stands estables + 200 rotativos activos en el año</li>
+            <li>300+ proveedores en el REMPL — mapa público y app móvil</li>
+            <li>La Calera con política de empleo joven reconocida a nivel provincial</li>
+          </ul>
+          <span class="exec-kpi">📌 Meta: 400 jóvenes formados + 60 emprendimientos activos en 4 años</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IMPACTO -->
+<div class="alt-bg">
+  <div class="section">
+    <div class="section-tag aos">Impacto proyectado</div>
+    <h2 class="aos">¿Qué cambia<br>en 4 años?</h2>
+    <div class="impact-numbers">
+      <div class="impact-card aos"><div class="impact-big">400</div><div class="impact-lbl">Jóvenes becados y formados en 4 años</div></div>
+      <div class="impact-card aos"><div class="impact-big">60</div><div class="impact-lbl">Emprendedores graduados de la incubadora</div></div>
+      <div class="impact-card aos"><div class="impact-big">300+</div><div class="impact-lbl">Proveedores locales registrados y visibles</div></div>
+      <div class="impact-card aos"><div class="impact-big">Feria</div><div class="impact-lbl">Todos los sábados — mercado local activo</div></div>
+    </div>
+    <table class="impact-table aos">
+      <thead><tr><th>Indicador</th><th>Hoy</th><th>Año 2</th><th>Año 4</th></tr></thead>
+      <tbody>
+        <tr><td>Jóvenes con beca municipal</td><td>0</td><td>80</td><td class="good">400 acumulados</td></tr>
+        <tr><td>Emprendedores en incubadora</td><td>0</td><td>30</td><td class="good">60 graduados</td></tr>
+        <tr><td>Proveedores en REMPL</td><td>0</td><td>150</td><td class="good">300+</td></tr>
+        <tr><td>Ferias realizadas</td><td>0</td><td>50</td><td class="good">200</td></tr>
+        <tr><td>Tasa de permanencia de jóvenes</td><td>no medida / baja</td><td>+10%</td><td class="good">+25%</td></tr>
+        <tr><td>Ingreso promedio de becados post-egreso</td><td>—</td><td>$600k/mes</td><td class="good">$900k/mes</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="page-footer">
+  <div class="pf-inner">
+    <div class="pf-brand">Pereyra 2027 · La Calera</div>
+    <div class="pf-nav">
+      <a href="pilar1.html" class="pf-btn">1 · Industrial</a>
+      <a href="pilar2.html" class="pf-btn">2 · Conocimiento</a>
+      <a href="pilar3.html" class="pf-btn">3 · Turismo</a>
+      <span class="pf-btn active">4 · Empleo Joven</span>
+    </div>
+  </div>
+</div>
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('show'),i*60);obs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.aos').forEach(el=>obs.observe(el));
+window.addEventListener('scroll',()=>{document.querySelector('nav').style.background=window.scrollY>60?'rgba(5,3,9,0.98)':'rgba(9,6,15,0.9)';});
+</script>
+</body>
+</html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilar 5 · Desarrollo PYME y Comercio Local · Pereyra 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0E8A6A;--lightteal:#1ECFA0;--darkteal:#073D2E;
+  --gold:#D4A017;--lightgold:#F0C040;
+  --dark:#060F0C;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--text:rgba(255,255,255,0.6);
+}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:0.35;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(6,15,12,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);}
+.nav-back{display:flex;align-items:center;gap:0.5rem;text-decoration:none;color:rgba(255,255,255,0.5);font-size:0.82rem;letter-spacing:0.06em;transition:color 0.2s;}
+.nav-back:hover{color:var(--lightteal);}
+.nav-title{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--lightteal);}
+.nav-pillar{font-family:'Syne',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.3);}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;padding:8rem 3rem 5rem;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#030908 0%,#073D2E 45%,#030908 100%);}
+.hero::after{content:'🏪';position:absolute;font-size:28rem;opacity:0.03;top:-4rem;right:-4rem;pointer-events:none;}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:2;}
+.hero-tag{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--lightteal);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem;}
+.hero-tag::before{content:'';width:2rem;height:2px;background:var(--lightteal);display:block;}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,4.5vw,4.5rem);font-weight:800;line-height:0.95;letter-spacing:-0.02em;margin-bottom:1.5rem;}
+h1 em{color:var(--lightteal);font-style:normal;display:block;}
+.hero-desc{font-size:1.05rem;line-height:1.75;color:var(--text);margin-bottom:2.5rem;}
+.hero-cta{display:flex;gap:1rem;}
+.btn{padding:0.9rem 2rem;border-radius:6px;font-weight:500;font-size:0.88rem;letter-spacing:0.04em;text-decoration:none;transition:all 0.25s;display:inline-block;border:none;cursor:pointer;}
+.btn-primary{background:var(--teal);color:#fff;}
+.btn-primary:hover{background:var(--lightteal);transform:translateY(-2px);box-shadow:0 8px 24px rgba(30,207,160,0.3);}
+.btn-outline{border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);background:transparent;}
+.btn-outline:hover{border-color:var(--lightteal);color:var(--lightteal);}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.hstat{background:rgba(14,138,106,0.12);border:1px solid rgba(30,207,160,0.2);border-radius:12px;padding:1.5rem;position:relative;overflow:hidden;}
+.hstat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--lightteal),transparent);}
+.hstat-num{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--lightteal);line-height:1;margin-bottom:0.3rem;}
+.hstat-label{font-size:0.8rem;color:rgba(255,255,255,0.45);line-height:1.4;}
+
+/* SECTIONS */
+.section{padding:6rem 3rem;max-width:1200px;margin:0 auto;}
+.section-tag{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--lightteal);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;}
+.section-tag::before{content:'';width:1.5rem;height:1px;background:var(--lightteal);display:block;}
+h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;line-height:1.1;margin-bottom:1rem;}
+h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.8rem;}
+.section-intro{font-size:1rem;color:var(--text);line-height:1.7;max-width:680px;margin-bottom:3rem;}
+.alt-bg{background:linear-gradient(180deg,var(--dark) 0%,#091510 100%);}
+.dark-bg{background:#040C09;}
+
+/* DIAGNÓSTICO */
+.diag-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.diag-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem;}
+.diag-card.hl{background:rgba(14,138,106,0.08);border-color:rgba(30,207,160,0.25);}
+.diag-card p{font-size:0.88rem;color:var(--text);line-height:1.65;}
+.diag-card ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.8rem;}
+.diag-card ul li{font-size:0.85rem;color:var(--text);padding-left:1.2rem;position:relative;line-height:1.5;}
+.diag-card ul li::before{content:'▸';position:absolute;left:0;color:var(--lightteal);font-size:0.7rem;top:0.15rem;}
+.triple-amenaza{background:rgba(231,76,60,0.07);border:1px solid rgba(231,76,60,0.2);border-radius:12px;padding:1.5rem;margin-top:2rem;}
+.triple-amenaza .label{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#F1948A;margin-bottom:1rem;}
+.triple-items{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.triple-item{text-align:center;}
+.triple-icon{font-size:1.8rem;margin-bottom:0.4rem;}
+.triple-title{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:#fff;margin-bottom:0.3rem;}
+.triple-desc{font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.4;}
+
+/* EJES ESTRATÉGICOS */
+.ejes-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
+.eje-tab{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;text-align:center;cursor:pointer;transition:all 0.25s;}
+.eje-tab.active,.eje-tab:hover{background:rgba(14,138,106,0.12);border-color:rgba(30,207,160,0.3);}
+.eje-tab-icon{font-size:1.5rem;margin-bottom:0.4rem;}
+.eje-tab-label{font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.7);}
+
+/* LÍNEAS */
+.lineas-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.linea-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem;position:relative;overflow:hidden;transition:all 0.3s;}
+.linea-card:hover{border-color:rgba(30,207,160,0.3);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.3);}
+.linea-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--lightteal);opacity:0;transition:opacity 0.3s;}
+.linea-card:hover::before{opacity:1;}
+.linea-num{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;color:rgba(30,207,160,0.06);position:absolute;top:0.5rem;right:1rem;line-height:1;}
+.linea-icon{font-size:1.8rem;margin-bottom:0.8rem;display:block;}
+.linea-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:0.4rem;}
+.linea-sub{font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--lightteal);margin-bottom:1rem;}
+.linea-desc{font-size:0.87rem;color:var(--text);line-height:1.65;margin-bottom:1.2rem;}
+.linea-steps{list-style:none;display:flex;flex-direction:column;gap:0.4rem;}
+.linea-steps li{font-size:0.82rem;color:rgba(255,255,255,0.55);padding-left:1.1rem;position:relative;}
+.linea-steps li::before{content:'→';position:absolute;left:0;color:var(--lightteal);font-size:0.72rem;}
+
+/* TASAS - DETALLE */
+.tasas-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.tasas-table-wrap{overflow:hidden;border-radius:12px;border:1px solid var(--border);}
+.tasas-table{width:100%;border-collapse:collapse;}
+.tasas-table th{background:rgba(14,138,106,0.25);padding:1rem 1.2rem;text-align:left;font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--lightteal);}
+.tasas-table td{padding:1rem 1.2rem;font-size:0.87rem;color:var(--text);border-bottom:1px solid rgba(255,255,255,0.04);}
+.tasas-table tr:nth-child(even) td{background:rgba(255,255,255,0.015);}
+.tasas-table tr:hover td{background:rgba(14,138,106,0.07);}
+.tasas-table td:first-child{color:#fff;font-weight:500;}
+.tag-desc{display:inline-block;font-size:0.72rem;padding:0.2rem 0.6rem;border-radius:100px;}
+.td-green{background:rgba(30,207,160,0.12);color:#6EEBB0;border:1px solid rgba(30,207,160,0.2);}
+.td-gold{background:rgba(212,160,23,0.12);color:#F0D080;border:1px solid rgba(212,160,23,0.2);}
+.td-red{background:rgba(231,76,60,0.12);color:#F1948A;border:1px solid rgba(231,76,60,0.2);}
+
+.tasas-principios{display:flex;flex-direction:column;gap:1rem;}
+.principio{background:rgba(14,138,106,0.07);border:1px solid rgba(30,207,160,0.15);border-left:3px solid var(--lightteal);border-radius:0 8px 8px 0;padding:1.2rem 1.5rem;transition:all 0.2s;}
+.principio:hover{background:rgba(14,138,106,0.12);transform:translateX(4px);}
+.principio-title{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.4rem;}
+.principio-desc{font-size:0.82rem;color:var(--text);line-height:1.55;}
+
+/* ECONOMÍAS REGIONALES */
+.reg-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.reg-cadenas{display:flex;flex-direction:column;gap:1.2rem;}
+.cadena{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all 0.3s;}
+.cadena:hover{border-color:rgba(30,207,160,0.25);transform:translateY(-3px);}
+.cadena-header{padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;}
+.cadena-icon{font-size:1.5rem;}
+.cadena-name{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:#fff;}
+.cadena-tipo{font-size:0.72rem;color:rgba(255,255,255,0.35);letter-spacing:0.06em;}
+.cadena-body{padding:0.8rem 1.5rem 1.2rem;}
+.cadena-desc{font-size:0.83rem;color:var(--text);line-height:1.55;margin-bottom:0.8rem;}
+.cadena-acciones{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.cadena-acc{background:rgba(30,207,160,0.08);border:1px solid rgba(30,207,160,0.15);border-radius:100px;padding:0.2rem 0.7rem;font-size:0.72rem;color:rgba(30,207,160,0.9);}
+
+.reg-why{display:flex;flex-direction:column;gap:1rem;}
+.reg-why-card{background:rgba(14,138,106,0.08);border:1px solid rgba(30,207,160,0.15);border-radius:10px;padding:1.5rem;}
+.reg-why-num{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;color:var(--lightteal);line-height:1;margin-bottom:0.3rem;}
+.reg-why-label{font-size:0.82rem;color:var(--text);line-height:1.5;}
+
+/* CENTRO COMERCIAL ABIERTO */
+.cca-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:start;}
+.cca-features{display:flex;flex-direction:column;gap:1rem;}
+.cca-feat{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--lightteal);border-radius:0 8px 8px 0;padding:1rem 1.2rem;transition:all 0.2s;}
+.cca-feat:hover{background:rgba(14,138,106,0.08);transform:translateX(4px);}
+.cca-feat-title{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.3rem;}
+.cca-feat-desc{font-size:0.82rem;color:var(--text);line-height:1.5;}
+.cca-modelo{background:rgba(14,138,106,0.1);border:1px solid rgba(30,207,160,0.2);border-radius:12px;padding:2rem;}
+.cca-modelo h3{margin-bottom:1.2rem;}
+.cca-dato{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem;}
+.cca-dato:last-child{margin-bottom:0;}
+.cca-dato-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--lightteal);min-width:4rem;line-height:1;}
+.cca-dato-desc{font-size:0.82rem;color:var(--text);line-height:1.5;padding-top:0.2rem;}
+
+/* EXEC */
+.exec-timeline{display:flex;flex-direction:column;gap:0;position:relative;}
+.exec-timeline::before{content:'';position:absolute;left:5.5rem;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--lightteal),rgba(30,207,160,0.05));}
+.exec-item{display:grid;grid-template-columns:5rem 1fr;gap:2rem;padding-bottom:2.5rem;position:relative;}
+.exec-period{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--lightteal);padding-top:0.3rem;text-align:right;line-height:1.3;}
+.exec-dot{position:absolute;left:4.75rem;top:0.35rem;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--darkteal);border:2px solid var(--lightteal);z-index:2;}
+.exec-content{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-left:1.5rem;}
+.exec-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.6rem;}
+.exec-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.exec-list li{font-size:0.85rem;color:var(--text);padding-left:1.1rem;position:relative;line-height:1.5;}
+.exec-list li::before{content:'✓';position:absolute;left:0;color:var(--lightteal);font-size:0.7rem;}
+.exec-kpi{display:inline-block;margin-top:0.8rem;background:rgba(14,138,106,0.12);border:1px solid rgba(30,207,160,0.2);border-radius:100px;padding:0.3rem 0.8rem;font-size:0.75rem;color:var(--lightteal);font-weight:500;}
+
+/* IMPACTO */
+.impact-numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:3rem;}
+.impact-card{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem 1rem;transition:all 0.3s;}
+.impact-card:hover{background:rgba(14,138,106,0.1);border-color:rgba(30,207,160,0.25);transform:translateY(-4px);}
+.impact-big{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--lightteal);line-height:1;margin-bottom:0.4rem;}
+.impact-lbl{font-size:0.8rem;color:var(--text);line-height:1.4;}
+.impact-table{width:100%;border-collapse:collapse;border-radius:12px;overflow:hidden;}
+.impact-table th{background:rgba(14,138,106,0.3);padding:1rem 1.2rem;text-align:left;font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--lightteal);}
+.impact-table td{padding:1rem 1.2rem;font-size:0.87rem;color:var(--text);border-bottom:1px solid rgba(255,255,255,0.04);}
+.impact-table tr:nth-child(even) td{background:rgba(255,255,255,0.015);}
+.impact-table td:first-child{color:#fff;font-weight:500;}
+.impact-table td.good{color:var(--lightteal);font-weight:600;}
+
+/* FOOTER */
+.page-footer{background:#030A07;border-top:1px solid rgba(255,255,255,0.05);padding:3rem;}
+.pf-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.pf-brand{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:rgba(255,255,255,0.25);}
+.pf-nav{display:flex;gap:0.8rem;flex-wrap:wrap;}
+.pf-btn{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:0.6rem 1rem;font-size:0.78rem;color:rgba(255,255,255,0.55);text-decoration:none;transition:all 0.2s;font-family:'Syne',sans-serif;font-weight:600;}
+.pf-btn:hover{border-color:var(--lightteal);color:var(--lightteal);}
+.pf-btn.active{background:rgba(14,138,106,0.2);border-color:var(--lightteal);color:var(--lightteal);}
+
+.aos{opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.aos.show{opacity:1;transform:translateY(0);}
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .hero{padding:7rem 1.5rem 4rem;}
+  .hero-inner,.diag-grid,.lineas-grid,.tasas-layout,.reg-layout,.cca-layout,.impact-numbers{grid-template-columns:1fr;}
+  .triple-items{grid-template-columns:1fr;}
+  .section{padding:4rem 1.5rem;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="plataforma_pereyra_2027.html" class="nav-back">← Volver a la plataforma</a>
+  <div><div class="nav-title">Pilar 5 · Desarrollo PYME y Comercio Local</div></div>
+  <div class="nav-pillar">Pereyra 2027</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Desarrollo económico · Pilar 5 de 5</div>
+      <h1>Desarrollo PYME<em>y Comercio Local</em></h1>
+      <p class="hero-desc">El comercio y los pequeños negocios son el tejido económico real de La Calera. No la industria pesada ni las grandes empresas — el almacén, la ferretería, el taller, la peluquería, la veterinaria. Ese tejido está bajo presión. Este pilar lo protege y lo potencia.</p>
+      <div class="hero-cta">
+        <a href="#lineas" class="btn btn-primary">Ver las líneas de acción</a>
+        <a href="#tasas" class="btn btn-outline">Política tributaria</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">~800</div><div class="hstat-label">Comercios y pequeños negocios estimados en La Calera activos</div></div>
+      <div class="hstat"><div class="hstat-num">46%</div><div class="hstat-label">Del empleo privado de Córdoba lo generan el comercio y los servicios</div></div>
+      <div class="hstat"><div class="hstat-num">70%</div><div class="hstat-label">De los comerciantes cordobeses pide reducción de carga impositiva como medida urgente</div></div>
+      <div class="hstat"><div class="hstat-num">0</div><div class="hstat-label">Programas municipales activos de apoyo al comercio en La Calera hoy</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- DIAGNÓSTICO -->
+<div class="alt-bg">
+  <div class="section">
+    <div class="section-tag aos">El problema real</div>
+    <h2 class="aos">Los negocios de La Calera<br>enfrentan una triple amenaza.</h2>
+    <p class="section-intro aos">Sin política municipal de apoyo, los pequeños comercios de La Calera absorben solos el impacto de la macroeconomía, la presión impositiva y la transformación digital. Muchos no sobreviven.</p>
+    <div class="diag-grid">
+      <div class="diag-card hl aos">
+        <h3>📍 La situación del comercio local hoy</h3>
+        <ul>
+          <li>Sin cámara de comercio local activa con representación real</li>
+          <li>Sin reducción de tasas para negocios en etapa de apertura</li>
+          <li>Sin programa de digitalización para comercios tradicionales</li>
+          <li>Sin mapa de locales comerciales disponibles para emprendedores</li>
+          <li>Sin sistema de compras conjuntas o cooperativas de consumo</li>
+          <li>Sin financiamiento municipal para refacción o equipamiento</li>
+          <li>Sin política de atracción de clientes al centro comercial</li>
+          <li>Sin datos públicos sobre cuántos negocios abren y cierran por año</li>
+        </ul>
+      </div>
+      <div class="diag-card aos">
+        <h3>🌎 El contexto cordobés y nacional</h3>
+        <p>El comercio y los servicios generan el 46% del empleo privado de Córdoba y representan el 40% de su PBG. Es el motor invisible de la economía. Pero está en tensión: caída del consumo, costos en alza y transformación digital están cerrando negocios más rápido de lo que se abren nuevos.</p>
+        <p style="margin-top:0.8rem;">En La Calera el problema se amplifica: el crecimiento poblacional de los últimos 10 años no fue acompañado por una política comercial municipal que desarrolle el sector. La demanda creció pero el municipio no facilitó que los negocios locales capturen esa demanda.</p>
+      </div>
+    </div>
+    <div class="triple-amenaza aos">
+      <div class="label">La triple amenaza que afecta a los negocios de La Calera</div>
+      <div class="triple-items">
+        <div class="triple-item">
+          <div class="triple-icon">📉</div>
+          <div class="triple-title">Caída del consumo</div>
+          <div class="triple-desc">El poder adquisitivo real bajó. El vecino compra menos y el shopping o el supermercado de cadena se lleva la parte que queda.</div>
+        </div>
+        <div class="triple-item">
+          <div class="triple-icon">💸</div>
+          <div class="triple-title">Costos en alza + presión fiscal</div>
+          <div class="triple-desc">Alquiler, servicios, proveedores y tasas municipales suben mientras el margen se achica. El 70% de los comerciantes lo señala como su principal problema.</div>
+        </div>
+        <div class="triple-item">
+          <div class="triple-icon">📱</div>
+          <div class="triple-title">Transformación digital sin acompañamiento</div>
+          <div class="triple-desc">Los clientes buscan online antes de comprar. Los negocios que no tienen presencia digital pierden ventas ante plataformas y competidores de Córdoba Capital.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LÍNEAS -->
+<div class="dark-bg" id="lineas">
+  <div class="section">
+    <div class="section-tag aos">Líneas de acción</div>
+    <h2 class="aos">5 líneas para proteger<br>y potenciar el comercio local.</h2>
+    <p class="section-intro aos">Cada línea ataca un problema real. No son políticas genéricas — están diseñadas para la realidad específica del comercio en una ciudad de 50.000 habitantes con las características de La Calera.</p>
+    <div class="lineas-grid">
+      <div class="linea-card aos">
+        <div class="linea-num">01</div>
+        <span class="linea-icon">📊</span>
+        <div class="linea-title">Política Tributaria Diferenciada</div>
+        <div class="linea-sub">Menos carga, más actividad</div>
+        <div class="linea-desc">El municipio tiene poder sobre las tasas que cobra. Usarlo estratégicamente no es renunciar a ingresos — es invertir en la base económica que genera esos ingresos.</div>
+        <ul class="linea-steps">
+          <li>Reducción del 50% de tasas municipales para negocios nuevos en los primeros 24 meses</li>
+          <li>Exención total para negocios en locales vacíos hace más de 6 meses (reactiva espacios)</li>
+          <li>Escala de tasas por facturación: menos carga para los más chicos</li>
+          <li>Moratoria de deudas tributarias con plan de pago accesible (no cierres por deuda)</li>
+          <li>Programa de "cuotas sin interés" para el pago de tasas municipales en cuotas</li>
+          <li>Meta: 0 cierres de negocios por deuda tributaria municipal en el período</li>
+        </ul>
+      </div>
+      <div class="linea-card aos">
+        <div class="linea-num">02</div>
+        <span class="linea-icon">💻</span>
+        <div class="linea-title">Digitalización del Comercio Local</div>
+        <div class="linea-sub">La Calera vende online</div>
+        <div class="linea-desc">El comercio que no está online no existe para una parte creciente de los consumidores. El municipio puede acelerar esa transición con formación y herramientas concretas.</div>
+        <ul class="linea-steps">
+          <li>Programa "Calera Digital": talleres gratuitos de redes sociales, ventas online y WhatsApp Business para comerciantes</li>
+          <li>Marketplace de La Calera: plataforma web donde los comercios locales venden y el municipio los promociona</li>
+          <li>Asesor digital municipal: profesional que visita negocios y les configura sus herramientas gratis</li>
+          <li>Fotografía profesional gratuita para catálogos online de comercios inscriptos</li>
+          <li>Integración con Google Business Profile para todos los comercios del REMPL</li>
+          <li>Meta: 200 comercios digitalizados y con presencia online activa en 2 años</li>
+        </ul>
+      </div>
+      <div class="linea-card aos">
+        <div class="linea-num">03</div>
+        <span class="linea-icon">🤝</span>
+        <div class="linea-title">Cámara de Comercio Municipal</div>
+        <div class="linea-sub">Voz y representación real</div>
+        <div class="linea-desc">Los comerciantes de La Calera no tienen una entidad que los represente con peso real ante el municipio. Se crea la Cámara de Comercio y Servicios de La Calera con apoyo institucional.</div>
+        <ul class="linea-steps">
+          <li>Constitución de la Cámara de Comercio y Servicios de La Calera (CCSEC)</li>
+          <li>Espacio físico en el Hub municipal + personería jurídica facilitada por el municipio</li>
+          <li>Reunión mensual obligatoria del intendente o secretario con la Mesa Comercial</li>
+          <li>La Cámara tiene voz en el presupuesto municipal de desarrollo económico</li>
+          <li>Representación ante el Consejo de Desarrollo Económico provincial</li>
+          <li>Meta: 300+ comercios asociados a la Cámara en el año 1</li>
+        </ul>
+      </div>
+      <div class="linea-card aos">
+        <div class="linea-num">04</div>
+        <span class="linea-icon">🏙️</span>
+        <div class="linea-title">Centro Comercial Abierto</div>
+        <div class="linea-sub">El centro urbano como destino</div>
+        <div class="linea-desc">Transformar el área comercial central de La Calera en un destino activo y atractivo — no solo para comprar sino para estar. Modelo probado en decenas de ciudades argentinas.</div>
+        <ul class="linea-steps">
+          <li>Señalética comercial unificada y atractiva en el centro urbano</li>
+          <li>Programa de fachadas: subsidio parcial para refacción y pintura de locales</li>
+          <li>Eventos mensuales en el centro: noche de descuentos, feria nocturna, shows</li>
+          <li>Estacionamiento gratuito limitado en horario comercial (gestión de espacios)</li>
+          <li>Mapa de locales disponibles para alquiler: reducir tiempo de locales vacíos</li>
+          <li>Meta: reducir locales vacíos en el centro de un 15% estimado a menos del 5%</li>
+        </ul>
+      </div>
+      <div class="linea-card aos">
+        <div class="linea-num">05</div>
+        <span class="linea-icon">💳</span>
+        <div class="linea-title">Financiamiento Accesible para PYME</div>
+        <div class="linea-sub">Crédito cuando más se necesita</div>
+        <div class="linea-desc">El acceso al crédito es el principal cuello de botella para los pequeños negocios que quieren crecer o modernizarse. El municipio actúa como articulador y garante.</div>
+        <ul class="linea-steps">
+          <li>Línea "Refacción Local": crédito de hasta $500k para mejora de local con tasa subsidiada</li>
+          <li>Línea "Equipamiento PYME": crédito para compra de equipos o maquinaria con garantía municipal</li>
+          <li>Articulación con Banco de Córdoba y FONDEP para líneas específicas para La Calera</li>
+          <li>Fondo de Garantías Municipal: el municipio avala hasta el 50% del crédito solicitado</li>
+          <li>Gestión de subsidios nacionales SEPYME para comercios locales</li>
+          <li>Meta: 100 negocios financiados con líneas municipales en 4 años</li>
+        </ul>
+      </div>
+      <div class="linea-card aos">
+        <div class="linea-num">06</div>
+        <span class="linea-icon">📣</span>
+        <div class="linea-title">Marketing Colectivo</div>
+        <div class="linea-sub">El municipio que promueve a sus comercios</div>
+        <div class="linea-desc">El municipio tiene canales de comunicación que los comercios individuales no pueden pagar. Ponerlos al servicio del comercio local es una política de alto impacto y bajo costo.</div>
+        <ul class="linea-steps">
+          <li>"Compre en La Calera": campaña municipal permanente en redes y vía pública</li>
+          <li>Semana del Comercio Local: descuentos coordinados + difusión masiva municipal anual</li>
+          <li>Vitrina Municipal: posteos semanales en redes del municipio presentando un comercio local</li>
+          <li>Guía comercial impresa y digital actualizada anualmente — distribución municipal</li>
+          <li>Articulación con medios locales para cobertura de novedades comerciales</li>
+          <li>Meta: 500 seguidores extra promedio por negocio a través de la vitrina municipal</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TASAS - DETALLE -->
+<div class="alt-bg" id="tasas">
+  <div class="section">
+    <div class="section-tag aos">Política tributaria — detalle</div>
+    <h2 class="aos">Las tasas como herramienta<br>de política económica.</h2>
+    <p class="section-intro aos">El municipio cobra tasas por habilitación, comercial e inspección. Hoy son iguales para todos. Con diferenciación estratégica, se convierten en una palanca de desarrollo.</p>
+    <div class="tasas-layout">
+      <div>
+        <div class="tasas-table-wrap aos">
+          <table class="tasas-table">
+            <thead><tr><th>Situación del comercio</th><th>Tasa actual</th><th>Propuesta</th></tr></thead>
+            <tbody>
+              <tr><td>Negocio nuevo (0–12 meses)</td><td>Tasa completa</td><td><span class="tag-beca td-green">−75% primer año</span></td></tr>
+              <tr><td>Negocio nuevo (12–24 meses)</td><td>Tasa completa</td><td><span class="tag-beca td-green">−50% segundo año</span></td></tr>
+              <tr><td>Local vacío > 6 meses ocupado</td><td>Tasa completa</td><td><span class="tag-beca td-green">Exento primer año</span></td></tr>
+              <tr><td>PYME con hasta 5 empleados</td><td>Igual que empresas grandes</td><td><span class="tag-beca td-green">Escala reducida</span></td></tr>
+              <tr><td>Comercio digitalizado (en REMPL)</td><td>Sin beneficio</td><td><span class="tag-beca td-gold">−10% sobre tasa base</span></td></tr>
+              <tr><td>Negocio con deuda histórica</td><td>Multa + intereses</td><td><span class="tag-beca td-gold">Moratoria con cuotas</span></td></tr>
+              <tr><td>Empresa multinacional/cadena</td><td>Igual que pequeños</td><td><span class="tag-beca td-red">Tasa plena sin beneficio</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:1.5rem;padding:1.2rem 1.5rem;background:rgba(30,207,160,0.06);border:1px solid rgba(30,207,160,0.15);border-radius:10px;" class="aos">
+          <div style="font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;color:var(--lightteal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Principio clave</div>
+          <p style="font-size:0.87rem;color:var(--text);line-height:1.6;">Quien más capacidad tiene, más paga. Quien más riesgo corre (el pequeño que abre), más apoyo recibe. Las cadenas y grandes superficies pagan tasa plena. Los nuevos emprendedores y el comercio de barrio tienen acompañamiento real.</p>
+        </div>
+      </div>
+      <div class="tasas-principios">
+        <div class="principio aos">
+          <div class="principio-title">🧮 Simplicidad tributaria</div>
+          <div class="principio-desc">Reducir la cantidad de trámites, formularios y vencimientos. Un comerciante no es contador — el sistema municipal tiene que ser simple de entender y de pagar.</div>
+        </div>
+        <div class="principio aos">
+          <div class="principio-title">📅 Vencimientos flexibles</div>
+          <div class="principio-desc">Permitir elegir la fecha de vencimiento dentro de un rango. Los flujos de cada negocio son distintos — el municipio no puede exigir que todos paguen el mismo día.</div>
+        </div>
+        <div class="principio aos">
+          <div class="principio-title">📲 Pago 100% digital</div>
+          <div class="principio-desc">Tasas, habilitaciones y multas pagables desde el celular. Sin filas, sin horario. Muchos comerciantes no van a la municipalidad no porque no quieran — es que no tienen tiempo.</div>
+        </div>
+        <div class="principio aos">
+          <div class="principio-title">🔔 Alertas previas al vencimiento</div>
+          <div class="principio-desc">WhatsApp o email 15 días antes del vencimiento. Muchas deudas se acumulan por olvido, no por falta de voluntad de pago. El municipio avisa antes de cobrar multa.</div>
+        </div>
+        <div class="principio aos">
+          <div class="principio-title">📊 Transparencia de tasas</div>
+          <div class="principio-desc">Publicar en el portal municipal cuánto paga cada categoría de negocio y por qué. El comerciante tiene derecho a saber exactamente qué financia con su tasa.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ECONOMÍAS REGIONALES -->
+<div class="dark-bg" id="regional">
+  <div class="section">
+    <div class="section-tag aos">Economías regionales</div>
+    <h2 class="aos">La Calera como nodo de las<br>economías productivas de Sierras Chicas.</h2>
+    <p class="section-intro aos">La región de Sierras Chicas tiene productores primarios, artesanos, vitivinicultores, apicultores y productores de alimentos que no tienen dónde vender con valor agregado. La Calera puede ser ese mercado central.</p>
+    <div class="reg-layout">
+      <div class="reg-cadenas">
+        <div class="cadena aos">
+          <div class="cadena-header" style="background:linear-gradient(135deg,#1A3A1A,#2E6A2E);">
+            <div class="cadena-icon">🫙</div>
+            <div><div class="cadena-name">Alimentos y conservas artesanales</div><div class="cadena-tipo">Cadena productiva regional</div></div>
+          </div>
+          <div class="cadena-body">
+            <div class="cadena-desc">Sierras Chicas tiene productores de mermeladas, aceites, quesos, embutidos, miel y conservas que se venden informalmente o en ferias esporádicas. Con certificación municipal y punto de venta permanente, generan ingresos sostenidos.</div>
+            <div class="cadena-acciones">
+              <span class="cadena-acc">Certificación de origen</span>
+              <span class="cadena-acc">Punto de venta en La Calera</span>
+              <span class="cadena-acc">Marca "Sierras Chicas"</span>
+              <span class="cadena-acc">Capacitación BROMATOLOGÍA</span>
+            </div>
+          </div>
+        </div>
+        <div class="cadena aos">
+          <div class="cadena-header" style="background:linear-gradient(135deg,#3A2A1A,#6A4A2E);">
+            <div class="cadena-icon">🧵</div>
+            <div><div class="cadena-name">Artesanías y textiles serranos</div><div class="cadena-tipo">Economía creativa regional</div></div>
+          </div>
+          <div class="cadena-body">
+            <div class="cadena-desc">Tejedoras, ceramistas, trabajadores del cuero y madera de toda la región producen piezas únicas sin canal comercial organizado. La Feria del Productor y el circuito turístico son el canal natural para esta producción.</div>
+            <div class="cadena-acciones">
+              <span class="cadena-acc">Registro de artesanos</span>
+              <span class="cadena-acc">Feria permanente</span>
+              <span class="cadena-acc">Integración al circuito turístico</span>
+            </div>
+          </div>
+        </div>
+        <div class="cadena aos">
+          <div class="cadena-header" style="background:linear-gradient(135deg,#1A2A3A,#2E4A6A);">
+            <div class="cadena-icon">🌿</div>
+            <div><div class="cadena-name">Hierbas medicinales y naturales</div><div class="cadena-tipo">Producción agroecológica</div></div>
+          </div>
+          <div class="cadena-body">
+            <div class="cadena-desc">Las laderas de Sierras Chicas tienen productores de hierbas aromáticas, medicinales y especias que van a mercados de Córdoba Capital. Con apoyo municipal y certificación, pueden vender con mayor margen localmente y en turismo.</div>
+            <div class="cadena-acciones">
+              <span class="cadena-acc">Mapa de productores</span>
+              <span class="cadena-acc">Certificación agroecológica</span>
+              <span class="cadena-acc">Acuerdo con farmacias y herboristerías</span>
+            </div>
+          </div>
+        </div>
+        <div class="cadena aos">
+          <div class="cadena-header" style="background:linear-gradient(135deg,#3A1A3A,#6A2E6A);">
+            <div class="cadena-icon">🐝</div>
+            <div><div class="cadena-name">Miel y productos apícolas</div><div class="cadena-tipo">Producción primaria local</div></div>
+          </div>
+          <div class="cadena-body">
+            <div class="cadena-desc">La región tiene apicultores de escala pequeña que venden a granel con poco valor agregado. Con etiquetado, marca regional y canal turístico, la miel de Sierras Chicas puede competir como producto premium.</div>
+            <div class="cadena-acciones">
+              <span class="cadena-acc">Marca "Miel Sierras Chicas"</span>
+              <span class="cadena-acc">Etiquetado y packaging</span>
+              <span class="cadena-acc">Venta en circuito turístico</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reg-why">
+        <div style="margin-bottom:1.5rem;" class="aos">
+          <h3>¿Por qué La Calera?</h3>
+          <p style="font-size:0.88rem;color:var(--text);line-height:1.65;">La Calera es el municipio de mayor tamaño y mejor acceso de la región. Con el circuito turístico activo, el corredor gastronómico y la Feria del Productor, tiene los canales de distribución que los productores regionales no tienen solos.</p>
+        </div>
+        <div class="reg-why-card aos">
+          <div class="reg-why-num">7</div>
+          <div class="reg-why-label">Municipios de Sierras Chicas que pueden sumarse a la marca regional</div>
+        </div>
+        <div class="reg-why-card aos">
+          <div class="reg-why-num">+200</div>
+          <div class="reg-why-label">Productores primarios y artesanos estimados en la región sin canal comercial organizado</div>
+        </div>
+        <div class="reg-why-card aos">
+          <div class="reg-why-num">3x</div>
+          <div class="reg-why-label">El precio de venta promedio con marca regional vs. venta a granel sin identidad</div>
+        </div>
+        <div class="reg-why-card aos">
+          <div class="reg-why-num">$0</div>
+          <div class="reg-why-label">Costo para el productor de registrarse y usar la marca — municipio absorbe la gestión</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CENTRO COMERCIAL ABIERTO -->
+<div class="alt-bg">
+  <div class="section">
+    <div class="section-tag aos">Centro Comercial Abierto</div>
+    <h2 class="aos">El centro de La Calera<br>como destino, no solo como paso.</h2>
+    <p class="section-intro aos">El modelo de Centro Comercial Abierto (CCA) está probado en más de 30 ciudades argentinas. Transforma el área comercial central en un espacio activo con identidad propia, eventos y servicios.</p>
+    <div class="cca-layout">
+      <div class="cca-features">
+        <div class="cca-feat aos"><div class="cca-feat-title">🎨 Identidad visual del centro</div><div class="cca-feat-desc">Señalética unificada, murales, iluminación decorativa y mobiliario urbano consistente que hagan reconocible y atractivo el área comercial. Diseño participativo con comerciantes y vecinos.</div></div>
+        <div class="cca-feat aos"><div class="cca-feat-title">🌙 Noches de La Calera</div><div class="cca-feat-desc">Un jueves al mes, los comercios del centro extienden su horario, ofrecen descuentos y hay música en vivo. El centro como lugar de encuentro social, no solo de compras.</div></div>
+        <div class="cca-feat aos"><div class="cca-feat-title">🖌️ Programa de fachadas</div><div class="cca-feat-desc">Subsidio del 50% del costo de pintura y refacción de fachada para negocios en el área central. El objetivo: que el centro luzca bien para vecinos y turistas. Costo municipal acotado, impacto visual alto.</div></div>
+        <div class="cca-feat aos"><div class="cca-feat-title">🗺️ Mapa de locales vacíos</div><div class="cca-feat-desc">Registro actualizado de locales disponibles con datos de superficie, precio y contacto del propietario. Reducir el tiempo que un local permanece vacío — cada local cerrado daña al resto del centro.</div></div>
+        <div class="cca-feat aos"><div class="cca-feat-title">🚶 Peatonalización temporal</div><div class="cca-feat-desc">Los fines de semana o en eventos especiales, cerrar al tráfico algunas cuadras del centro y habilitarlas como espacio peatonal. Genera ambiente, aumenta el tráfico de personas y beneficia al comercio.</div></div>
+        <div class="cca-feat aos"><div class="cca-feat-title">📡 WiFi libre en el centro</div><div class="cca-feat-desc">Conectividad pública gratuita en el área comercial central. Atrae personas, permite trabajar al aire libre y facilita las compras online para quienes prefieren comparar precios en tiempo real.</div></div>
+      </div>
+      <div class="cca-modelo aos">
+        <h3>El modelo que funciona en Argentina</h3>
+        <p style="font-size:0.85rem;color:var(--text);line-height:1.6;margin-bottom:1.2rem;">Ciudades como Villa Carlos Paz, Río Cuarto, San Francisco y Villa María implementaron el CCA con resultados medibles. La escala de La Calera es ideal — no tan grande como para perder identidad, no tan pequeña como para no tener masa crítica.</p>
+        <div class="cca-dato"><div class="cca-dato-num">+35%</div><div class="cca-dato-desc">Aumento de ventas promedio en negocios de ciudades argentinas con CCA activo en primer año</div></div>
+        <div class="cca-dato"><div class="cca-dato-num">−40%</div><div class="cca-dato-desc">Reducción de locales vacíos en el área comercial central en ciudades con programa activo</div></div>
+        <div class="cca-dato"><div class="cca-dato-num">2x</div><div class="cca-dato-desc">Aumento del tráfico peatonal en días de eventos vs. semanas sin actividades</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EJECUCIÓN -->
+<div class="dark-bg">
+  <div class="section">
+    <div class="section-tag aos">Cronograma de ejecución</div>
+    <h2 class="aos">De la inacción<br>a la política activa.</h2>
+    <div class="exec-timeline">
+      <div class="exec-item aos">
+        <div class="exec-period">Mes 1–2</div>
+        <div class="exec-dot"></div>
+        <div class="exec-content">
+          <div class="exec-title">Diagnóstico y estructura</div>
+          <ul class="exec-list">
+            <li>Censo de comercios activos y cerrados en La Calera (¿cuántos abrieron y cerraron en 2024?)</li>
+            <li>Relevamiento de locales vacíos en el área central</li>
+            <li>Crear la Dirección de Comercio y PYME municipal (hoy no existe)</li>
+            <li>Convocatoria a comerciantes para constituir la Cámara de Comercio y Servicios</li>
+            <li>Publicar el mapa de locales disponibles para alquiler</li>
+          </ul>
+          <span class="exec-kpi">📌 Entregable: Censo publicado + Cámara constituida + Dirección de Comercio activa</span>
+        </div>
+      </div>
+      <div class="exec-item aos">
+        <div class="exec-period">Mes 3–5</div>
+        <div class="exec-dot"></div>
+        <div class="exec-content">
+          <div class="exec-title">Marco legal y primeros beneficios</div>
+          <ul class="exec-list">
+            <li>Ordenanza de tasas diferenciadas: reducción para negocios nuevos y locales vacíos</li>
+            <li>Ordenanza de moratoria tributaria con plan de pago en cuotas sin interés</li>
+            <li>Lanzamiento del programa Calera Digital: primeros 3 talleres de digitalización</li>
+            <li>Primer evento "Noches de La Calera" — piloto del Centro Comercial Abierto</li>
+            <li>Lanzamiento de la campaña "Compre en La Calera" en redes municipales</li>
+          </ul>
+          <span class="exec-kpi">📌 Entregable: Ordenanzas aprobadas + primera noche comercial + 50 comercios digitalizados</span>
+        </div>
+      </div>
+      <div class="exec-item aos">
+        <div class="exec-period">Mes 6–12</div>
+        <div class="exec-dot"></div>
+        <div class="exec-content">
+          <div class="exec-title">Primeras líneas de crédito y marca regional</div>
+          <ul class="exec-list">
+            <li>Líneas de crédito "Refacción Local" y "Equipamiento PYME" operativas</li>
+            <li>Marketplace "La Calera Vende" online con 50 comercios inscriptos</li>
+            <li>Primer relevamiento de productores regionales de Sierras Chicas</li>
+            <li>Programa de fachadas: primeras 20 fachadas refaccionadas con subsidio</li>
+            <li>Primera Semana del Comercio Local de La Calera</li>
+          </ul>
+          <span class="exec-kpi">📌 Entregable: 50 créditos + 50 comercios en marketplace + 20 fachadas + marca regional lanzada</span>
+        </div>
+      </div>
+      <div class="exec-item aos">
+        <div class="exec-period">Año 2–4</div>
+        <div class="exec-dot"></div>
+        <div class="exec-content">
+          <div class="exec-title">Consolidación del ecosistema comercial</div>
+          <ul class="exec-list">
+            <li>300+ comercios digitalizados con presencia activa online</li>
+            <li>100 comercios financiados con líneas municipales</li>
+            <li>Locales vacíos en el centro reducidos de ~15% a menos del 5%</li>
+            <li>200+ productores regionales con marca "Sierras Chicas" operativa</li>
+            <li>La Calera reconocida como modelo de desarrollo comercial municipal en Córdoba</li>
+          </ul>
+          <span class="exec-kpi">📌 Meta: +400 empleos en comercio y servicios + 0 cierres por deuda tributaria</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IMPACTO -->
+<div class="alt-bg">
+  <div class="section">
+    <div class="section-tag aos">Impacto proyectado</div>
+    <h2 class="aos">¿Qué cambia<br>en 4 años?</h2>
+    <div class="impact-numbers">
+      <div class="impact-card aos"><div class="impact-big">+400</div><div class="impact-lbl">Empleos sostenidos o creados en el sector comercial</div></div>
+      <div class="impact-card aos"><div class="impact-big">300</div><div class="impact-lbl">Comercios digitalizados con presencia online activa</div></div>
+      <div class="impact-card aos"><div class="impact-big">100</div><div class="impact-lbl">Negocios financiados con líneas municipales en 4 años</div></div>
+      <div class="impact-card aos"><div class="impact-big">&lt;5%</div><div class="impact-lbl">Locales vacíos en el centro comercial (hoy ~15%)</div></div>
+    </div>
+    <table class="impact-table aos">
+      <thead><tr><th>Indicador</th><th>Hoy</th><th>Año 2</th><th>Año 4</th></tr></thead>
+      <tbody>
+        <tr><td>Comercios con presencia digital activa</td><td>sin política / bajo</td><td>100</td><td class="good">300+</td></tr>
+        <tr><td>Negocios financiados municipalmente</td><td>0</td><td>40</td><td class="good">100</td></tr>
+        <tr><td>Locales vacíos en el centro</td><td>~15%</td><td>10%</td><td class="good">&lt;5%</td></tr>
+        <tr><td>Productores regionales con canal en La Calera</td><td>sin datos / disperso</td><td>80</td><td class="good">200+</td></tr>
+        <tr><td>Cámara de Comercio activa</td><td>no existe</td><td>Sí, con 200 socios</td><td class="good">Sí, con 400+ socios</td></tr>
+        <tr><td>Cierres por deuda tributaria</td><td>sin datos</td><td>–80%</td><td class="good">0 por moratoria activa</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="page-footer">
+  <div class="pf-inner">
+    <div class="pf-brand">Pereyra 2027 · La Calera</div>
+    <div class="pf-nav">
+      <a href="pilar1.html" class="pf-btn">1 · Industrial</a>
+      <a href="pilar2.html" class="pf-btn">2 · Conocimiento</a>
+      <a href="pilar3.html" class="pf-btn">3 · Turismo</a>
+      <a href="pilar4.html" class="pf-btn">4 · Empleo Joven</a>
+      <span class="pf-btn active">5 · PYME</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('show'),i*60);obs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.aos').forEach(el=>obs.observe(el));
+window.addEventListener('scroll',()=>{document.querySelector('nav').style.background=window.scrollY>60?'rgba(3,8,5,0.98)':'rgba(6,15,12,0.9)';});
+</script>
+</body>
+</html>
