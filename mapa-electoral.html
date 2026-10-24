@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa Electoral Dinámico · La Calera 2027 · Pereyra</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  :root {
+    --bg: #0f1419;
+    --card: #1a2332;
+    --border: #2d3a4d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --a: #3fb950;
+    --b: #d29922;
+    --c: #f85149;
+    --agua: #388bfd;
+    --peaje: #db6d28;
+    --salud: #a371f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+  }
+  #sidebar {
+    width: 340px;
+    background: var(--card);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+  #sidebar header {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    background: #161b22;
+  }
+  #sidebar h1 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  #sidebar .sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+  #controls {
+    padding: 0.8rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .filter-btn {
+    background: #21262d;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.35rem 0.7rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: var(--accent); }
+  .filter-btn.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  .filter-btn.a.active { background: var(--a); }
+  .filter-btn.b.active { background: var(--b); color: #000; }
+  .filter-btn.c.active { background: var(--c); }
+  .filter-btn.issue.active { background: #388bfd; }
+  #list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+  }
+  .item {
+    padding: 0.7rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .item:hover { background: #21262d; }
+  .item h3 {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .badge {
+    font-size: 0.65rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: 99px;
+    font-weight: 700;
+  }
+  .badge.a { background: var(--a); color: #000; }
+  .badge.b { background: var(--b); color: #000; }
+  .badge.c { background: var(--c); }
+  .item p {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+    line-height: 1.4;
+  }
+  #map { flex: 1; height: 100vh; }
+  .leaflet-popup-content-wrapper {
+    background: var(--card);
+    color: var(--text);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .leaflet-popup-tip { background: var(--card); }
+  .popup-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  .popup-meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .popup-section {
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+  }
+  .popup-section strong { color: var(--accent); }
+  .legend {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    font-size: 0.75rem;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .legend div { display: flex; align-items: center; gap: 0.4rem; margin: 0.2rem 0; }
+  .dot {
+    width: 12px; height: 12px; border-radius: 50%; display: inline-block;
+  }
+  @media (max-width: 700px) {
+    body { flex-direction: column; }
+    #sidebar { width: 100%; height: 40vh; }
+    #map { height: 60vh; }
+  }
+</style>
+</head>
+<body>
+<div id="sidebar">
+  <header>
+    <h1>Mapa Electoral · La Calera 2027</h1>
+    <div class="sub">Mauricio Pereyra · Provisional A/B/C + reclamos</div>
+  </header>
+  <div id="controls">
+    <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.3rem;">Filtrar por clasificación</div>
+    <div class="filters" id="class-filters">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn a" data-filter="A">A Fortaleza</button>
+      <button class="filter-btn b" data-filter="B">B Swing</button>
+      <button class="filter-btn c" data-filter="C">C Adversario</button>
+    </div>
+    <div style="font-size:0.75rem; color:var(--muted); margin:0.5rem 0 0.3rem;">Capas de reclamos</div>
+    <div class="filters" id="issue-filters">
+      <button class="filter-btn issue active" data-issue="agua">💧 Agua</button>
+      <button class="filter-btn issue active" data-issue="peaje">🚧 Peaje</button>
+      <button class="filter-btn issue active" data-issue="salud">🏥 Salud</button>
+    </div>
+  </div>
+  <div id="list"></div>
+</div>
+<div id="map"></div>
+<div class="legend">
+  <div><span class="dot" style="background:#3fb950"></span> A · Fortaleza propia</div>
+  <div><span class="dot" style="background:#d29922"></span> B · Disputable / Swing</div>
+  <div><span class="dot" style="background:#f85149"></span> C · Adversario fuerte</div>
+  <div style="margin-top:0.4rem; border-top:1px solid var(--border); padding-top:0.4rem;">
+    <div>💧 Agua &nbsp; 🚧 Peaje &nbsp; 🏥 Salud</div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const zones = [
+  {
+    id: "industrial",
+    name: "Industrial + Dr. Cocca + Altos + Los Prados",
+    class: "B",
+    lat: -31.352,
+    lng: -64.338,
+    priority: "Alta",
+    issues: ["agua", "salud"],
+    desc: "Mayor densidad poblacional. Reclamos recurrentes de presión de agua y servicios. Volumen electoral clave.",
+    action: "100 días: plan de presión + detección de fugas + refuerzo CAPS local.",
+    effort: "60% del esfuerzo total"
+  },
+  {
+    id: "calera-central",
+    name: "Calera Central + Villa Los Paraísos",
+    class: "B",
+    lat: -31.348,
+    lng: -64.332,
+    priority: "Alta",
+    issues: ["agua", "peaje"],
+    desc: "Zona de transición sur del río. Mezcla consolidada y crecimiento.",
+    action: "100 días: desagües + pavimento prioritario + info peaje.",
+    effort: "Alta"
+  },
+  {
+    id: "cuesta",
+    name: "Cuesta Colorada + cerrados este",
+    class: "B",
+    lat: -31.356,
+    lng: -64.312,
+    priority: "Alta-Media",
+    issues: ["peaje", "agua"],
+    desc: "Residenciales / dormitorio hacia Córdoba. Sensibles a peaje y calidad de servicios.",
+    action: "100 días: postura clara peaje + seguridad + conectividad.",
+    effort: "Alta-Media"
+  },
+  {
+    id: "stocklin",
+    name: "Stöcklin",
+    class: "B",
+    lat: -31.350,
+    lng: -64.325,
+    priority: "Media",
+    issues: ["peaje"],
+    desc: "Residencial de mejor nivel. Más abierto a gestión por resultados.",
+    action: "100 días: transparencia de obras + peaje.",
+    effort: "Media"
+  },
+  {
+    id: "casco-norte",
+    name: "Casco norte (Maipú, 25 de Mayo, 9 de Julio, etc.)",
+    class: "B",
+    lat: -31.340,
+    lng: -64.336,
+    priority: "Media",
+    issues: ["agua", "salud"],
+    desc: "Núcleo más antiguo, históricamente más PJ. Medir barrio por barrio.",
+    action: "Escucha primero + propuestas de servicios básicos.",
+    effort: "Media"
+  },
+  {
+    id: "dumesnil",
+    name: "Dumesnil",
+    class: "B",
+    lat: -31.328,
+    lng: -64.342,
+    priority: "Media",
+    issues: ["agua"],
+    desc: "Norte, crecimiento. Problemas de conectividad y servicios.",
+    action: "Relevamiento de agua y accesos.",
+    effort: "Media"
+  },
+  {
+    id: "oeste",
+    name: "El Diquecito / Casa Bamba",
+    class: "C",
+    lat: -31.360,
+    lng: -64.380,
+    priority: "Baja",
+    issues: ["agua"],
+    desc: "Más alejados. Menor peso electoral relativo.",
+    action: "Cobertura mínima + escucha.",
+    effort: "Baja"
+  }
+];
+
+const issues = [
+  { name: "Peaje La Calera", type: "peaje", lat: -31.345, lng: -64.320, note: "Av. Ejército Argentino / E-55. Reclamo histórico de eliminación o relocalización." },
+  { name: "Planta potabilizadora", type: "agua", lat: -31.342, lng: -64.330, note: "Dependencia del agua en bloque provincial. Conflictos de presión y tarifas." },
+  { name: "CAPS principales", type: "salud", lat: -31.346, lng: -64.334, note: "Capacidad y tiempos de espera. Refuerzo de turnos." }
+];
+
+const map = L.map('map').setView([-31.345, -64.335], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap · Mapa electoral provisional Pereyra 2027'
+}).addTo(map);
+
+const classColors = { A: '#3fb950', B: '#d29922', C: '#f85149' };
+const issueIcons = {
+  agua: L.divIcon({ className: '', html: '<div style="background:#388bfd;width:14px;height:14px;border-radius:50%;border:2px solid white;"></div>' }),
+  peaje: L.divIcon({ className: '', html: '<div style="background:#db6d28;width:14px;height:14px;border-radius:50%;border:2px solid white;"></div>' }),
+  salud: L.divIcon({ className: '', html: '<div style="background:#a371f7;width:14px;height:14px;border-radius:50%;border:2px solid white;"></div>' })
+};
+
+const zoneMarkers = {};
+const issueMarkers = {};
+
+function createPopup(z) {
+  return `
+    <div class="popup-title">${z.name}</div>
+    <div class="popup-meta"><span class="badge ${z.class.toLowerCase()}">${z.class}</span> · Prioridad ${z.priority}</div>
+    <div class="popup-section"><strong>Por qué:</strong> ${z.desc}</div>
+    <div class="popup-section"><strong>Acción 100 días:</strong> ${z.action}</div>
+    <div class="popup-section"><strong>Esfuerzo:</strong> ${z.effort}</div>
+  `;
+}
+
+zones.forEach(z => {
+  const m = L.circleMarker([z.lat, z.lng], {
+    radius: z.priority === 'Alta' ? 12 : 9,
+    fillColor: classColors[z.class],
+    color: '#fff',
+    weight: 2,
+    opacity: 1,
+    fillOpacity: 0.85
+  }).addTo(map).bindPopup(createPopup(z));
+  zoneMarkers[z.id] = m;
+});
+
+issues.forEach(i => {
+  const m = L.marker([i.lat, i.lng], { icon: issueIcons[i.type] }).addTo(map)
+    .bindPopup(`<div class="popup-title">${i.name}</div><div class="popup-section">${i.note}</div>`);
+  issueMarkers[i.type] = issueMarkers[i.type] || [];
+  issueMarkers[i.type].push(m);
+});
+
+// List
+function renderList(filter = 'all') {
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+  zones.filter(z => filter === 'all' || z.class === filter).forEach(z => {
+    const div = document.createElement('div');
+    div.className = 'item';
+    div.innerHTML = `
+      <h3><span class="badge ${z.class.toLowerCase()}">${z.class}</span> ${z.name}</h3>
+      <p>${z.desc.substring(0, 90)}...</p>
+    `;
+    div.onclick = () => {
+      map.setView([z.lat, z.lng], 15);
+      zoneMarkers[z.id].openPopup();
+    };
+    list.appendChild(div);
+  });
+}
+renderList();
+
+// Filters
+document.querySelectorAll('#class-filters .filter-btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('#class-filters .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    renderList(f);
+    Object.values(zoneMarkers).forEach(m => map.removeLayer(m));
+    zones.filter(z => f === 'all' || z.class === f).forEach(z => zoneMarkers[z.id].addTo(map));
+  };
+});
+
+document.querySelectorAll('#issue-filters .filter-btn').forEach(btn => {
+  btn.onclick = () => {
+    btn.classList.toggle('active');
+    const type = btn.dataset.issue;
+    const active = btn.classList.contains('active');
+    (issueMarkers[type] || []).forEach(m => active ? m.addTo(map) : map.removeLayer(m));
+  };
+});
+
+// Fit bounds
+const bounds = L.latLngBounds(zones.map(z => [z.lat, z.lng]));
+map.fitBounds(bounds.pad(0.2));
+</script>
+</body>
+</html>
