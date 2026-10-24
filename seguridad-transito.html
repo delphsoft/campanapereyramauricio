@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seguridad y Tránsito · Pereyra 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--red:#C0392B;--lightred:#E74C3C;--softred:#F1948A;--dark:#0F0607;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--text:rgba(255,255,255,0.62);--ok:#58d68d;--warn:#f5b041;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:rgba(15,6,7,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-back{text-decoration:none;color:rgba(255,255,255,0.5);font-size:0.82rem;}.nav-back:hover{color:var(--softred);}
+.nav-title{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--softred);}
+.nav-right{font-family:'Syne',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.hero{padding:8rem 2rem 4rem;background:linear-gradient(160deg,#0A0203 0%,#4A0E14 50%,#0A0203 100%);}
+.wrap{max-width:1200px;margin:0 auto;}
+.tag{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--softred);margin-bottom:0.8rem;}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,4.5vw,4rem);font-weight:800;line-height:1;letter-spacing:-0.02em;margin-bottom:1.2rem;}
+h1 em{color:var(--softred);font-style:normal;display:block;}
+h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;line-height:1.1;margin-bottom:0.8rem;}
+h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.5rem;}
+p.lead{color:var(--text);line-height:1.7;max-width:720px;}
+.section{padding:4rem 2rem;}.alt{background:#140508;}.dk{background:#080203;}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin-top:2rem;}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem;}
+.kpi b{font-family:'Syne',sans-serif;font-size:1.9rem;color:var(--softred);display:block;}
+.kpi span{font-size:0.8rem;color:var(--text);}
+.bar{height:8px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;margin-top:0.6rem;}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--ok));width:0;transition:width .6s;}
+.tabs{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.5rem 0;}
+.tab{background:var(--card);border:1px solid var(--border);color:var(--text);padding:0.6rem 1rem;border-radius:99px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.85rem;transition:.2s;}
+.tab:hover{border-color:var(--softred);color:#fff;}
+.tab.on{background:var(--red);border-color:var(--red);color:#fff;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem;}
+.card .fuente{font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:0.5rem;line-height:1.5;}
+.card p{font-size:0.86rem;color:var(--text);line-height:1.6;}
+.badge{display:inline-block;font-size:0.68rem;padding:0.15rem 0.55rem;border-radius:99px;margin-bottom:0.6rem;font-weight:600;letter-spacing:0.05em;}
+.b-sin{background:rgba(245,176,65,0.15);color:var(--warn);}.b-ok{background:rgba(88,214,141,0.15);color:var(--ok);}
+.valrow{display:flex;gap:0.5rem;margin-top:0.8rem;align-items:center;}
+input[type=text],input[type=number],select,textarea{background:rgba(255,255,255,0.06);border:1px solid var(--border);color:#fff;border-radius:8px;padding:0.55rem 0.7rem;font-family:'DM Sans',sans-serif;font-size:0.85rem;width:100%;}
+select option{color:#000;}
+.btn{background:var(--red);color:#fff;border:none;border-radius:8px;padding:0.6rem 1.1rem;font-size:0.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn:hover{background:var(--lightred);}.btn.o{background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--text);}
+.btn.o:hover{border-color:var(--softred);color:var(--softred);}
+.two{display:grid;grid-template-columns:2fr 1fr;gap:1.2rem;}
+#map{height:560px;border-radius:12px;border:1px solid var(--border);}
+.leaflet-container{background:#1a1a1a;}
+.legend{display:flex;flex-direction:column;gap:0.5rem;}
+.chip{display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;cursor:pointer;padding:0.45rem 0.6rem;border-radius:8px;border:1px solid var(--border);background:var(--card);}
+.chip.off{opacity:0.35;}.dot{width:12px;height:12px;border-radius:50%;display:inline-block;}
+.chip em{margin-left:auto;font-style:normal;color:var(--softred);font-weight:700;}
+.matrix{position:relative;height:420px;background:var(--card);border:1px solid var(--border);border-radius:12px;}
+.matrix .ax{position:absolute;font-size:0.7rem;color:rgba(255,255,255,0.35);}
+.matrix .q{position:absolute;width:50%;height:50%;display:flex;padding:0.6rem;font-size:0.72rem;color:rgba(255,255,255,0.25);font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.pt{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:var(--red);border:2px solid #fff3;font-size:0.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;}
+.pt:hover{transform:translate(-50%,-50%) scale(1.3);z-index:5;background:var(--lightred);}
+#tip{position:fixed;pointer-events:none;background:#000d;border:1px solid var(--border);padding:0.5rem 0.8rem;border-radius:8px;font-size:0.8rem;max-width:260px;display:none;z-index:2000;}
+table{width:100%;border-collapse:collapse;font-size:0.85rem;}th,td{text-align:left;padding:0.7rem;border-bottom:1px solid var(--border);vertical-align:top;}
+th{font-family:'Syne',sans-serif;font-size:0.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--softred);}
+td{color:var(--text);}
+.check{display:flex;gap:0.6rem;align-items:flex-start;padding:0.6rem 0;border-bottom:1px solid var(--border);font-size:0.86rem;color:var(--text);}
+.check input{margin-top:0.25rem;accent-color:var(--red);}
+pre{white-space:pre-wrap;background:rgba(0,0,0,0.4);border:1px solid var(--border);border-radius:10px;padding:1rem;font-size:0.8rem;line-height:1.6;color:rgba(255,255,255,0.75);max-height:340px;overflow:auto;font-family:'DM Sans',sans-serif;}
+.note{font-size:0.8rem;color:rgba(255,255,255,0.45);line-height:1.6;margin-top:1rem;}
+.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+.tl .card b{font-family:'Syne',sans-serif;color:var(--softred);font-size:0.8rem;letter-spacing:.1em;}
+footer{padding:2.5rem 2rem;background:#060102;border-top:1px solid var(--border);text-align:center;color:rgba(255,255,255,0.3);font-size:0.8rem;}
+@media(max-width:800px){.two{grid-template-columns:1fr}.section,.hero{padding-left:1rem;padding-right:1rem}nav{padding:0.8rem 1rem}#map{height:420px}}
+</style>
+<style>
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.prog h3{color:var(--softred)}.prog ul{list-style:none;margin-top:.6rem;display:flex;flex-direction:column;gap:.45rem}
+.prog li{font-size:.85rem;color:var(--text);line-height:1.55;padding-left:1rem;position:relative}.prog li::before{content:'›';position:absolute;left:0;color:var(--softred)}
+.tag2{display:inline-block;font-size:.68rem;padding:.15rem .55rem;border-radius:99px;background:rgba(241,148,138,.15);color:var(--softred);margin:0 .3rem .5rem 0;font-weight:600}
+.sl{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:.6rem;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.85rem;color:var(--text)}
+.sl input[type=range]{accent-color:var(--red);width:100%}
+.tot{font-family:'Syne',sans-serif;font-size:2rem;color:var(--softred);margin-top:1rem}
+.comp{width:100%}.comp td b{color:#fff}
+@media(max-width:800px){.cols{grid-template-columns:1fr}.sl{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><a href="index.html" class="nav-back">← Volver a la plataforma</a><div class="nav-title">Seguridad y Tránsito</div><div class="nav-right">Pereyra 2027</div></nav>
+
+<header class="hero"><div class="wrap">
+<div class="tag">Programa · Seguridad y movilidad</div>
+<h1>Prevenir antes<em>que lamentar.</em></h1>
+<p class="lead">La seguridad pública es competencia de la Policía provincial, pero el municipio puede hacer mucho: alumbrado, cámaras con monitoreo real, alarmas vecinales, guardia urbana y calles bien diseñadas. En tránsito, lo mismo: medir los puntos negros, proteger escuelas y ordenar el centro. Todo con indicadores públicos.</p>
+<div class="kpis">
+<div class="kpi"><b>5</b><span>líneas de seguridad</span></div>
+<div class="kpi"><b>6</b><span>líneas de tránsito</span></div>
+<div class="kpi"><b>100</b><span>días para publicar el primer tablero</span></div>
+<div class="kpi"><b>0</b><span>cifras locales inventadas: los datos se piden</span></div>
+</div>
+</div></header>
+
+<section class="section"><div class="wrap">
+<div class="tag">1 · Seguridad</div><h2>Lo que puede hacer el municipio</h2>
+<p class="lead">Marco: la Ley provincial 10.954 de Seguridad Ciudadana (diciembre de 2023) permite que los municipios adhieran por ordenanza y creen guardias urbanas de prevención, que colaboran con la Policía y no la reemplazan. Según el ministro Quinteros, más de 130 municipios ya adhirieron, y la Provincia aporta móviles y kits de cámaras. <b>Hay que verificar si La Calera adhirió y en qué condiciones.</b></p>
+<div class="grid" style="margin-top:1.5rem">
+<div class="card prog"><span class="tag2">Costo bajo</span><h3>1. Alumbrado y entorno seguro</h3><ul><li>Mapa de zonas oscuras con el mapa vecinal.</li><li>LED prioritario en accesos a escuelas, paradas, plazas y CAPS.</li><li>Poda y mantenimiento de baldíos que dan refugio al delito.</li></ul></div>
+<div class="card prog"><span class="tag2">Costo medio</span><h3>2. Cámaras con monitoreo real</h3><ul><li>Primero ubicar cámaras donde los datos muestren delitos.</li><li>Central con operadores por turno y protocolo con la Policía.</li><li>Lectura de patentes en los accesos al pueblo.</li><li>Tablero público de cámaras operativas.</li></ul></div>
+<div class="card prog"><span class="tag2">Costo bajo</span><h3>3. Alarmas comunitarias y alerta por WhatsApp</h3><ul><li>Alarma conectada por cuadra o barrio, con responsable y protocolo.</li><li>Canal de reporte por WhatsApp que llega al centro de monitoreo.</li><li>Capacitación vecinal: qué reportar y cómo.</li></ul></div>
+<div class="card prog"><span class="tag2">Depende de la Ley 10.954</span><h3>4. Guardia urbana de prevención</h3><ul><li>Cuerpo de preventores en espacios públicos, escuelas y eventos.</li><li>Requisitos de ingreso públicos (sin antecedentes, secundario completo, examen psicofísico, según el marco provincial).</li><li>Reglas claras: no sustituyen a la Policía.</li></ul></div>
+<div class="card prog"><span class="tag2">Gestión</span><h3>5. Mesa de seguridad con datos</h3><ul><li>Reunión mensual con Policía, Fiscalía, vecinos y comercios.</li><li>Mapa de delitos por barrio y horario, publicado cada mes.</li><li>Reclamo formal a la Provincia por dotación y móviles, con datos.</li></ul></div>
+</div>
+<div class="card" style="margin-top:1.2rem"><h3>Referencia: Alta Gracia</h3><p>Según <a href="https://www.letrap.com.ar/politica/alta-gracia-lanzo-un-sistema-seguridad-inteligente-mas-patrullaje-y-monitoreo-n5416123" style="color:var(--softred)">Letra P (mayo de 2025)</a>, Alta Gracia anunció más de $350 millones para un sistema con 260 cámaras, central de monitoreo renovada, lectura de patentes en accesos, botones de alerta, más de 50 alarmas comunitarias y la app «Ojos en Alerta» por WhatsApp. El municipio informó que, en abril de 2025, más del 80% de las intervenciones se logró con sistemas preventivos. Es un dato oficial del municipio, no verificado por una fuente independiente, y Alta Gracia tiene otra escala que La Calera.</p></div>
+</div></section>
+
+<section class="section alt"><div class="wrap">
+<div class="tag">Simulador</div><h2>¿Cuánto podría costar un sistema para La Calera?</h2>
+<p class="lead">Ajustá los valores. El costo por cámara es solo una referencia: dividí los $350 M anunciados por Alta Gracia por sus 260 cámaras, que incluye todo el sistema (central, patentes, alarmas), no solo el aparato. Reemplazalo con cotizaciones reales cuando las tengas. Las cantidades que cargues son hipótesis.</p>
+<div style="margin-top:1.5rem;max-width:760px">
+<div class="sl"><span>Cámaras</span><input type="range" id="s-cam" min="20" max="300" value="100"><b id="v-cam">100</b></div>
+<div class="sl"><span>Costo del sistema por cámara (millones de $)</span><input type="number" id="u-cam" value="1.35" step="0.05"><span>referencia Alta Gracia ≈ 350 / 260</span></div>
+<div class="sl"><span>Alarmas comunitarias</span><input type="range" id="s-ala" min="0" max="80" value="20"><b id="v-ala">20</b></div>
+<div class="sl"><span>Costo por alarma (millones de $)</span><input type="number" id="u-ala" value="" placeholder="cargar cotización" step="0.05"><span>sin dato</span></div>
+<div class="sl"><span>Aporte de la Provincia (% estimado)</span><input type="range" id="s-prov" min="0" max="80" value="0"><b id="v-prov">0%</b></div>
+<div class="tot" id="tot">—</div>
+<p class="note" id="totnote"></p>
+</div>
+</div></section>
+
+<section class="section"><div class="wrap">
+<div class="tag">2 · Tránsito</div><h2>Calles que se pueden cruzar y caminar</h2>
+<p class="lead">El tránsito en La Calera combina una ciudad que creció rápido con rutas provinciales: lo que ocurre sobre la ruta depende de Vialidad Provincial, pero el municipio decide el diseño de sus calles, las zonas escolares, el estacionamiento y el control. También hay preocupación local por el uso de monopatines eléctricos en barrios (<a href="https://www.cadena3.com/noticia/ahora-pais/preocupacion-en-la-calera-por-el-uso-de-monopatines-electricos-en-barrios_509198" style="color:var(--softred)">Cadena 3</a>); falta el dato oficial.</p>
+<div class="grid" style="margin-top:1.5rem">
+<div class="card prog"><span class="tag2">Primero</span><h3>1. Mapa de siniestros y puntos negros</h3><ul><li>Pedir siniestros por año y lugar a Policía y Salud.</li><li>Conteo vehicular en horas pico: accesos, centro, Ruta 55.</li><li>Publicar los 10 puntos más peligrosos y su plan.</li></ul></div>
+<div class="card prog"><span class="tag2">Costo bajo</span><h3>2. Entornos escolares seguros</h3><ul><li>Cebras elevadas, señalización, velocidad reducida.</li><li>Franja de estacionamiento ordenado a la hora de entrada y salida.</li><li>Vereda ampliada con bolardos donde se pueda.</li></ul></div>
+<div class="card prog"><span class="tag2">Costo medio</span><h3>3. Cruces y semáforos</h3><ul><li>Semaforización o rotonda mínima solo donde los datos lo justifiquen.</li><li>En las rutas: proyecto conjunto con Vialidad, con estudio técnico.</li></ul></div>
+<div class="card prog"><span class="tag2">Costo bajo</span><h3>4. Centro ordenado</h3><ul><li>Sentidos únicos donde mejoren la circulación.</li><li>Estacionamiento medido o por tiempo en el centro, con la recaudación a obras.</li><li>Carga y descarga en horarios definidos.</li></ul></div>
+<div class="card prog"><span class="tag2">Control</span><h3>5. Motos, monopatines y casco</h3><ul><li>Ordenanza clara de uso (edad, casco, circulación) y control.</li><li>Campañas en escuelas y operativos con datos de siniestros.</li></ul></div>
+<div class="card prog"><span class="tag2">Gestión</span><h3>6. Transporte y accesos al polo</h3><ul><li>Frecuencias y paradas en barrios nuevos.</li><li>Los accesos del polo de 35 ha se diseñan con estudio de tránsito y aprobación de Vialidad.</li></ul></div>
+</div>
+</div></section>
+
+<section class="section alt"><div class="wrap">
+<div class="tag">3 · Indicadores</div><h2>Cómo se mide</h2>
+<table class="comp" style="margin-top:1.2rem"><tr><th>Indicador</th><th>Frecuencia</th><th>Fuente</th></tr>
+<tr><td><b>Delitos por tipo y barrio</b></td><td>Mensual</td><td>Ministerio de Seguridad</td></tr>
+<tr><td><b>Cámaras operativas / instaladas</b></td><td>Mensual</td><td>Municipio</td></tr>
+<tr><td><b>Tiempo de respuesta a alertas</b></td><td>Mensual</td><td>Centro de monitoreo</td></tr>
+<tr><td><b>Luminarias reparadas en 48 h</b></td><td>Mensual</td><td>Servicios públicos</td></tr>
+<tr><td><b>Siniestros viales y heridos</b></td><td>Trimestral</td><td>Policía / Salud</td></tr>
+<tr><td><b>Escuelas con entorno seguro</b></td><td>Trimestral</td><td>Municipio</td></tr>
+</table>
+<p class="note">Todos estos números se piden como información pública. Podés armar el pedido en el <a href="diagnostico-calera.html" style="color:var(--softred)">tablero de diagnóstico</a>.</p>
+</div></section>
+
+<section class="section dk"><div class="wrap">
+<div class="tag">4 · Cronograma</div><h2>Primeros 100 días</h2>
+<div class="tl" style="margin-top:1.5rem">
+<div class="card"><b>DÍAS 1–15</b><h3>Datos y marco</h3><p>Pedidos de información y verificación de la adhesión a la Ley 10.954.</p></div>
+<div class="card"><b>DÍAS 15–45</b><h3>Medidas rápidas</h3><p>Luminarias en zonas críticas, señalización en escuelas y canal de alertas por WhatsApp.</p></div>
+<div class="card"><b>DÍAS 45–75</b><h3>Plan técnico</h3><p>Estudio de tránsito, mapa de delitos y proyecto de central de monitoreo.</p></div>
+<div class="card"><b>DÍA 100</b><h3>Tablero público</h3><p>Primer informe con indicadores y obras comprometidas.</p></div>
+</div>
+<p class="note">Propuestas de campaña. Los costos dependen de cotizaciones reales y del aporte provincial; las competencias de la Policía y de Vialidad no son del municipio.</p>
+</div></section>
+<footer>Pereyra 2027 · La Calera · <a href="index.html" style="color:var(--softred)">Plataforma</a></footer>
+<script>
+const $=s=>document.querySelector(s);
+function calc(){
+ const cam=+$('#s-cam').value,ala=+$('#s-ala').value,pr=+$('#s-prov').value;
+ $('#v-cam').textContent=cam;$('#v-ala').textContent=ala;$('#v-prov').textContent=pr+'%';
+ const uc=parseFloat($('#u-cam').value)||0,ua=parseFloat($('#u-ala').value);
+ let bruto=cam*uc,nota='';
+ if(!isNaN(ua)){bruto+=ala*ua}else{nota='Las alarmas no suman hasta cargar su costo unitario. '}
+ const neto=bruto*(1-pr/100);
+ $('#tot').textContent='$'+neto.toLocaleString('es-AR',{maximumFractionDigits:0})+' millones';
+ $('#totnote').textContent=nota+'Bruto: $'+bruto.toLocaleString('es-AR',{maximumFractionDigits:0})+' M. Es una proyección lineal con la referencia de otra ciudad, no un presupuesto.';
+}
+['s-cam','u-cam','s-ala','u-ala','s-prov'].forEach(i=>$('#'+i).addEventListener('input',calc));calc();
+</script>
+</body>
+</html>
