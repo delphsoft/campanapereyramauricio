@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de La Calera · Pereyra 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+:root{--red:#C0392B;--lightred:#E74C3C;--softred:#F1948A;--dark:#0F0607;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--text:rgba(255,255,255,0.62);--ok:#58d68d;--warn:#f5b041;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:rgba(15,6,7,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-back{text-decoration:none;color:rgba(255,255,255,0.5);font-size:0.82rem;}.nav-back:hover{color:var(--softred);}
+.nav-title{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:var(--softred);}
+.nav-right{font-family:'Syne',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.hero{padding:8rem 2rem 4rem;background:linear-gradient(160deg,#0A0203 0%,#4A0E14 50%,#0A0203 100%);}
+.wrap{max-width:1200px;margin:0 auto;}
+.tag{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--softred);margin-bottom:0.8rem;}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,4.5vw,4rem);font-weight:800;line-height:1;letter-spacing:-0.02em;margin-bottom:1.2rem;}
+h1 em{color:var(--softred);font-style:normal;display:block;}
+h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;line-height:1.1;margin-bottom:0.8rem;}
+h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.5rem;}
+p.lead{color:var(--text);line-height:1.7;max-width:720px;}
+.section{padding:4rem 2rem;}.alt{background:#140508;}.dk{background:#080203;}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin-top:2rem;}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem;}
+.kpi b{font-family:'Syne',sans-serif;font-size:1.9rem;color:var(--softred);display:block;}
+.kpi span{font-size:0.8rem;color:var(--text);}
+.bar{height:8px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden;margin-top:0.6rem;}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--ok));width:0;transition:width .6s;}
+.tabs{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.5rem 0;}
+.tab{background:var(--card);border:1px solid var(--border);color:var(--text);padding:0.6rem 1rem;border-radius:99px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.85rem;transition:.2s;}
+.tab:hover{border-color:var(--softred);color:#fff;}
+.tab.on{background:var(--red);border-color:var(--red);color:#fff;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem;}
+.card .fuente{font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:0.5rem;line-height:1.5;}
+.card p{font-size:0.86rem;color:var(--text);line-height:1.6;}
+.badge{display:inline-block;font-size:0.68rem;padding:0.15rem 0.55rem;border-radius:99px;margin-bottom:0.6rem;font-weight:600;letter-spacing:0.05em;}
+.b-sin{background:rgba(245,176,65,0.15);color:var(--warn);}.b-ok{background:rgba(88,214,141,0.15);color:var(--ok);}
+.valrow{display:flex;gap:0.5rem;margin-top:0.8rem;align-items:center;}
+input[type=text],input[type=number],select,textarea{background:rgba(255,255,255,0.06);border:1px solid var(--border);color:#fff;border-radius:8px;padding:0.55rem 0.7rem;font-family:'DM Sans',sans-serif;font-size:0.85rem;width:100%;}
+select option{color:#000;}
+.btn{background:var(--red);color:#fff;border:none;border-radius:8px;padding:0.6rem 1.1rem;font-size:0.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn:hover{background:var(--lightred);}.btn.o{background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--text);}
+.btn.o:hover{border-color:var(--softred);color:var(--softred);}
+.two{display:grid;grid-template-columns:2fr 1fr;gap:1.2rem;}
+#map{height:560px;border-radius:12px;border:1px solid var(--border);}
+.leaflet-container{background:#1a1a1a;}
+.legend{display:flex;flex-direction:column;gap:0.5rem;}
+.chip{display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;cursor:pointer;padding:0.45rem 0.6rem;border-radius:8px;border:1px solid var(--border);background:var(--card);}
+.chip.off{opacity:0.35;}.dot{width:12px;height:12px;border-radius:50%;display:inline-block;}
+.chip em{margin-left:auto;font-style:normal;color:var(--softred);font-weight:700;}
+.matrix{position:relative;height:420px;background:var(--card);border:1px solid var(--border);border-radius:12px;}
+.matrix .ax{position:absolute;font-size:0.7rem;color:rgba(255,255,255,0.35);}
+.matrix .q{position:absolute;width:50%;height:50%;display:flex;padding:0.6rem;font-size:0.72rem;color:rgba(255,255,255,0.25);font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.pt{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:var(--red);border:2px solid #fff3;font-size:0.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;}
+.pt:hover{transform:translate(-50%,-50%) scale(1.3);z-index:5;background:var(--lightred);}
+#tip{position:fixed;pointer-events:none;background:#000d;border:1px solid var(--border);padding:0.5rem 0.8rem;border-radius:8px;font-size:0.8rem;max-width:260px;display:none;z-index:2000;}
+table{width:100%;border-collapse:collapse;font-size:0.85rem;}th,td{text-align:left;padding:0.7rem;border-bottom:1px solid var(--border);vertical-align:top;}
+th{font-family:'Syne',sans-serif;font-size:0.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--softred);}
+td{color:var(--text);}
+.check{display:flex;gap:0.6rem;align-items:flex-start;padding:0.6rem 0;border-bottom:1px solid var(--border);font-size:0.86rem;color:var(--text);}
+.check input{margin-top:0.25rem;accent-color:var(--red);}
+pre{white-space:pre-wrap;background:rgba(0,0,0,0.4);border:1px solid var(--border);border-radius:10px;padding:1rem;font-size:0.8rem;line-height:1.6;color:rgba(255,255,255,0.75);max-height:340px;overflow:auto;font-family:'DM Sans',sans-serif;}
+.note{font-size:0.8rem;color:rgba(255,255,255,0.45);line-height:1.6;margin-top:1rem;}
+.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+.tl .card b{font-family:'Syne',sans-serif;color:var(--softred);font-size:0.8rem;letter-spacing:.1em;}
+footer{padding:2.5rem 2rem;background:#060102;border-top:1px solid var(--border);text-align:center;color:rgba(255,255,255,0.3);font-size:0.8rem;}
+@media(max-width:800px){.two{grid-template-columns:1fr}.section,.hero{padding-left:1rem;padding-right:1rem}nav{padding:0.8rem 1rem}#map{height:420px}}
+</style>
+</head>
+<body>
+<nav><a href="index.html" class="nav-back">← Volver a la plataforma</a><div class="nav-title">Diagnóstico de La Calera</div><div class="nav-right">Pereyra 2027</div></nav>
+
+<header class="hero"><div class="wrap">
+<div class="tag">Mapa de datos · Política pública</div>
+<h1>Medir primero.<em>Gobernar con datos.</em></h1>
+<p class="lead">Un tablero abierto para relevar La Calera eje por eje: calles, tránsito, seguridad, servicios, ambiente, economía y salud. Cada indicador dice qué dato falta, de dónde sale y qué medida se toma cuando lo tengamos. Los valores que cargues quedan guardados en este navegador.</p>
+<div class="kpis">
+<div class="kpi"><b id="k-ind">0</b><span>indicadores a relevar</span></div>
+<div class="kpi"><b id="k-ok">0</b><span>con dato cargado</span><div class="bar"><i id="k-bar"></i></div></div>
+<div class="kpi"><b id="k-pts">0</b><span>puntos marcados en el mapa</span></div>
+<div class="kpi"><b id="k-ped">0</b><span>pedidos de información seleccionados</span></div>
+</div>
+</div></header>
+
+<section class="section"><div class="wrap">
+<div class="tag">1 · Indicadores</div><h2>Qué hay que medir</h2>
+<p class="lead">Elegí un eje. Los números que no tenemos figuran como «sin dato»: no se inventan. Podés cargar el valor y la fuente a medida que lleguen respuestas.</p>
+<div class="tabs" id="tabs"></div>
+<div class="grid" id="inds"></div>
+</div></section>
+
+<section class="section alt"><div class="wrap">
+<div class="tag">2 · Mapa vivo</div><h2>Marcá los problemas en el mapa</h2>
+<p class="lead">Hacé clic en el mapa para cargar un punto (calle de tierra, luminaria apagada, cruce peligroso, basural, etc.). Se guarda en tu navegador y podés exportarlo para pasarlo al equipo o publicarlo.</p>
+<div class="two" style="margin-top:1.5rem">
+<div><div id="map"></div></div>
+<div>
+<h3>Categoría a cargar</h3>
+<select id="cat"></select>
+<input type="text" id="desc" placeholder="Descripción corta (opcional)" style="margin-top:0.6rem">
+<p class="note" style="margin-top:0.5rem">Elegí categoría, escribí si querés y tocá el mapa.</p>
+<h3 style="margin-top:1.2rem">Capas</h3>
+<div class="legend" id="legend"></div>
+<div style="display:flex;gap:0.5rem;margin-top:1rem;flex-wrap:wrap">
+<button class="btn o" id="exp-csv">Exportar CSV</button><button class="btn o" id="exp-json">Exportar JSON</button><button class="btn o" id="clr">Borrar todo</button>
+</div>
+</div></div>
+</div></section>
+
+<section class="section"><div class="wrap">
+<div class="tag">3 · Prioridades</div><h2>Matriz impacto / costo</h2>
+<p class="lead">Las medidas ordenadas por cuánto mejoran la vida del vecino y cuánto cuestan. Arriba a la izquierda están las que conviene hacer primero. La posición es una estimación de criterio, no un presupuesto.</p>
+<div class="two" style="margin-top:1.5rem;grid-template-columns:3fr 2fr">
+<div class="matrix" id="matrix">
+<div class="q" style="left:0;top:0">Hacer ya</div><div class="q" style="left:50%;top:0">Proyectos grandes</div>
+<div class="q" style="left:0;top:50%">Pequeñas mejoras</div><div class="q" style="left:50%;top:50%">Evitar / postergar</div>
+<div class="ax" style="left:50%;bottom:4px;transform:translateX(-50%)">Costo →</div>
+<div class="ax" style="left:6px;top:50%;transform:rotate(-90deg) translateX(-50%);transform-origin:left top">Impacto →</div>
+</div>
+<div id="mlist"></div>
+</div>
+</div></section>
+
+<section class="section alt"><div class="wrap">
+<div class="tag">4 · Datos oficiales</div><h2>Pedidos de acceso a la información pública</h2>
+<p class="lead">Tildá los datos que querés pedir y se arma el texto del pedido. Se presenta ante la Municipalidad de La Calera y, para los datos provinciales, ante el organismo correspondiente.</p>
+<div class="two" style="margin-top:1.5rem;grid-template-columns:1fr 1fr">
+<div id="peds"></div>
+<div><pre id="pedtxt"></pre><div style="display:flex;gap:0.5rem;margin-top:0.8rem"><button class="btn" id="copy">Copiar texto</button></div>
+<p class="note">Revisá el texto con un abogado antes de presentarlo. La ley provincial de acceso a la información pública (Ley 8.803) y la nacional (Ley 27.275) fijan plazos de respuesta; confirmá cuáles aplican a cada organismo.</p></div>
+</div>
+</div></section>
+
+<section class="section dk"><div class="wrap">
+<div class="tag">5 · Cronograma</div><h2>Del dato a la obra</h2>
+<div class="tl" style="margin-top:1.5rem">
+<div class="card"><b>SEMANAS 1–4</b><h3>Pedidos y relevamiento</h3><p>Se presentan los pedidos de información. Se lanza el mapa vecinal y se marcan los primeros puntos.</p></div>
+<div class="card"><b>MES 2</b><h3>Línea de base</h3><p>Con las respuestas, se cargan los indicadores. Los que no se respondan se relevan en campo o se reclaman.</p></div>
+<div class="card"><b>MES 3</b><h3>Plan priorizado</h3><p>La matriz se ajusta con datos reales y se publican los criterios de orden de obra.</p></div>
+<div class="card"><b>DÍA 100 DE GOBIERNO</b><h3>Tablero público</h3><p>El municipio publica los mismos indicadores con avance mensual y mapa de obras.</p></div>
+</div>
+<p class="note">Esta página es una herramienta de trabajo de campaña. No contiene datos oficiales del municipio: todo valor que aparezca fue cargado por quien la usa, y cada indicador indica su fuente a confirmar.</p>
+</div></section>
+
+<footer>Pereyra 2027 · La Calera · <a href="index.html" style="color:var(--softred)">Plataforma</a></footer>
+<div id="tip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const safe={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+const EJES=[
+{id:'calles',n:'Calles y obras',ic:'🛣️',ind:[
+ ['Cuadras totales y estado (asfalto / mejorado / tierra)','Censo vial municipal (Secretaría de Obras Públicas)','Define la meta de 150 cuadras y prioriza por déficit.'],
+ ['Cuadras con cordón cuneta y desagüe','Obras Públicas','Sin desagüe el asfalto se rompe: se pavimenta junto con el drenaje.'],
+ ['Inversión anual en obra vial (pesos y % del presupuesto)','Ejecución presupuestaria, portal de transparencia','Mide si la meta es financiable con recursos propios.'],
+ ['Costo por cuadra pavimentada (último contrato)','Licitaciones municipales','Base de cálculo para el plan y la contribución por mejoras.'],
+ ['Barrios con reclamos por barro, pozos o anegamiento','Reclamos 147 / mesa de entradas / mapa vecinal','Orden de prioridad por urgencia.']]},
+{id:'transito',n:'Tránsito',ic:'🚦',ind:[
+ ['Conteo vehicular en horas pico (accesos, centro, Ruta 55)','Estudio propio + Vialidad Provincial','Sin conteo no se diseña ninguna solución.'],
+ ['Siniestros viales por año y ubicación','Policía, Ministerio de Transporte / Salud','Identifica puntos negros para intervenir primero.'],
+ ['Entornos escolares sin señalización o semáforo','Relevamiento de campo','Medida barata y de alto impacto: lomadas, cebras, estacionamiento ordenado.'],
+ ['Estacionamiento en centro: oferta y demanda','Relevamiento de campo','Define si hace falta medido, sentidos únicos o playa de estacionamiento.'],
+ ['Transporte público: frecuencias y cobertura por barrio','Empresas y Ministerio de Transporte de Córdoba','Mide el aislamiento de los barrios nuevos.']]},
+{id:'seguridad',n:'Seguridad',ic:'🛡️',ind:[
+ ['Delitos denunciados por tipo, barrio y horario','Ministerio de Seguridad de Córdoba / Fiscalía','Permite concentrar patrullaje y luminarias donde hay riesgo.'],
+ ['Cámaras instaladas, operativas y monitoreadas','Municipio / Policía','Una cámara que nadie mira no previene nada: se mide la operatividad.'],
+ ['Puntos sin alumbrado en zonas de circulación nocturna','Relevamiento + reclamos','Es la medida municipal con efecto directo y más barata.'],
+ ['Dotación policial y móviles por turno','Policía de Córdoba','Es competencia provincial: sirve para el reclamo con datos.'],
+ ['Alarmas vecinales activas y tiempo de respuesta','Vecinos / Policía','Base para el protocolo de alarmas conectadas.']]},
+{id:'servicios',n:'Agua, gas y luz',ic:'💧',ind:[
+ ['Hogares y lotes con red de agua','Cooperativa / Municipio / EPEC según servicio','Condiciona crecimiento urbano y el polo productivo.'],
+ ['Hogares con red de gas natural','Ecogas / Municipio','Mide la brecha y la viabilidad de gas por consorcio.'],
+ ['Cortes de luz: frecuencia y barrios afectados','EPEC / reclamos','Insumo para el reclamo y la demanda industrial.'],
+ ['Cloacas: cobertura y destino de efluentes','Municipio / Cooperativa','Impacto ambiental y límite de densificación.'],
+ ['Capacidad disponible de red para nuevas industrias','EPEC y prestatarios','Define si el parque de 35 ha es viable.']]},
+{id:'ambiente',n:'Ambiente y espacio público',ic:'🌳',ind:[
+ ['Plazas y espacios verdes: cantidad y distancia a cada hogar','Relevamiento + catastro','Meta: ninguna casa a más de 500 m.'],
+ ['Basurales a cielo abierto','Relevamiento + reclamos','Priorización de limpieza y control.'],
+ ['Toneladas de residuos y costo de recolección','Municipio','Base para reciclaje y reducir costos.'],
+ ['Árboles en veredas (cantidad y estado)','Relevamiento','Meta de 5.000 árboles nuevos.'],
+ ['Estado de arroyos y cauces (riesgo de crecida)','Provincia / Defensa Civil','Prevención de inundaciones en barrios.']]},
+{id:'economia',n:'Economía y empleo',ic:'🏪',ind:[
+ ['Comercios habilitados por rubro y zona','Padrón de comercio / Tasa de Comercio e Industria','Mide concentración y huecos de oferta.'],
+ ['Comercios con deuda de tasas y morosidad','Tesorería municipal','Fundamenta el programa «mora cero».'],
+ ['Empleo local: ocupados que trabajan en La Calera','Censo 2022 / Ministerio de Trabajo','Línea de base para medir el impacto del polo.'],
+ ['Lotes y galpones vacíos aptos para actividad','Catastro / relevamiento','Alimenta el banco de tierras.'],
+ ['Tiempo promedio de habilitación de un comercio','Mesa de entradas / casos reales','Meta de trámites digitales.']]},
+{id:'salud',n:'Salud y educación',ic:'🏥',ind:[
+ ['Consultas anuales por CAPS y tiempos de espera de turno','Secretaría de Salud','Mide si la historia clínica digital y los turnos por WhatsApp son prioridad.'],
+ ['Profesionales por especialidad en el sistema municipal','Secretaría de Salud','Verifica las brechas que menciona la web (hay datos aún sin confirmar).'],
+ ['Matrícula y vacantes en nivel inicial y primario por barrio','Ministerio de Educación de Córdoba','Define dónde falta infraestructura escolar.'],
+ ['Distancia de cada barrio al CAPS y a la escuela más cercana','Relevamiento geográfico','Mapa de accesibilidad a servicios básicos.'],
+ ['Cobertura de vacunación y controles de niño sano','Provincia / Salud','Indicador sanitario básico de la gestión.']]}
+];
+
+const CATS=[
+['tierra','Calle de tierra / en mal estado','#a0522d'],
+['luz','Luminaria apagada o zona oscura','#f4d03f'],
+['transito','Cruce o punto peligroso','#e74c3c'],
+['seguridad','Problema de seguridad','#8e44ad'],
+['basural','Basural / residuos','#27ae60'],
+['agua','Falta de agua / gas / luz','#3498db'],
+['verde','Falta de plaza o espacio verde','#58d68d'],
+['otro','Otro reclamo','#bbb']];
+
+// ---------- indicadores
+let eje=EJES[0].id;
+const vals=safe.get('diag_vals',{});
+function renderTabs(){
+ $('#tabs').innerHTML=EJES.map(e=>`<button class="tab ${e.id===eje?'on':''}" data-id="${e.id}">${e.ic} ${e.n}</button>`).join('');
+ $('#tabs').querySelectorAll('.tab').forEach(b=>b.onclick=()=>{eje=b.dataset.id;renderTabs();renderInds();});
+}
+function renderInds(){
+ const e=EJES.find(x=>x.id===eje);
+ $('#inds').innerHTML=e.ind.map((it,i)=>{
+  const k=e.id+'_'+i,v=vals[k]||{};
+  const ok=v.v&&v.v.trim();
+  return `<div class="card"><span class="badge ${ok?'b-ok':'b-sin'}">${ok?'DATO CARGADO':'SIN DATO'}</span>
+  <h3>${it[0]}</h3><p>${it[2]}</p><div class="fuente"><b>Fuente a confirmar:</b> ${it[1]}</div>
+  <div class="valrow"><input type="text" data-k="${k}" data-f="v" placeholder="Valor" value="${(v.v||'').replace(/"/g,'&quot;')}"><input type="text" data-k="${k}" data-f="s" placeholder="Fuente real / fecha" value="${(v.s||'').replace(/"/g,'&quot;')}"></div></div>`;}).join('');
+ $('#inds').querySelectorAll('input').forEach(inp=>inp.oninput=()=>{
+  const k=inp.dataset.k;vals[k]=vals[k]||{};vals[k][inp.dataset.f]=inp.value;safe.set('diag_vals',vals);
+  const card=inp.closest('.card'),ok=vals[k].v&&vals[k].v.trim(),b=card.querySelector('.badge');
+  b.className='badge '+(ok?'b-ok':'b-sin');b.textContent=ok?'DATO CARGADO':'SIN DATO';kpis();});
+}
+function kpis(){
+ const total=EJES.reduce((a,e)=>a+e.ind.length,0);
+ let ok=0;EJES.forEach(e=>e.ind.forEach((_,i)=>{const v=vals[e.id+'_'+i];if(v&&v.v&&v.v.trim())ok++;}));
+ $('#k-ind').textContent=total;$('#k-ok').textContent=ok+' / '+total;$('#k-bar').style.width=(ok/total*100)+'%';
+ $('#k-pts').textContent=pts.length;$('#k-ped').textContent=Object.values(pedSel).filter(Boolean).length;
+}
+
+// ---------- mapa
+let pts=safe.get('diag_pts',[]);
+const hidden={};
+const HAS_L=typeof L!=='undefined';
+if(!HAS_L)$('#map').innerHTML='<p style="padding:2rem;color:#aaa">No se pudo cargar el mapa (sin conexión a la librería). Recargá la página.</p>';
+const map=HAS_L?L.map('map').setView([-31.3436,-64.3356],14):{on(){}};
+if(HAS_L)L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+const layer=HAS_L?L.layerGroup().addTo(map):{clearLayers(){}};
+$('#cat').innerHTML=CATS.map(c=>`<option value="${c[0]}">${c[1]}</option>`).join('');
+function icon(c){return HAS_L&&L.divIcon({className:'',html:`<div style="width:16px;height:16px;border-radius:50%;background:${c};border:2px solid #fff;box-shadow:0 0 8px #000"></div>`,iconSize:[16,16],iconAnchor:[8,8]});}
+function drawPts(){
+ layer.clearLayers();
+ pts.forEach((p,i)=>{if(hidden[p.c]||!HAS_L)return;const c=CATS.find(x=>x[0]===p.c);
+  L.marker([p.lat,p.lng],{icon:icon(c[2])}).addTo(layer).bindPopup(`<b>${c[1]}</b><br>${p.d||''}<br><a href="#" onclick="delPt(${i});return false">Eliminar</a>`);});
+ $('#legend').innerHTML=CATS.map(c=>`<div class="chip ${hidden[c[0]]?'off':''}" data-c="${c[0]}"><span class="dot" style="background:${c[2]}"></span>${c[1]}<em>${pts.filter(p=>p.c===c[0]).length}</em></div>`).join('');
+ $('#legend').querySelectorAll('.chip').forEach(ch=>ch.onclick=()=>{hidden[ch.dataset.c]=!hidden[ch.dataset.c];drawPts();});
+ kpis();
+}
+window.delPt=i=>{pts.splice(i,1);safe.set('diag_pts',pts);drawPts();};
+map.on('click',e=>{pts.push({lat:+e.latlng.lat.toFixed(6),lng:+e.latlng.lng.toFixed(6),c:$('#cat').value,d:$('#desc').value,t:new Date().toISOString()});safe.set('diag_pts',pts);$('#desc').value='';drawPts();});
+function dl(name,txt,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;a.click();}
+$('#exp-json').onclick=()=>dl('puntos-la-calera.json',JSON.stringify(pts,null,1),'application/json');
+$('#exp-csv').onclick=()=>dl('puntos-la-calera.csv','categoria,descripcion,lat,lng,fecha\n'+pts.map(p=>[p.c,'"'+(p.d||'').replace(/"/g,'""')+'"',p.lat,p.lng,p.t].join(',')).join('\n'),'text/csv');
+$('#clr').onclick=()=>{if(confirm('¿Borrar todos los puntos?')){pts=[];safe.set('diag_pts',pts);drawPts();}};
+
+// ---------- matriz (impacto 0-10, costo 0-10)
+const MEDS=[
+['Alumbrado LED en zonas oscuras',9,3],['Mapa vecinal y portal de obras',7,1.5],['Señalización y lomadas en escuelas',7,2],
+['Trámites digitales de comercio',6,1.5],['Alarmas vecinales conectadas',6,2.5],['Pavimentación de 150 cuadras',9,9],
+['Turnos por WhatsApp en CAPS',7,2],['Estudio de tránsito y puntos negros',8,2.5],['Gas por consorcio',7,7],
+['Plazas en barrios nuevos',6,5],['Polo de 35 ha (accesos y servicios)',9,9.5],['Cámaras y centro de monitoreo',6,6.5],['Mora cero (plan de pagos)',6,1]];
+(function(){
+ const m=$('#matrix');
+ MEDS.forEach((x,i)=>{const d=document.createElement('div');d.className='pt';d.textContent=i+1;
+  d.style.left=(6+x[2]*8.8)+'%';d.style.top=(94-x[1]*8.8)+'%';
+  d.onmousemove=e=>{const t=$('#tip');t.style.display='block';t.style.left=(e.clientX+14)+'px';t.style.top=(e.clientY+14)+'px';t.textContent=x[0]+' · impacto '+x[1]+'/10 · costo '+x[2]+'/10';};
+  d.onmouseleave=()=>$('#tip').style.display='none';m.appendChild(d);});
+ $('#mlist').innerHTML='<table><tr><th>#</th><th>Medida</th></tr>'+MEDS.map((x,i)=>`<tr><td>${i+1}</td><td>${x[0]}</td></tr>`).join('')+'</table>';
+})();
+
+// ---------- pedidos
+const PEDS=[
+['Censo vial: listado de calles con tipo de calzada (asfalto, mejorado, tierra), cordón cuneta y desagüe, con longitud.','Municipalidad · Obras Públicas'],
+['Ejecución presupuestaria de los últimos 3 años, desagregada por obra vial y alumbrado.','Municipalidad · Hacienda'],
+['Contratos y licitaciones de pavimentación de los últimos 3 años con monto, longitud y contratista.','Municipalidad · Contrataciones'],
+['Cantidad y estado de luminarias, con tipo de tecnología y reclamos recibidos por año.','Municipalidad · Servicios Públicos'],
+['Reclamos recibidos (147, mesa de entradas, redes) por tema y barrio en los últimos 24 meses.','Municipalidad · Atención al vecino'],
+['Siniestros viales registrados por año y lugar.','Policía de Córdoba / Ministerio de Transporte'],
+['Denuncias por tipo de delito, barrio y franja horaria, para La Calera, en los últimos 3 años.','Ministerio de Seguridad de Córdoba'],
+['Dotación policial, móviles y cámaras operativas asignadas al municipio.','Ministerio de Seguridad / Municipalidad'],
+['Cobertura de agua, cloacas y gas por barrio; capacidad disponible de la red eléctrica.','Prestatarios · EPEC · Ecogas'],
+['Padrón de comercios habilitados por rubro y morosidad de la tasa de comercio e industria.','Municipalidad · Tesorería / Comercio'],
+['Consultas, turnos y personal por centro de salud municipal en el último año.','Municipalidad · Salud'],
+['Matrícula y vacantes por establecimiento educativo de La Calera.','Ministerio de Educación de Córdoba'],
+['Planos y estado de dominio de los lotes municipales y del predio frente a Mimus (Ruta 55).','Municipalidad · Catastro / Provincia']];
+const pedSel=safe.get('diag_ped',{});
+function renderPeds(){
+ $('#peds').innerHTML=PEDS.map((p,i)=>`<label class="check"><input type="checkbox" data-i="${i}" ${pedSel[i]?'checked':''}><span>${p[0]}<br><small style="color:rgba(255,255,255,0.35)">${p[1]}</small></span></label>`).join('');
+ $('#peds').querySelectorAll('input').forEach(c=>c.onchange=()=>{pedSel[c.dataset.i]=c.checked;safe.set('diag_ped',pedSel);pedText();kpis();});
+ pedText();
+}
+function pedText(){
+ const sel=PEDS.filter((_,i)=>pedSel[i]);
+ $('#pedtxt').textContent=sel.length?
+`Al Sr. Intendente / Organismo correspondiente:
+
+[NOMBRE Y APELLIDO], DNI [N°], con domicilio en [DOMICILIO], en ejercicio del derecho de acceso a la información pública, solicita copia (preferentemente en formato digital abierto, p. ej. planilla de cálculo) de la siguiente información:
+
+${sel.map((p,i)=>(i+1)+'. '+p[0]+' ['+p[1]+']').join('\n')}
+
+Se solicita que la respuesta se envíe al correo [EMAIL] dentro de los plazos legales. Ante la imposibilidad de entregar algún dato, se solicita fundamentar por escrito.
+
+Fecha: [__/__/____]    Firma: ____________`:'Tildá uno o más datos para generar el pedido.';
+}
+$('#copy').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText($('#pedtxt').textContent);$('#copy').textContent='Copiado';setTimeout(()=>$('#copy').textContent='Copiar texto',1500);};
+
+renderTabs();renderInds();drawPts();renderPeds();kpis();
+</script>
+</body>
+</html>
