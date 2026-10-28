@@ -19,7 +19,7 @@ function closeDrawer(){$('drawer').classList.remove('open');if(sel){sel=null;rec
 function drawer(){
  if(!cur)return;
  var d=dat(cur),o=mstate(cur),ss=sch(cur),me=ss.reduce(function(a,x){return a+x.me},0),el=ss.reduce(function(a,x){return a+x.e},0),shs=shares(),sh=shs[cur],pc=Math.round(sh.p*100),b=$('db');
- $('dt').textContent=cur;$('ds').innerHTML='<span class="tag" style="background:var(--'+d.k+');color:#0d1311">'+C[d.k]+'</span>'+(d.o?' <span class="pill">sucesión abierta</span>':'');
+ $('dt').textContent=cur;$('ds').innerHTML='<span class="tag" style="background:var(--'+d.k+');color:#0d1311">'+C[d.k]+'</span>'+(d.o?' <span class="pill">sucesión abierta</span>':'');$('ds').insertAdjacentHTML('beforeend',' <button class="btn pri" id="deepb">Análisis a fondo</button>');$('deepb').onclick=function(){renderMun(cur);setView('mun')};
  var TB=['Resumen'];if(cur==='La Calera')TB.push('Zonas');TB.push('Escuelas','Esfuerzo','Temas','Candidatos','Plan','Actividades');if(TB.indexOf(drawerTab)<0)drawerTab='Resumen';
  var tb=$('dtabs');tb.innerHTML='';TB.forEach(function(t){var x=document.createElement('button');x.textContent=t==='Actividades'?'Actividades ('+ACT.filter(function(a){return a.m===cur}).length+')':t;x.setAttribute('role','tab');x.setAttribute('aria-selected',t===drawerTab);x.onclick=function(){drawerTab=t;drawer()};tb.appendChild(x)});
  var h='',t=drawerTab;

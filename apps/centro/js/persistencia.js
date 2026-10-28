@@ -29,7 +29,7 @@ function persistPt(p){LS.set('cmd_pts',PTS);if(DBX&&CANW)DBX.doc('puntos/'+p.id)
 function persistDelPt(id){LS.set('cmd_pts',PTS);if(DBX&&CANW)DBX.doc('puntos/'+id).delete().catch(dberr)}
 function busy(el){var a=document.activeElement;return !!(a&&el&&el.contains(a)&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))}
 function refresh(){retarget();recolor();ecount();
- if(!busy($('act')))renderAct();if(!busy($('est')))renderEst();if(!busy($('con')))renderCon();if(!busy($('ele')))renderEle();if(!busy($('pre')))renderPre();
+ if(!busy($('act')))renderAct();if(!busy($('est')))renderEst();if(!busy($('con')))renderCon();if(!busy($('ele')))renderEle();if(!busy($('pre')))renderPre();if(!$('v-mun').hidden&&!busy($('mun')))renderMun();
  if($('drawer').classList.contains('open')&&!busy($('db')))drawer();buildPins()}
 async function initDb(){
  status();

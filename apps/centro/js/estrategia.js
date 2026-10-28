@@ -36,8 +36,8 @@ KP.forEach(function(k){if(k.k==='con')k.val=ctTotal()});
 /* ---------- navegación y arranque ---------- */
 function setView(v){
  $('nav').querySelectorAll('button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.v===v)});
- ['mapa','est','act','con','ele','pre'].forEach(function(k){$('v-'+k).hidden=k!==v});
- if(v==='mapa')setTimeout(resize,30);if(v==='con')renderCon();if(v==='ele')renderEle();if(v==='pre')renderPre()}
+ ['mapa','est','act','con','ele','pre','mun'].forEach(function(k){$('v-'+k).hidden=k!==v});
+ if(v==='mapa')setTimeout(resize,30);if(v==='con')renderCon();if(v==='ele')renderEle();if(v==='pre')renderPre();if(v==='mun')renderMun()}
 function ecount(){
  var e=$('edate');e.value=ELDATE;var t=dms(ELDATE),el=$('ecount');
  if(isNaN(t)){el.textContent='sin confirmar';return}

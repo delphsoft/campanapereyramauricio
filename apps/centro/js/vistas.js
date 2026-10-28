@@ -1,5 +1,5 @@
 /* ---------- gráficos y utilidades de vistas ---------- */
-var TCOL=['','var(--cerrada)','var(--abierta)','var(--sindato)','var(--fuerte)','var(--ok)'];
+var TCOL=['','#ff6455','#f5a742','#d8d36a','#7ccf9a','#2fb273'];
 function tbar(n){var N=n.reduce(function(a,b){return a+b},0);return '<div class="tc" title="De 1 (en contra) a 5 (voto seguro)">'+n.map(function(v,i){return '<i style="width:'+(N?v/N*100:0)+'%;background:'+TCOL[i+1]+'"></i>'}).join('')+'</div>'}
 function sugM(n){var N=n.reduce(function(a,b){return a+b},0);if(N<5)return null;return Math.max(1,Math.min(5,Math.round(1+4*(n[1]+n[2]+n[3])/N)))}
 function money(v){return '$ '+fmt(v)}
