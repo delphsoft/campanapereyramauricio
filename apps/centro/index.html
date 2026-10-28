@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="color-scheme" content="dark light">
+<title>Centro de Mando Colón 2027</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Syne:wght@700&display=swap">
+<link rel="stylesheet" href="css/app.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+<div class="app">
+<header class="top gut">
+ <div class="brand">Colón 2027<small>Centro de mando</small></div>
+ <nav class="nav" role="tablist" id="nav">
+  <button role="tab" data-v="mapa" aria-selected="true">Mapa 3D</button>
+  <button role="tab" data-v="est" aria-selected="false">Estrategia</button>
+  <button role="tab" data-v="act" aria-selected="false">Actividades</button>
+  <button role="tab" data-v="con" aria-selected="false">Contactos</button>
+  <button role="tab" data-v="ele" aria-selected="false">Elección</button>
+  <button role="tab" data-v="pre" aria-selected="false">Presupuesto</button>
+ </nav>
+ <div class="sp"></div>
+ <span class="pill" id="dbst" title="Dónde se guardan los datos">Solo en este navegador</span>
+ <div class="edate"><span class="t">Fecha de elección</span><input type="date" id="edate" aria-label="Fecha de elección"><span class="pill" id="ecount">sin confirmar</span></div>
+</header>
+<main>
+ <section class="view" id="v-mapa" style="height:100%">
+  <div id="stage"><canvas id="cv" aria-label="Mapa 3D del Departamento Colón"></canvas><div id="labels"></div><div id="tip"></div>
+   <div class="hud tl">
+    <div class="seg" id="metric"><span>Altura</span><button data-m="electores" aria-pressed="true">Electores</button><button data-m="esfuerzo" aria-pressed="false">Esfuerzo</button><button data-m="plano" aria-pressed="false">Plano</button></div>
+    <div class="cl" id="flt"></div>
+    <div class="cl"><button class="chip" id="ptg" aria-pressed="true"><i style="background:var(--t4)"></i>Puntos <span id="ptn">0</span></button><button class="btn" id="pted">Agregar puntos</button></div>
+   </div>
+   <div class="hud bl" id="hint">Arrastrá para girar. Shift y arrastrar, o clic derecho, para mover. Rueda para acercar. Tocá un municipio para ver su ficha.</div>
+   <div class="hud br"><button class="btn" id="top">Vista cenital</button><button class="btn" id="rst">Reiniciar vista</button></div>
+  </div>
+  <aside id="drawer" aria-label="Ficha del municipio"><div class="dh"><div><h2 id="dt"></h2><div id="ds" style="margin-top:4px"></div></div><button class="btn" id="dx">Cerrar</button></div><div class="tabs" role="tablist" id="dtabs"></div><div class="db" id="db"></div></aside>
+ </section>
+ <section class="view" id="v-est" hidden style="height:100%"><div class="page gut"><div class="wrap" id="est"></div></div></section>
+ <section class="view" id="v-act" hidden style="height:100%"><div class="page gut"><div class="wrap" id="act"></div></div></section>
+ <section class="view" id="v-con" hidden style="height:100%"><div class="page gut"><div class="wrap" id="con"></div></div></section>
+ <section class="view" id="v-ele" hidden style="height:100%"><div class="page gut"><div class="wrap" id="ele"></div></div></section>
+ <section class="view" id="v-pre" hidden style="height:100%"><div class="page gut"><div class="wrap" id="pre"></div></div></section>
+</main>
+</div>
+<aside id="ed" aria-label="Editar actividad"></aside>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/estado.js"></script>
+<script src="js/escena3d.js"></script>
+<script src="js/ficha.js"></script>
+<script src="js/actividades.js"></script>
+<script src="js/backend.js"></script>
+<script src="js/persistencia.js"></script>
+<script src="js/vistas.js"></script>
+<script src="js/estrategia.js"></script>
+</body>
+</html>
