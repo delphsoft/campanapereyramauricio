@@ -1,0 +1,12 @@
+{
+  "name": "Mauricio Pereyra · La Calera 2027",
+  "short_name": "Pereyra 2027",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0F1E",
+  "theme_color": "#0B2545",
+  "lang": "es-AR",
+  "icons": [
+    { "src": "img/icon.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

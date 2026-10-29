@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta name="description" content="Mauricio Pereyra, candidato a intendente de La Calera 2027. Plataforma de gobierno: agua, peaje, salud y gestión que resuelve.">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mauricio Pereyra · Candidato a Intendente · La Calera 2027</title>
@@ -144,6 +146,13 @@ h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margi
   .section{padding:4rem 1.5rem;}
 }
 </style>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0B2545">
+<meta property="og:image" content="https://campanapereyramauricio.vercel.app/img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/chrome.css">
 </head>
 <body>
 <nav>
@@ -164,15 +173,16 @@ h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margi
       <div class="candidate-quote">"La Calera no necesita un administrador que justifique por qué las cosas no se pueden hacer. Necesita un intendente que las haga."</div>
       <div class="hero-cta">
         <a href="#historia" class="btn btn-primary">Su historia</a>
-        <a href="index.html" class="btn btn-outline">Ver la propuesta</a>
+        <a href="sumate.html" class="btn btn-outline">Sumate a la campaña</a>
       </div>
     </div>
     <div class="hero-right">
       <div class="photo-area">
-        <span class="photo-placeholder">👤</span>
+        <img src="img/candidato.jpg" alt="Mauricio Pereyra" width="640" height="800" style="width:100%;max-height:360px;object-fit:cover;border-radius:12px;display:block;margin-bottom:1rem" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="photo-placeholder" style="display:none">👤</span>
         <div class="photo-name">Mauricio Pereyra</div>
         <div class="photo-sub">La Calera · Córdoba</div>
-        <div class="photo-note">[ Foto oficial del candidato ]</div>
+        <div class="photo-note">Para publicar la foto oficial, guardala como apps/sitio/img/candidato.jpg</div>
       </div>
       <div class="quick-facts">
         <div class="qfact"><div class="qfact-label">Ciudad</div><div class="qfact-value">La Calera</div></div>
@@ -387,5 +397,7 @@ const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isInte
 document.querySelectorAll('.aos').forEach(el=>obs.observe(el));
 window.addEventListener('scroll',()=>{document.querySelector('nav').style.background=window.scrollY>60?'rgba(3,6,9,0.98)':'rgba(6,11,16,0.9)';});
 </script>
+<script src="js/campana.js"></script>
+<script src="js/chrome.js"></script>
 </body>
 </html>

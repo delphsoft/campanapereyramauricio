@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mauricio Pereyra · La Calera 2027</title>
+<meta name="description" content="Mauricio Pereyra, candidato a intendente de La Calera 2027. Plataforma de gobierno: agua, peaje, salud y gestión que resuelve.">
+<meta property="og:title" content="Mauricio Pereyra · La Calera 2027">
+<meta property="og:description" content="Plataforma de gobierno construida desde los problemas reales de La Calera: agua, peaje, salud y gestión que resuelve.">
+<meta property="og:url" content="https://campanapereyramauricio.vercel.app/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://campanapereyramauricio.vercel.app/">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -61,6 +67,7 @@
     font-size: 1.1rem;
     letter-spacing: 0.05em;
     color: var(--water);
+    text-decoration: none;
   }
 
   .nav-links { display: flex; gap: 2rem; list-style: none; }
@@ -448,11 +455,18 @@
     .section-wrap, .section-full-bg { padding:4rem 1.5rem; }
   }
 </style>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0B2545">
+<meta property="og:image" content="https://campanapereyramauricio.vercel.app/img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/chrome.css">
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">PEREYRA 2027</div>
+  <a class="nav-logo" href="index.html">PEREYRA 2027</a>
   <ul class="nav-links">
     <li><a href="#diagnostico">Diagnóstico</a></li>
     <li><a href="#ejes">Propuesta</a></li>
@@ -482,7 +496,7 @@
       <p class="hero-sub">Una plataforma construida desde los problemas reales de La Calera. Sin promesas vacías — con diagnóstico honesto, responsabilidades claras y compromisos verificables.</p>
       <div class="hero-cta">
         <a href="#ejes" class="btn-primary">Ver propuesta completa</a>
-        <a href="#dias" class="btn-outline">Primeros 100 días</a>
+        <a href="sumate.html" class="btn-outline">Sumate a la campaña</a>
       </div>
     </div>
     <div class="hero-vision">
@@ -894,6 +908,12 @@
     <h2 style="font-family:'Syne',sans-serif;font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:800;margin-bottom:0.8rem;" class="aos">Una propuesta completa<br>para toda La Calera.</h2>
     <p style="font-size:0.95rem;color:rgba(255,255,255,0.55);line-height:1.65;max-width:580px;margin-bottom:2.5rem;" class="aos">Además del plan económico, la propuesta de gobierno incluye salud comunitaria, infraestructura barrial y la historia del candidato.</p>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="aos">
+      <a href="sumate.html" style="text-decoration:none;background:rgba(46,134,193,0.14);border:1px solid rgba(93,173,226,0.35);border-radius:14px;padding:2rem;display:block;transition:all 0.3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(93,173,226,0.6)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(93,173,226,0.35)'">
+        <div style="font-size:2.5rem;margin-bottom:0.8rem;">🤝</div>
+        <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.5rem;">Sumate a la campaña</div>
+        <div style="font-size:0.83rem;color:rgba(255,255,255,0.5);line-height:1.55;margin-bottom:1rem;">Voluntarios, capitanes de barrio y vecinos que quieren organizar su cuadra. Formulario con consentimiento.</div>
+        <div style="font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;color:var(--water);letter-spacing:0.08em;">Quiero sumarme →</div>
+      </a>
       <a href="salud.html" style="text-decoration:none;background:rgba(192,57,43,0.08);border:1px solid rgba(241,148,138,0.2);border-radius:14px;padding:2rem;display:block;transition:all 0.3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(241,148,138,0.4)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(241,148,138,0.2)'">
         <div style="font-size:2.5rem;margin-bottom:0.8rem;">❤️</div>
         <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.5rem;">Salud Comunitaria</div>
@@ -971,9 +991,14 @@
   document.querySelectorAll('.aos').forEach(el => obs.observe(el));
 
   window.addEventListener('scroll', () => {
-    document.querySelector('nav').style.background =
-      window.scrollY > 60 ? 'rgba(5,8,16,0.97)' : 'rgba(10,15,30,0.85)';
+    const n = document.querySelector('body > nav');
+    if (n) n.style.background = window.scrollY > 60 ? 'rgba(5,8,16,0.97)' : 'rgba(10,15,30,0.85)';
   });
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Mauricio Pereyra","jobTitle":"Candidato a Intendente","address":{"@type":"PostalAddress","addressLocality":"La Calera","addressRegion":"Córdoba","addressCountry":"AR"},"url":"https://campanapereyramauricio.vercel.app/"}
+</script>
+<script src="js/campana.js"></script>
+<script src="js/chrome.js"></script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta name="description" content="Mauricio Pereyra, candidato a intendente de La Calera 2027. Plataforma de gobierno: agua, peaje, salud y gestión que resuelve.">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seguridad y Tránsito · Pereyra 2027</title>
@@ -80,6 +82,13 @@ footer{padding:2.5rem 2rem;background:#060102;border-top:1px solid var(--border)
 .comp{width:100%}.comp td b{color:#fff}
 @media(max-width:800px){.cols{grid-template-columns:1fr}.sl{grid-template-columns:1fr}}
 </style>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0B2545">
+<meta property="og:image" content="https://campanapereyramauricio.vercel.app/img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/chrome.css">
 </head>
 <body>
 <nav><a href="index.html" class="nav-back">← Volver a la plataforma</a><div class="nav-title">Seguridad y Tránsito</div><div class="nav-right">Pereyra 2027</div></nav>
@@ -174,5 +183,7 @@ function calc(){
 }
 ['s-cam','u-cam','s-ala','u-ala','s-prov'].forEach(i=>$('#'+i).addEventListener('input',calc));calc();
 </script>
+<script src="js/campana.js"></script>
+<script src="js/chrome.js"></script>
 </body>
 </html>

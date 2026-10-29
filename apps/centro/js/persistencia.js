@@ -37,6 +37,8 @@ async function initDb(){
  if(!env||!env.db){status();return}
  DBX=env.db;DLX=env.downloads||null;UID=env.uid;ISADMIN=!!env.isEditor;CANW=env.canWrite!==false;
  status();
+ var so=$('signout');
+ if(so&&window.BK&&BK.sb){so.hidden=false;so.onclick=function(){BK.sb.auth.signOut().then(function(){location.reload()})}}
  function sub(path,fn){try{DBX.doc(path).onSnapshot(function(s){if(!s.exists||s.metadata.hasPendingWrites)return;fn(s.data())},dberr)}catch(e){dberr(e)}}
  sub('cfg/plan',function(d){var ch=false;if(d.muni&&!same(d.muni,ST2)){ST2=d.muni;ch=true}if(d.cand&&!same(d.cand,CAND)){CAND=d.cand;ch=true}if(d.fisc&&!same(d.fisc,FISC)){FISC=d.fisc;ch=true}if(ch)refresh()});
  sub('cfg/zonas',function(d){var ch=false;if(d.z){Z.forEach(function(z){var s=d.z[z.id];if(s&&(s.m!==z.m||s.d!==z.d||s.e!==z.e)){z.m=s.m;z.d=s.d;z.e=s.e;ch=true}})}if(ch)refresh()});

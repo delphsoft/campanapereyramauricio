@@ -31,7 +31,7 @@ Z.forEach(function(z){var s=ZS[z.id];if(s){z.m=s.m;z.d=s.d;z.e=s.e}});
 function zobj(){var o={};Z.forEach(function(z){o[z.id]={m:z.m,d:z.d,e:z.e}});return o}
 function saveZ(){persist('zonas')}
 var CAND=LS.get('cmd_cand',{}),FISC=LS.get('cmd_fisc',{}),LINKS=LS.get('cmd_links',null),TOPE=LS.get('cmd_tope',0),ESC=LS.get('cmd_esc',{pad:37000,par:64,obj:35,seg:2}),PTS=LS.get('cmd_pts',[]),CAPN=LS.get('cmd_capn',''),MYCT=LS.get('cmd_ct',[]),ALLCT={};
-if(!LINKS)LINKS=[{t:'Simulador de zonas (versión anterior)',u:'https://claude.ai/artifact/2fwwHLtF3AX4ZSHP8kb6DA'},{t:'Repositorio del sitio de campaña',u:'https://github.com/delphsoft/campanapereyramauricio'}];
+if(!LINKS)LINKS=[{t:'Sitio público de campaña',u:'https://campanapereyramauricio.vercel.app'},{t:'Repositorio',u:'https://github.com/delphsoft/campanapereyramauricio'}];
 function mstate(n){var o=ST2[n]=ST2[n]||{};var d=dat(n);if(o.m==null)o.m={cerrada:5,abierta:3,fuerte:1,sindato:2}[d.k];if(o.d==null)o.d=d.k==='fuerte'?4:3;if(!o.ck)o.ck={};if(!o.nt)o.nt='';return o}
 function pop(d){var s=sch(d.n).reduce(function(a,x){return a+x.e},0);return d.p||s||3000}
 function shares(){var L=D.map(function(d){var o=mstate(d.n);return {n:d.n,v:pop(d)*o.m/o.d}}),T=L.reduce(function(a,x){return a+x.v},0),r={};L.slice().sort(function(a,b){return b.v-a.v}).forEach(function(x,i){r[x.n]={p:T?x.v/T:0,rank:i+1}});return r}

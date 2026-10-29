@@ -57,6 +57,7 @@ Roles: `admin` (dueño), `editor` (comando), `capitan`. Un usuario nuevo queda `
 
 ## Pendientes
 - Pedir a la Junta Electoral: locales y mesas 2023, escrutinio definitivo por mesa y lista, calendario 2027 (la página "Elección" genera la carta).
-- Registrar la base de contactos y definir consentimiento y retención (Ley 25.326 / AAIP).
+- Completar WhatsApp y redes en `apps/sitio/js/campana.js`; `CAMPANA_TO_EMAIL` + `RESEND_API_KEY` en Vercel para el formulario Sumate; foto en `apps/sitio/img/candidato.jpg`.
+- Registrar la base de contactos del centro y definir consentimiento y retención (Ley 25.326 / AAIP). El formulario público pide consentimiento y no pide intención de voto.
 - Rotar la anon key no es necesario; nunca subir la `service_role`.
-- Sin mapa de calles: la capa de puntos usa coordenadas manuales.
+- Sin mapa de calles: la capa de puntos usa coordenadas manuales. El mapa A/B/C vive en `apps/centro/mapa-electoral.html`.

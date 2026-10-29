@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta name="description" content="Mauricio Pereyra, candidato a intendente de La Calera 2027. Plataforma de gobierno: agua, peaje, salud y gestión que resuelve.">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pilar 3 · Turismo Estratégico · Pereyra 2027</title>
@@ -135,6 +137,13 @@ h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:
 .aos.show{opacity:1;transform:translateY(0);}
 @media(max-width:900px){nav{padding:1rem 1.5rem;}.hero{padding:7rem 1.5rem 4rem;}.hero-inner,.activos-grid,.ejes-grid,.festival-layout,.impact-numbers{grid-template-columns:1fr;}.section{padding:4rem 1.5rem;}}
 </style>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0B2545">
+<meta property="og:image" content="https://campanapereyramauricio.vercel.app/img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/chrome.css">
 </head>
 <body>
 <nav>
@@ -521,5 +530,7 @@ const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isInte
 document.querySelectorAll('.aos').forEach(el=>obs.observe(el));
 window.addEventListener('scroll',()=>{document.querySelector('nav').style.background=window.scrollY>60?'rgba(6,3,0,0.98)':'rgba(12,8,4,0.9)';});
 </script>
+<script src="js/campana.js"></script>
+<script src="js/chrome.js"></script>
 </body>
 </html>

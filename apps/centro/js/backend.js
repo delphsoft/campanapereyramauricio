@@ -42,7 +42,9 @@ function showGate(msg,noForm){
  var g=document.getElementById('gate');
  if(!g){g=document.createElement('div');g.id='gate';g.setAttribute('role','dialog');g.setAttribute('aria-modal','true');g.setAttribute('aria-label','Acceso al centro de mando');document.body.appendChild(g)}
  g.innerHTML='<div class="gbox"><h1>Centro de mando Colón 2027</h1><p id="gmsg">'+msg+'</p>'+(noForm?'<button class="btn" id="gout">Salir</button>':'<form id="gf"><label for="gm">Email</label><input class="in" id="gm" type="email" required autocomplete="email"><button class="btn pri" type="submit">Enviar enlace de acceso</button></form>')+'</div>';
- g.style.display='grid';return g}
+ g.style.display='grid';
+ var out=g.querySelector('#gout');if(out)out.onclick=function(){if(BK.sb)BK.sb.auth.signOut();location.reload()};
+ return g}
 function hideGate(){var g=document.getElementById('gate');if(g)g.style.display='none'}
 function loginGate(){return new Promise(function(res){
  var g=showGate('Ingresá con tu email. Te enviamos un enlace para entrar, sin contraseña.');

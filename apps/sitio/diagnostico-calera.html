@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta name="description" content="Mauricio Pereyra, candidato a intendente de La Calera 2027. Plataforma de gobierno: agua, peaje, salud y gestión que resuelve.">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Diagnóstico de La Calera · Pereyra 2027</title>
@@ -70,6 +72,13 @@ pre{white-space:pre-wrap;background:rgba(0,0,0,0.4);border:1px solid var(--borde
 footer{padding:2.5rem 2rem;background:#060102;border-top:1px solid var(--border);text-align:center;color:rgba(255,255,255,0.3);font-size:0.8rem;}
 @media(max-width:800px){.two{grid-template-columns:1fr}.section,.hero{padding-left:1rem;padding-right:1rem}nav{padding:0.8rem 1rem}#map{height:420px}}
 </style>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0B2545">
+<meta property="og:image" content="https://campanapereyramauricio.vercel.app/img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/chrome.css">
 </head>
 <body>
 <nav><a href="index.html" class="nav-back">← Volver a la plataforma</a><div class="nav-title">Diagnóstico de La Calera</div><div class="nav-right">Pereyra 2027</div></nav>
@@ -314,5 +323,7 @@ $('#copy').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText($('#p
 
 renderTabs();renderInds();drawPts();renderPeds();kpis();
 </script>
+<script src="js/campana.js"></script>
+<script src="js/chrome.js"></script>
 </body>
 </html>
