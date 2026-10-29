@@ -53,7 +53,7 @@ Roles: `admin` (dueño), `editor` (comando), `capitan`. Un usuario nuevo queda `
 4. **Front:** completar `apps/centro/js/config.js` con la URL y la anon key (Project Settings → API). Authentication → URL Configuration: agregar el dominio del centro como Site URL / Redirect.
 5. **Vercel:** dos proyectos sobre este repo. `campana-sitio` con Root Directory `apps/sitio`; `campana-centro` con Root Directory `apps/centro`. Framework "Other", sin build. Recomendado en el centro: Deployment Protection como segunda capa (el código y los datos base de `data.js` se sirven a quien abra la URL; los datos reales del equipo están solo en Supabase).
 
-> **Cambio de Root Directory del sitio:** el sitio existente estaba en la raíz. Al fusionar esta rama, el proyecto de Vercel del sitio debe pasar a Root Directory `apps/sitio` (Settings → General) o el deploy fallará.
+> **Sitio público sin cambios en Vercel:** el `vercel.json` de la raíz publica `apps/sitio` (`outputDirectory`), así que el proyecto actual sigue funcionando con Root Directory vacío. Si preferís, podés poner Root Directory `apps/sitio` y borrar ese archivo. El centro va siempre en un proyecto aparte con Root Directory `apps/centro`.
 
 ## Pendientes
 - Pedir a la Junta Electoral: locales y mesas 2023, escrutinio definitivo por mesa y lista, calendario 2027 (la página "Elección" genera la carta).
